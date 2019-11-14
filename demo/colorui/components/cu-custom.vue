@@ -6,7 +6,7 @@
 					<text class="cuIcon-back"></text>
 					<slot name="backText"></slot>
 				</view>
-				<view class="content" :style="[{top:StatusBar + 'px'}]">
+				<view class="content" :class="(isBold === true) ? 'bold' : ''" :style="[{top:StatusBar + 'px'}]">
 					<slot name="content"></slot>
 				</view>
 				<slot name="right"></slot>
@@ -26,8 +26,8 @@
 		name: 'cu-custom',
 		computed: {
 			style() {
-				var StatusBar= this.StatusBar;
-				var CustomBar= this.CustomBar;
+				var StatusBar = this.StatusBar;
+				var CustomBar = this.CustomBar;
 				var bgImage = this.bgImage;
 				var style = `height:${CustomBar}px;padding-top:${StatusBar}px;`;
 				if (this.bgImage) {
@@ -37,6 +37,10 @@
 			}
 		},
 		props: {
+			isBold: {
+				type: Boolean,
+				default: true
+			},
 			bgColor: {
 				type: String,
 				default: ''
@@ -61,5 +65,8 @@
 </script>
 
 <style>
-
+	.index .bold {
+		font-size: 40rpx;
+		font-weight: bold;
+	}
 </style>
