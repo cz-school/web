@@ -1,5 +1,5 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ 
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -17,37 +17,85 @@
 			"style": {
 				"navigationBarTitleText": "广场"
 			}
-		}, {
+		},
+		{
 			"path": "pages/info/info",
 			"style": {
-				"navigationBarTitleText": "消息"
+				"navigationStyle": "custom"
 			}
-		}, {
+		},
+		{
+			"path": "pages/info/chat",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/self/self",
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
-		}, {
+		},
+		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
 			}
-		}, {
+		},
+		{
 			"path": "pages/regist/regist",
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
-		},	{
-		"path": "pages/xy/purchase/purchase",
-		"style": {
-			"navigationStyle": "custom"
+		},
+		{
+			"path": "pages/meituan/payment",
+			"style": {
+				"navigationBarTitleText": "支付"
+			}
+		},
+		{
+			"path": "pages/meituan/order",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
+			"path": "pages/meituan/myCart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
+			"path": "pages/meituan/index",
+			"style": {
+				"navigationBarTitleText": "食堂首页"
+			}
+		},
+		{
+			"path": "pages/meituan/menu",
+			"style": {
+				"navigationBarTitleText": "菜详情"
+			}
+		},
+		{
+			"path": "pages/meituan/win",
+			"style": {
+				"navigationBarTitleText": "窗口详情"
+			}
+		},
+		{
+			"path": "pages/xy/purchase/purchase",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/xy/order/order",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
-	},{
-		"path": "pages/xy/order/order",
-		"style": {
-			"navigationStyle": "custom"
-		}
-	}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -60,31 +108,37 @@
 		"selectedColor": "#2F85FC",
 		"backgroundColor": "#FFFFFF",
 		"borderStyle": "black",
-		"list": [{
-			"pagePath": "pages/index/index",
-			"iconPath": "static/tarbar/index.png",
-			"selectedIconPath": "static/tarbar/index.png",
-			"text": "首页"
-		}, {
-			"pagePath": "pages/mate/mate",
-			"iconPath": "static/tarbar/mate.png",
-			"selectedIconPath": "static/tarbar/mate.png",
-			"text": "匹配"
-		}, {
-			"pagePath": "pages/plaza/plaza",
-			"iconPath": "static/tarbar/plaza.png",
-			"selectedIconPath": "static/tarbar/plaza.png",
-			"text": "广场"
-		}, {
-			"pagePath": "pages/info/info",
-			"iconPath": "static/tarbar/info.png",
-			"selectedIconPath": "static/tarbar/info.png",
-			"text": "消息"
-		}, {
-			"pagePath": "pages/self/self",
-			"iconPath": "static/tarbar/self.png",
-			"selectedIconPath": "static/tarbar/self.png",
-			"text": "我的"
-		}]
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tarbar/index.png",
+				"selectedIconPath": "static/tarbar/index.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/mate/mate",
+				"iconPath": "static/tarbar/mate.png",
+				"selectedIconPath": "static/tarbar/mate.png",
+				"text": "匹配"
+			},
+			{
+				"pagePath": "pages/plaza/plaza",
+				"iconPath": "static/tarbar/plaza.png",
+				"selectedIconPath": "static/tarbar/plaza.png",
+				"text": "广场"
+			},
+			{
+				"pagePath": "pages/info/info",
+				"iconPath": "static/tarbar/info.png",
+				"selectedIconPath": "static/tarbar/info.png",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/self/self",
+				"iconPath": "static/tarbar/self.png",
+				"selectedIconPath": "static/tarbar/self.png",
+				"text": "我的"
+			}
+		]
 	}
 }

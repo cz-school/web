@@ -56,17 +56,25 @@
 		},
 		methods: {
 			BackPage() {
-				uni.navigateBack({
-					delta: 1
-				});
+				// uni.navigateBack({
+				// 	delta: 1
+				// });
+				uni.reLaunch({
+					url:'../../pages/info/info'
+				})
 			}
 		}
 	}
 </script>
 
 <style>
-	.index .bold {
+	.bold {
+		/*  #ifdef  APP-PLUS || MP-WEIXIN  */
+		font-size: 46rpx !important;
+		/* #endif */
+		/* #ifdef H5 */
 		font-size: 40rpx;
+		/* #endif */
 		font-weight: bold;
 	}
 </style>
