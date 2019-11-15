@@ -53,6 +53,21 @@
 			"style": {
 				"navigationBarTitleText": "购物车"
 			}
+		}, {
+			"path": "pages/meituan/index",
+			"style": {
+				"navigationBarTitleText": "食堂首页"
+			}
+		}, {
+			"path": "pages/meituan/menu",
+			"style": {
+				"navigationBarTitleText": "菜详情"
+			}
+		}, {
+			"path": "pages/meituan/win",
+			"style": {
+				"navigationBarTitleText": "窗口详情"
+			}
 		}
 
 
