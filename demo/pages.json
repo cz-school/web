@@ -37,7 +37,24 @@
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
+
+		}, {
+			"path": "pages/meituan/payment",
+			"style": {
+				"navigationBarTitleText": "支付"
+			}
+		}, {
+			"path": "pages/meituan/order",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		}, {
+			"path": "pages/meituan/myCart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
 		}
+
 
 	],
 	"globalStyle": {
