@@ -1276,13 +1276,16 @@ Z([3,'cuIcon-sound text-grey'])
 Z([1,false])
 Z([3,'__e'])
 Z(z[82])
+Z(z[82])
 Z([3,'solid-bottom'])
 Z([3,'10'])
-Z([[4],[[5],[[5],[[4],[[5],[[5],[1,'focus']],[[4],[[5],[[4],[[5],[[5],[1,'InputFocus']],[[4],[[5],[1,'$event']]]]]]]]]],[[4],[[5],[[5],[1,'blur']],[[4],[[5],[[4],[[5],[[5],[1,'InputBlur']],[[4],[[5],[1,'$event']]]]]]]]]]])
+Z([[4],[[5],[[5],[[5],[[4],[[5],[[5],[1,'focus']],[[4],[[5],[[4],[[5],[[5],[1,'InputFocus']],[[4],[[5],[1,'$event']]]]]]]]]],[[4],[[5],[[5],[1,'blur']],[[4],[[5],[[4],[[5],[[5],[1,'InputBlur']],[[4],[[5],[1,'$event']]]]]]]]]],[[4],[[5],[[5],[1,'input']],[[4],[[5],[[4],[[5],[[5],[1,'__set_model']],[[4],[[5],[[5],[[5],[[5],[1,'']],[1,'info']],[1,'$event']],[[4],[[5]]]]]]]]]]]]])
 Z(z[81])
 Z([3,'300'])
+Z([[7],[3,'info']])
 Z(z[57])
 Z([3,'cuIcon-emojifill text-grey'])
+Z([3,'text'])
 Z(z[82])
 Z([3,'cu-btn bg-green shadow'])
 Z([[4],[[5],[[4],[[5],[[5],[1,'tap']],[[4],[[5],[[4],[[5],[[5],[1,'sendInfo']],[[4],[[5],[1,'$event']]]]]]]]]]])
@@ -1380,14 +1383,141 @@ function gz$gwx_9(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_9)return __WXML_GLOBAL__.ops_cached.$gwx_9
 __WXML_GLOBAL__.ops_cached.$gwx_9=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'_div'])
+Z([3,'myCart'])
+Z([[4],[[5],[[5],[[5],[1,'cu-list menu']],[[2,'?:'],[[7],[3,'menuBorder']],[1,'sm-border'],[1,'']]],[[2,'?:'],[[7],[3,'menuCard']],[1,'card-menu margin-top'],[1,'']]]])
+Z([[4],[[5],[[5],[1,'cu-item']],[[2,'?:'],[[7],[3,'menuArrow']],[1,'arrow'],[1,'']]]])
+Z([3,'content'])
+Z([3,'cuIcon-circlefill text-grey'])
+Z([3,'text-grey'])
+Z([3,'图标 + 标题'])
+Z(z[2])
+Z(z[3])
+Z([3,'png'])
+Z([3,'aspectFit'])
+Z([3,'/static/logo.png'])
+Z(z[5])
+Z([3,'图片 + 标题'])
+Z(z[2])
+Z([3,'cu-btn content'])
+Z([3,'contact'])
+Z([3,'cuIcon-btn text-olive'])
+Z(z[5])
+Z([3,'Open-type 按钮'])
+Z(z[2])
+Z(z[3])
+Z([3,'none'])
+Z([3,'redirect'])
+Z([3,'../list/list'])
+Z([3,'cuIcon-discoverfill text-orange'])
+Z(z[5])
+Z([3,'Navigator 跳转'])
+Z(z[2])
+Z(z[3])
+Z([3,'cuIcon-emojiflashfill text-pink'])
+Z(z[5])
+Z([3,'头像组'])
+Z([3,'action'])
+Z([3,'cu-avatar-group'])
+Z([3,'cu-avatar round sm'])
+Z([3,'background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);'])
+Z(z[35])
+Z([3,'background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81005.jpg);'])
+Z(z[35])
+Z([3,'background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big25002.jpg);'])
+Z(z[35])
+Z([3,'background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big91012.jpg);'])
+Z([3,'text-grey text-sm'])
+Z([3,'4 人'])
+Z(z[2])
+Z(z[3])
+Z([3,'cuIcon-btn text-green'])
+Z(z[5])
+Z([3,'按钮'])
+Z(z[33])
+Z([3,'cu-btn round bg-green shadow'])
+Z([3,'cuIcon-upload'])
+Z([3,'上传'])
+Z(z[2])
+Z(z[3])
+Z([3,'cuIcon-tagfill text-red  margin-right-xs'])
+Z(z[5])
+Z([3,'标签'])
+Z(z[33])
+Z([3,'cu-tag round bg-orange light'])
+Z([3,'音乐'])
+Z([3,'cu-tag round bg-olive light'])
+Z([3,'电影'])
+Z([3,'cu-tag round bg-blue light'])
+Z([3,'旅行'])
+Z(z[2])
+Z(z[3])
+Z([3,'cuIcon-warn text-green'])
+Z(z[5])
+Z([3,'文本'])
+Z(z[33])
+Z(z[43])
+Z([3,'小目标还没有实现！'])
+Z([3,'cu-item'])
+Z([3,'content padding-tb-sm'])
+Z([3,'cuIcon-clothesfill text-blue margin-right-xs'])
+Z([3,'多行Item'])
+Z([3,'text-gray text-sm'])
+Z([3,'cuIcon-infofill margin-right-xs'])
+Z(z[73])
+Z(z[33])
+Z([3,'__e'])
+Z([[2,'?:'],[[7],[3,'skin']],[1,true],[1,false]])
+Z([[4],[[5],[[5],[1,'switch-sex']],[[2,'?:'],[[7],[3,'skin']],[1,'checked'],[1,'']]]])
+Z([[4],[[5],[[4],[[5],[[5],[1,'change']],[[4],[[5],[[4],[[5],[[5],[1,'SwitchSex']],[[4],[[5],[1,'$event']]]]]]]]]]])
 })(__WXML_GLOBAL__.ops_cached.$gwx_9);return __WXML_GLOBAL__.ops_cached.$gwx_9
+}
+function gz$gwx_10(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_10)return __WXML_GLOBAL__.ops_cached.$gwx_10
+__WXML_GLOBAL__.ops_cached.$gwx_10=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'_div'])
+})(__WXML_GLOBAL__.ops_cached.$gwx_10);return __WXML_GLOBAL__.ops_cached.$gwx_10
+}
+function gz$gwx_11(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_11)return __WXML_GLOBAL__.ops_cached.$gwx_11
+__WXML_GLOBAL__.ops_cached.$gwx_11=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'_div'])
+})(__WXML_GLOBAL__.ops_cached.$gwx_11);return __WXML_GLOBAL__.ops_cached.$gwx_11
+}
+function gz$gwx_12(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_12)return __WXML_GLOBAL__.ops_cached.$gwx_12
+__WXML_GLOBAL__.ops_cached.$gwx_12=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'_div'])
+})(__WXML_GLOBAL__.ops_cached.$gwx_12);return __WXML_GLOBAL__.ops_cached.$gwx_12
+}
+function gz$gwx_13(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_13)return __WXML_GLOBAL__.ops_cached.$gwx_13
+__WXML_GLOBAL__.ops_cached.$gwx_13=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'_div'])
+})(__WXML_GLOBAL__.ops_cached.$gwx_13);return __WXML_GLOBAL__.ops_cached.$gwx_13
+}
+function gz$gwx_14(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_14)return __WXML_GLOBAL__.ops_cached.$gwx_14
+__WXML_GLOBAL__.ops_cached.$gwx_14=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'_div'])
+})(__WXML_GLOBAL__.ops_cached.$gwx_14);return __WXML_GLOBAL__.ops_cached.$gwx_14
+}
+function gz$gwx_15(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_15)return __WXML_GLOBAL__.ops_cached.$gwx_15
+__WXML_GLOBAL__.ops_cached.$gwx_15=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'_div'])
+})(__WXML_GLOBAL__.ops_cached.$gwx_15);return __WXML_GLOBAL__.ops_cached.$gwx_15
 }
 __WXML_GLOBAL__.ops_set.$gwx=z;
 __WXML_GLOBAL__.ops_init.$gwx=true;
 var nv_require=function(){var nnm={};var nom={};return function(n){return function(){if(!nnm[n]) return undefined;try{if(!nom[n])nom[n]=nnm[n]();return nom[n];}catch(e){e.message=e.message.replace(/nv_/g,'');var tmp = e.stack.substring(0,e.stack.lastIndexOf(n));e.stack = tmp.substring(0,tmp.lastIndexOf('\n'));e.stack = e.stack.replace(/\snv_/g,' ');e.stack = $gstack(e.stack);e.stack += '\n    at ' + n.substring(2);console.error(e);}
 }}}()
-var x=['./colorui/components/cu-custom.wxml','./pages/index/index.wxml','./pages/info/chat.wxml','./pages/info/info.wxml','./pages/login/login.wxml','./pages/mate/mate.wxml','./pages/plaza/plaza.wxml','./pages/regist/regist.wxml','./pages/self/self.wxml'];d_[x[0]]={}
+var x=['./colorui/components/cu-custom.wxml','./pages/index/index.wxml','./pages/info/chat.wxml','./pages/info/info.wxml','./pages/login/login.wxml','./pages/mate/mate.wxml','./pages/meituan/index.wxml','./pages/meituan/menu.wxml','./pages/meituan/myCart.wxml','./pages/meituan/order.wxml','./pages/meituan/payment.wxml','./pages/meituan/win.wxml','./pages/plaza/plaza.wxml','./pages/regist/regist.wxml','./pages/self/self.wxml'];d_[x[0]]={}
 var m0=function(e,s,r,gg){
 var z=gz$gwx_1()
 var oB=_n('view')
@@ -1844,16 +1974,15 @@ var c7E=_n('text')
 _rz(z,c7E,'class',80,e,s,gg)
 _(o6E,c7E)
 _(h5E,o6E)
-var o8E=_mz(z,'input',['adjustPosition',81,'bindblur',1,'bindfocus',2,'class',3,'cursorSpacing',4,'data-event-opts',5,'focus',6,'maxlength',7],[],e,s,gg)
+var o8E=_mz(z,'input',['adjustPosition',81,'bindblur',1,'bindfocus',2,'bindinput',3,'class',4,'cursorSpacing',5,'data-event-opts',6,'focus',7,'maxlength',8,'value',9],[],e,s,gg)
 _(h5E,o8E)
 var l9E=_n('view')
-_rz(z,l9E,'class',89,e,s,gg)
-var a0E=_n('text')
-_rz(z,a0E,'class',90,e,s,gg)
+_rz(z,l9E,'class',91,e,s,gg)
+var a0E=_mz(z,'text',['class',92,'name',1],[],e,s,gg)
 _(l9E,a0E)
 _(h5E,l9E)
-var tAF=_mz(z,'button',['bindtap',91,'class',1,'data-event-opts',2],[],e,s,gg)
-var eBF=_oz(z,94,e,s,gg)
+var tAF=_mz(z,'button',['bindtap',94,'class',1,'data-event-opts',2],[],e,s,gg)
+var eBF=_oz(z,97,e,s,gg)
 _(tAF,eBF)
 _(h5E,tAF)
 _(o0C,h5E)
@@ -2016,10 +2145,258 @@ var m8=function(e,s,r,gg){
 var z=gz$gwx_9()
 var oXG=_n('view')
 _rz(z,oXG,'class',0,e,s,gg)
+var xYG=_n('view')
+_rz(z,xYG,'class',1,e,s,gg)
+var oZG=_n('view')
+_rz(z,oZG,'class',2,e,s,gg)
+var f1G=_n('view')
+_rz(z,f1G,'class',3,e,s,gg)
+var c2G=_n('text')
+_rz(z,c2G,'class',4,e,s,gg)
+_(f1G,c2G)
+var h3G=_n('text')
+_rz(z,h3G,'class',5,e,s,gg)
+var o4G=_oz(z,6,e,s,gg)
+_(h3G,o4G)
+_(f1G,h3G)
+_(oZG,f1G)
+_(xYG,oZG)
+var c5G=_n('view')
+_rz(z,c5G,'class',7,e,s,gg)
+var o6G=_n('view')
+_rz(z,o6G,'class',8,e,s,gg)
+var l7G=_mz(z,'image',['class',9,'mode',1,'src',2],[],e,s,gg)
+_(o6G,l7G)
+var a8G=_n('text')
+_rz(z,a8G,'class',12,e,s,gg)
+var t9G=_oz(z,13,e,s,gg)
+_(a8G,t9G)
+_(o6G,a8G)
+_(c5G,o6G)
+_(xYG,c5G)
+var e0G=_n('view')
+_rz(z,e0G,'class',14,e,s,gg)
+var bAH=_mz(z,'button',['class',15,'openType',1],[],e,s,gg)
+var oBH=_n('text')
+_rz(z,oBH,'class',17,e,s,gg)
+_(bAH,oBH)
+var xCH=_n('text')
+_rz(z,xCH,'class',18,e,s,gg)
+var oDH=_oz(z,19,e,s,gg)
+_(xCH,oDH)
+_(bAH,xCH)
+_(e0G,bAH)
+_(xYG,e0G)
+var fEH=_n('view')
+_rz(z,fEH,'class',20,e,s,gg)
+var cFH=_mz(z,'navigator',['class',21,'hoverClass',1,'openType',2,'url',3],[],e,s,gg)
+var hGH=_n('text')
+_rz(z,hGH,'class',25,e,s,gg)
+_(cFH,hGH)
+var oHH=_n('text')
+_rz(z,oHH,'class',26,e,s,gg)
+var cIH=_oz(z,27,e,s,gg)
+_(oHH,cIH)
+_(cFH,oHH)
+_(fEH,cFH)
+_(xYG,fEH)
+var oJH=_n('view')
+_rz(z,oJH,'class',28,e,s,gg)
+var lKH=_n('view')
+_rz(z,lKH,'class',29,e,s,gg)
+var aLH=_n('text')
+_rz(z,aLH,'class',30,e,s,gg)
+_(lKH,aLH)
+var tMH=_n('text')
+_rz(z,tMH,'class',31,e,s,gg)
+var eNH=_oz(z,32,e,s,gg)
+_(tMH,eNH)
+_(lKH,tMH)
+_(oJH,lKH)
+var bOH=_n('view')
+_rz(z,bOH,'class',33,e,s,gg)
+var oPH=_n('view')
+_rz(z,oPH,'class',34,e,s,gg)
+var xQH=_mz(z,'view',['class',35,'style',1],[],e,s,gg)
+_(oPH,xQH)
+var oRH=_mz(z,'view',['class',37,'style',1],[],e,s,gg)
+_(oPH,oRH)
+var fSH=_mz(z,'view',['class',39,'style',1],[],e,s,gg)
+_(oPH,fSH)
+var cTH=_mz(z,'view',['class',41,'style',1],[],e,s,gg)
+_(oPH,cTH)
+_(bOH,oPH)
+var hUH=_n('text')
+_rz(z,hUH,'class',43,e,s,gg)
+var oVH=_oz(z,44,e,s,gg)
+_(hUH,oVH)
+_(bOH,hUH)
+_(oJH,bOH)
+_(xYG,oJH)
+var cWH=_n('view')
+_rz(z,cWH,'class',45,e,s,gg)
+var oXH=_n('view')
+_rz(z,oXH,'class',46,e,s,gg)
+var lYH=_n('text')
+_rz(z,lYH,'class',47,e,s,gg)
+_(oXH,lYH)
+var aZH=_n('text')
+_rz(z,aZH,'class',48,e,s,gg)
+var t1H=_oz(z,49,e,s,gg)
+_(aZH,t1H)
+_(oXH,aZH)
+_(cWH,oXH)
+var e2H=_n('view')
+_rz(z,e2H,'class',50,e,s,gg)
+var b3H=_n('button')
+_rz(z,b3H,'class',51,e,s,gg)
+var o4H=_n('text')
+_rz(z,o4H,'class',52,e,s,gg)
+_(b3H,o4H)
+var x5H=_oz(z,53,e,s,gg)
+_(b3H,x5H)
+_(e2H,b3H)
+_(cWH,e2H)
+_(xYG,cWH)
+var o6H=_n('view')
+_rz(z,o6H,'class',54,e,s,gg)
+var f7H=_n('view')
+_rz(z,f7H,'class',55,e,s,gg)
+var c8H=_n('text')
+_rz(z,c8H,'class',56,e,s,gg)
+_(f7H,c8H)
+var h9H=_n('text')
+_rz(z,h9H,'class',57,e,s,gg)
+var o0H=_oz(z,58,e,s,gg)
+_(h9H,o0H)
+_(f7H,h9H)
+_(o6H,f7H)
+var cAI=_n('view')
+_rz(z,cAI,'class',59,e,s,gg)
+var oBI=_n('view')
+_rz(z,oBI,'class',60,e,s,gg)
+var lCI=_oz(z,61,e,s,gg)
+_(oBI,lCI)
+_(cAI,oBI)
+var aDI=_n('view')
+_rz(z,aDI,'class',62,e,s,gg)
+var tEI=_oz(z,63,e,s,gg)
+_(aDI,tEI)
+_(cAI,aDI)
+var eFI=_n('view')
+_rz(z,eFI,'class',64,e,s,gg)
+var bGI=_oz(z,65,e,s,gg)
+_(eFI,bGI)
+_(cAI,eFI)
+_(o6H,cAI)
+_(xYG,o6H)
+var oHI=_n('view')
+_rz(z,oHI,'class',66,e,s,gg)
+var xII=_n('view')
+_rz(z,xII,'class',67,e,s,gg)
+var oJI=_n('text')
+_rz(z,oJI,'class',68,e,s,gg)
+_(xII,oJI)
+var fKI=_n('text')
+_rz(z,fKI,'class',69,e,s,gg)
+var cLI=_oz(z,70,e,s,gg)
+_(fKI,cLI)
+_(xII,fKI)
+_(oHI,xII)
+var hMI=_n('view')
+_rz(z,hMI,'class',71,e,s,gg)
+var oNI=_n('text')
+_rz(z,oNI,'class',72,e,s,gg)
+var cOI=_oz(z,73,e,s,gg)
+_(oNI,cOI)
+_(hMI,oNI)
+_(oHI,hMI)
+_(xYG,oHI)
+var oPI=_n('view')
+_rz(z,oPI,'class',74,e,s,gg)
+var lQI=_n('view')
+_rz(z,lQI,'class',75,e,s,gg)
+var aRI=_n('view')
+var tSI=_n('text')
+_rz(z,tSI,'class',76,e,s,gg)
+_(aRI,tSI)
+var eTI=_oz(z,77,e,s,gg)
+_(aRI,eTI)
+_(lQI,aRI)
+var bUI=_n('view')
+_rz(z,bUI,'class',78,e,s,gg)
+var oVI=_n('text')
+_rz(z,oVI,'class',79,e,s,gg)
+_(bUI,oVI)
+var xWI=_oz(z,80,e,s,gg)
+_(bUI,xWI)
+_(lQI,bUI)
+_(oPI,lQI)
+var oXI=_n('view')
+_rz(z,oXI,'class',81,e,s,gg)
+var fYI=_mz(z,'switch',['bindchange',82,'checked',1,'class',2,'data-event-opts',3],[],e,s,gg)
+_(oXI,fYI)
+_(oPI,oXI)
+_(xYG,oPI)
+_(oXG,xYG)
 _(r,oXG)
 return r
 }
 e_[x[8]]={f:m8,j:[],i:[],ti:[],ic:[]}
+d_[x[9]]={}
+var m9=function(e,s,r,gg){
+var z=gz$gwx_10()
+var h1I=_n('view')
+_rz(z,h1I,'class',0,e,s,gg)
+_(r,h1I)
+return r
+}
+e_[x[9]]={f:m9,j:[],i:[],ti:[],ic:[]}
+d_[x[10]]={}
+var m10=function(e,s,r,gg){
+var z=gz$gwx_11()
+var c3I=_n('view')
+_rz(z,c3I,'class',0,e,s,gg)
+_(r,c3I)
+return r
+}
+e_[x[10]]={f:m10,j:[],i:[],ti:[],ic:[]}
+d_[x[11]]={}
+var m11=function(e,s,r,gg){
+var z=gz$gwx_12()
+var l5I=_n('view')
+_rz(z,l5I,'class',0,e,s,gg)
+_(r,l5I)
+return r
+}
+e_[x[11]]={f:m11,j:[],i:[],ti:[],ic:[]}
+d_[x[12]]={}
+var m12=function(e,s,r,gg){
+var z=gz$gwx_13()
+var t7I=_n('view')
+_rz(z,t7I,'class',0,e,s,gg)
+_(r,t7I)
+return r
+}
+e_[x[12]]={f:m12,j:[],i:[],ti:[],ic:[]}
+d_[x[13]]={}
+var m13=function(e,s,r,gg){
+var z=gz$gwx_14()
+var b9I=_n('view')
+_rz(z,b9I,'class',0,e,s,gg)
+_(r,b9I)
+return r
+}
+e_[x[13]]={f:m13,j:[],i:[],ti:[],ic:[]}
+d_[x[14]]={}
+var m14=function(e,s,r,gg){
+var z=gz$gwx_15()
+var xAJ=_n('view')
+_rz(z,xAJ,'class',0,e,s,gg)
+_(r,xAJ)
+return r
+}
+e_[x[14]]={f:m14,j:[],i:[],ti:[],ic:[]}
 if(path&&e_[path]){
 window.__wxml_comp_version__=0.02
 return function(env,dd,global){$gwxc=0;var root={"tag":"wx-page"};root.children=[]
@@ -2161,6 +2538,24 @@ __wxAppCode__['pages/login/login.wxml']=$gwx('./pages/login/login.wxml');
 
 __wxAppCode__['pages/mate/mate.wxss']=undefined;    
 __wxAppCode__['pages/mate/mate.wxml']=$gwx('./pages/mate/mate.wxml');
+
+__wxAppCode__['pages/meituan/index.wxss']=undefined;    
+__wxAppCode__['pages/meituan/index.wxml']=$gwx('./pages/meituan/index.wxml');
+
+__wxAppCode__['pages/meituan/menu.wxss']=undefined;    
+__wxAppCode__['pages/meituan/menu.wxml']=$gwx('./pages/meituan/menu.wxml');
+
+__wxAppCode__['pages/meituan/myCart.wxss']=undefined;    
+__wxAppCode__['pages/meituan/myCart.wxml']=$gwx('./pages/meituan/myCart.wxml');
+
+__wxAppCode__['pages/meituan/order.wxss']=undefined;    
+__wxAppCode__['pages/meituan/order.wxml']=$gwx('./pages/meituan/order.wxml');
+
+__wxAppCode__['pages/meituan/payment.wxss']=undefined;    
+__wxAppCode__['pages/meituan/payment.wxml']=$gwx('./pages/meituan/payment.wxml');
+
+__wxAppCode__['pages/meituan/win.wxss']=undefined;    
+__wxAppCode__['pages/meituan/win.wxml']=$gwx('./pages/meituan/win.wxml');
 
 __wxAppCode__['pages/plaza/plaza.wxss']=undefined;    
 __wxAppCode__['pages/plaza/plaza.wxml']=$gwx('./pages/plaza/plaza.wxml');

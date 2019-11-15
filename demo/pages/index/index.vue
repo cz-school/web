@@ -16,7 +16,6 @@
 			</swiper-item>
 		</swiper>
 		<!-- 九宫格 -->
-<<<<<<< HEAD
 		<view class="grid">
 			<view class="gridBox">
 				<view class="gridBox-top">
@@ -117,9 +116,6 @@
 
 			</view>
 		</view>
-
-=======
->>>>>>> 333fb168128e1be26fde37499924086c17db52bd
 	</view>
 </template>
 

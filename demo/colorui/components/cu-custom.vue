@@ -56,9 +56,12 @@
 		},
 		methods: {
 			BackPage() {
-				uni.navigateBack({
-					delta: 1
-				});
+				// uni.navigateBack({
+				// 	delta: 1
+				// });
+				uni.reLaunch({
+					url:'../../pages/info/info'
+				})
 			}
 		}
 	}

@@ -80,10 +80,10 @@
 			<view class="action">
 				<text class="cuIcon-sound text-grey"></text>
 			</view>
-			<input class="solid-bottom" :adjust-position="false" :focus="false" maxlength="300" cursor-spacing="10" @focus="InputFocus"
-			 @blur="InputBlur"></input>
+			<input class="solid-bottom" v-model="info" :adjust-position="false" :focus="false" maxlength="300" cursor-spacing="10"
+			 @focus="InputFocus" @blur="InputBlur"></input>
 			<view class="action">
-				<text class="cuIcon-emojifill text-grey" id="text"></text>
+				<text class="cuIcon-emojifill text-grey" name="text"></text>
 			</view>
 			<button @tap="sendInfo" class="cu-btn bg-green shadow">发送</button>
 		</view>
@@ -97,7 +97,8 @@
 		data() {
 			return {
 				InputBottom: 0,
-				isBold: false
+				isBold: false,
+				info: ''
 			};
 		},
 		components: {
@@ -112,43 +113,40 @@
 			},
 			// 发送信息
 			sendInfo() {
-				// uni.connectSocket({
-				// 	url: 'ws://192.168.85.127:3101',
-				// 	data: {
-				// 		req_id: 1,
-				// 		res_id: 2
-				// 	},
-				// 	header: {
-				// 		'content-type': 'application/json'
-				// 	}
-				// })
-				var socketTask = uni.connectSocket({
-					url: 'ws://192.168.85.127:3101', //仅为示例，并非真实接口地址。
-					data: {
-						req_id: 1,
-						res_id: 2
+				// 创建一个this.socketTask对象【发送、接收、关闭socket都由这个对象操作】
+				this.socketTask = uni.connectSocket({
+					// 【非常重要】必须确保你的服务器是成功的,如果是手机测试千万别使用ws://127.0.0.1:9099【特别容易犯的错误】
+					url: "ws://47.93.16.199:3101",
+					success(data) {
+						console.log("websocket连接成功");
 					},
-					header: {
-						'content-type': 'application/json'
-					},
-					success: (res)=>{
+				});
+				// 消息的发送和接收必须在正常连接打开中,才能发送或接收【否则会失败】
+				// console.log(this.info)
+				this.socketTask.onOpen((res) => {
+					console.log("WebSocket连接正常打开中...！");
+					this.is_open_socket = true;
+					// 注：只有连接正常打开中 ，才能正常成功发送消息
+					this.socketTask.send({
+						data: JSON.stringify(this.info),
+						async success() {
+							console.log("消息发送成功");
+						},
+					});
+					this.info = JSON.parse(this.info)
+					// 注：只有连接正常打开中 ，才能正常收到消息
+					this.socketTask.onMessage((res) => {
 						console.log(res)
-					},
-					fail: (err)=>{
-						console.log(err)
-					},
-					complete: (res) => {
-						// console.log(res)
-					}
-				});
-				uni.onSocketOpen(function(res) {
-					console.log('WebSocket连接已打开！');
-					console.log(res)
-				});
+						console.log("收到服务器内容：" + res.data);
+					});
+				})
+				// 这里仅是事件监听【如果socket关闭了会执行】
+				this.socketTask.onClose(() => {
+					console.log("已经被关闭了")
+				})
 			}
 		},
-		onLoad() {			
-		}
+		onLoad() {}
 	}
 </script>
 
