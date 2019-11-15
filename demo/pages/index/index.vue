@@ -16,6 +16,7 @@
 			</swiper-item>
 		</swiper>
 		<!-- 九宫格 -->
+<<<<<<< HEAD
 		<view class="grid">
 			<view class="gridBox">
 				<view class="gridBox-top">
@@ -117,6 +118,8 @@
 			</view>
 		</view>
 
+=======
+>>>>>>> 333fb168128e1be26fde37499924086c17db52bd
 	</view>
 </template>
 
@@ -143,7 +146,7 @@
 				cardCur: 0,
 				dotStyle: true,
 				// 控制自定义导航栏是否字体加粗
-				isBold: true
+				isBold: true,
 			}
 		},
 		onLoad() {

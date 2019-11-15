@@ -42,7 +42,26 @@
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
+		}, {
+			// 食堂首页
+			"path": "pages/meituan/index",
+			"style": {
+				"navigationBarTitleText": "食堂首页"
+			}
+		}, {
+			// 食堂菜品详情
+			"path": "pages/meituan/menu",
+			"style": {
+				"navigationBarTitleText": "食堂菜品详情"
+			}
+		}, {
+			// 食堂窗口详情
+			"path": "pages/meituan/win",
+			"style": {
+				"navigationBarTitleText": "食堂窗口详情"
+			}
 		}
+
 
 	],
 	"globalStyle": {
