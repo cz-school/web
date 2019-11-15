@@ -9,7 +9,7 @@
 					if (e.platform == 'android') {
 						Vue.prototype.CustomBar = e.statusBarHeight + 50;
 					} else {
-						Vue.prototype.CustomBar = e.statusBarHeight + 45;
+						Vue.prototype.CustomBar = e.statusBarHeight + 50;
 					};
 					// #endif
 					// #ifdef MP-WEIXIN
@@ -26,10 +26,10 @@
 			})
 		},
 		onShow: function() {
-			console.log('App Show')
+			// console.log('App Show')
 		},
 		onHide: function() {
-			console.log('App Hide')
+			// console.log('App Hide')
 		}
 	}
 </script>

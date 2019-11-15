@@ -65,8 +65,13 @@
 </script>
 
 <style>
-	.index .bold {
+	.bold {
+		/*  #ifdef  APP-PLUS || MP-WEIXIN  */
+		font-size: 46rpx !important;
+		/* #endif */
+		/* #ifdef H5 */
 		font-size: 40rpx;
+		/* #endif */
 		font-weight: bold;
 	}
 </style>

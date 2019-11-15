@@ -20,7 +20,12 @@
 		}, {
 			"path": "pages/info/info",
 			"style": {
-				"navigationBarTitleText": "消息"
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/info/chat",
+			"style": {
+				"navigationStyle": "custom"
 			}
 		}, {
 			"path": "pages/self/self",
