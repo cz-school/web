@@ -15,7 +15,6 @@
 			</swiper-item>
 		</swiper>
 		<!-- 九宫格 -->
-		
 	</view>
 </template>
 
@@ -43,7 +42,7 @@
 				// 图片样式索引
 				cardCur: 0,
 				// 控制自定义导航栏是否字体加粗
-				isBold: true
+				isBold: true,
 			}
 		},
 		onLoad() {
