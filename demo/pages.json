@@ -42,23 +42,21 @@
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
+
 		}, {
-			// 食堂首页
-			"path": "pages/meituan/index",
+			"path": "pages/meituan/payment",
 			"style": {
-				"navigationBarTitleText": "食堂首页"
+				"navigationBarTitleText": "支付"
 			}
 		}, {
-			// 食堂菜品详情
-			"path": "pages/meituan/menu",
+			"path": "pages/meituan/order",
 			"style": {
-				"navigationBarTitleText": "食堂菜品详情"
+				"navigationBarTitleText": "订单"
 			}
 		}, {
-			// 食堂窗口详情
-			"path": "pages/meituan/win",
+			"path": "pages/meituan/myCart",
 			"style": {
-				"navigationBarTitleText": "食堂窗口详情"
+				"navigationBarTitleText": "购物车"
 			}
 		}
 
