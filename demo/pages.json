@@ -37,8 +37,17 @@
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
+		},	{
+		"path": "pages/xy/purchase/purchase",
+		"style": {
+			"navigationStyle": "custom"
 		}
-
+	},{
+		"path": "pages/xy/order/order",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
