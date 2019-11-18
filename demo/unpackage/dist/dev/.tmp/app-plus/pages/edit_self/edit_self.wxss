@@ -1,7 +1,0 @@
-
-.edit_self .save_info {
-	color: red;
-	font-size: 30rpx;
-	margin-right: 20rpx;
-}
-

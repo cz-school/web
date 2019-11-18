@@ -1,1 +1,0 @@
-<view class="edit_self"><view class="cu-bar bg-white fixed"><cu-custom vue-id="1" bgColor="bg-gradual-white " url="/pages/self/self" isBack="{{true}}" isBold="{{true}}" bind:__l="__l" vue-slots="{{['content']}}"><view slot="content">编辑个人信息</view></cu-custom><text class="save_info">保存</text></view><view class="photo"></view></view>
