@@ -1,17 +1,17 @@
 <template>
 	<view class="login">
 		<!-- 自定义导航栏 -->
-		<zolysoft-nav-bar backgroundColor="transparent" color='black' :shadow='false' :border='false' right-text="注册" @tap='onClickRight(url)'>
+		<zolysoft-nav-bar backgroundColor="transparent" color='black' :shadow='false' :border='false' right-text="注册">
 		</zolysoft-nav-bar>
 		<!-- card组件 -->
 		<view class="formCard">
 			<!-- form表单 -->
 			<uni-card>
-				<form @submit="" @reset="" class="loginBox">
+				<form class="loginBox">
 					<view class="formLogin">
 						<view class="inputBox inputMargin">
 							<image src="../../static/login/username.png" class="inputImage" mode=""></image>
-							<input class="loginInput usernameInput" v-model="username" type="text" value="" placeholder="账号" />
+							<input class="loginInput usernameInput" v-model="username" type="text" value="" placeholder="账号/电话号码" />
 						</view>
 						<view class="inputBox">
 							<image src="../../static/login/password.png" class="inputImage" mode=""></image>
@@ -37,7 +37,6 @@
 				</view>
 			</view>
 		</view>
-
 	</view>
 </template>
 
@@ -47,8 +46,9 @@
 	export default {
 		data() {
 			return {
-				username: '',
-				password: ''
+				username: '13778424516',
+				password: '123456',
+				baseUrl: 'http://127.0.0.1:9999/api/v1'
 			}
 		},
 		components: {
@@ -58,6 +58,7 @@
 		methods: {
 			// 登录
 			Login() {
+				// 判断登录不能为空
 				if (!this.username) {
 					uni.showToast({
 						title: "账号不能为空",
@@ -65,9 +66,27 @@
 					});
 					return;
 				}
+				// 判断账号格式
+				let userReg = /[0-9-()（）]{11}/
+				if (!userReg.test(this.username)) {
+					uni.showToast({
+						title: "电话号码格式不正确",
+						image: '../../static/toast/error.png'
+					});
+					return;
+				}
+				// 密码不能位空
 				if (!this.password) {
 					uni.showToast({
 						title: "密码不能为空",
+						image: '../../static/toast/error.png'
+					});
+					return;
+				}
+				// 判断密码长度
+				if (this.password.length < 6 || this.password.length > 12) {
+					uni.showToast({
+						title: "密码长度为6 - 12 位",
 						image: '../../static/toast/error.png'
 					});
 					return;
@@ -76,7 +95,7 @@
 					title: 'loading'
 				});
 				uni.request({
-					url: 'http://47.93.16.199:20001/login',
+					url: this.baseUrl + '/login',
 					method: 'POST',
 					header: {
 						"content-type": "application/x-www-form-urlencoded"
@@ -92,6 +111,13 @@
 								key: 'token',
 								data: res.data.token
 							})
+							uni.setStorage({
+								key: 'user_id',
+								data: res.data.id
+							})
+							 const value = uni.getStorageSync('user_id');
+							 const value1 = uni.getStorageSync('token');
+							 console.log(value,value1)
 							uni.hideLoading();
 							uni.reLaunch({
 								url: '../index/index'
@@ -119,10 +145,6 @@
 						// console.log(that.footerHight)
 					}
 				})
-			},
-			// 跳转注册页面
-			onClickRight(url) {
-				
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 		<!-- form表单 -->
 		<view class="registForm">
 			<uni-card>
-				<form @submit="" @reset="" class="loginBox">
+				<form class="loginBox">
 					<view class="formLogin">
 						<view class="inputBox inputMargin">
 							<image src="../../static/login/username.png" class="inputImage" mode=""></image>
@@ -18,10 +18,9 @@
 						</view>
 					</view>
 				</form>
-
 			</uni-card>
 			<uni-card class="submitBox" :is-shadow='true'>
-				<button class="submitBtn" form-type="submit" @tap="Login">登录</button>
+				<button class="submitBtn" form-type="submit" @tap="regist">注册</button>
 			</uni-card>
 
 		</view>
@@ -35,12 +34,50 @@
 		data() {
 			return {
 				isCard: true,
-				username: '',
+				username: '18502866256',
 				password: '',
 				url: '../../pages/login/login'
 			}
 		},
-		methods: {},
+		methods: {
+			regist() {
+				if (!this.username) {
+					uni.showToast({
+						title: "账号不能为空",
+						image: '../../static/toast/error.png'
+					});
+					return;
+				}
+				// 判断账号格式
+				let userReg = /[0-9-()（）]{11}/
+				if (!userReg.test(this.username)) {
+					uni.showToast({
+						title: "电话号码格式不正确",
+						image: '../../static/toast/error.png'
+					});
+					return;
+				}
+				// 密码不能位空
+				if (!this.password) {
+					uni.showToast({
+						title: "密码不能为空",
+						image: '../../static/toast/error.png'
+					});
+					return;
+				}
+				// 判断密码长度
+				if (this.password.length < 6 || this.password.length > 12) {
+					uni.showToast({
+						title: "密码长度为6 - 12 位",
+						image: '../../static/toast/error.png'
+					});
+					return;
+				}
+				uni.showLoading({
+					title: 'loading'
+				});
+			}
+		},
 		components: {
 			cuCustom,
 			uniCard
@@ -52,8 +89,8 @@
 	uni-page-body {
 		height: 100%;
 	}
-	
-	page{
+
+	page {
 		width: 100%;
 		height: 100%;
 	}
