@@ -1,19 +1,22 @@
 {
   "pages": [
+    "pages/login/login",
+    "pages/regist/regist",
     "pages/index/index",
     "pages/mate/mate",
     "pages/plaza/plaza",
     "pages/info/info",
     "pages/info/chat",
     "pages/self/self",
-    "pages/login/login",
-    "pages/regist/regist",
     "pages/meituan/payment",
     "pages/meituan/order",
     "pages/meituan/myCart",
     "pages/meituan/index",
     "pages/meituan/menu",
-    "pages/meituan/win"
+    "pages/meituan/win",
+    "pages/xy/purchase/purchase",
+    "pages/xy/order/order",
+    "pages/xy/evaluate/evaluate"
   ],
   "window": {
     "navigationBarTextStyle": "black",
