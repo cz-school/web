@@ -52,8 +52,6 @@
 </template>
 
 <script>
-	// 头部自定义导航
-	import cuCustom from '@/colorui/components/cu-custom.vue'
 	export default {
 		data() {
 			return {
@@ -107,12 +105,8 @@
 				]
 			}
 		},
-		// 注册头部导航栏
-		components: {
-			cuCustom,
-		},
 		methods: {
-			// 编辑个人信息
+			// 跳转到编辑个人信息
 			edit_info() {
 				uni.navigateTo({
 					url: '../edit_self/edit_self'
