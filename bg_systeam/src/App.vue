@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header>Header</el-header>
+      <el-header class="appHead">
+        <h2>五星红旗迎风飘扬🇨🇳🇨🇳</h2>
+      </el-header>
       <el-container>
         <el-aside width="200px">
           <el-menu background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :router="true">
@@ -25,18 +27,25 @@
   </div>
 </template>
 <script>
+import zChild from './views/userLsit';
 export default {
   data() {
     return {
       userList:[]
     }
   },
+   components: {
+      zChild
+    },
   methods: {
     getUserList(){
       this.$axios.get("/getUserList").then(res=>{
         console.log(res);
         this.userList = res.data
       })
+    },
+    zz(){
+      this.$child
     }
   },
   created() {
@@ -45,4 +54,13 @@ export default {
 }
 </script>
 <style>
+.el-submenu {
+  width:200px;
+  user-select:none;
+}
+.appHead {
+  background: #eee;
+  color: rgb(59, 42, 42)
+
+}
 </style>

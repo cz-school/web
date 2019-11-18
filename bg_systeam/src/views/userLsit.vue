@@ -80,6 +80,7 @@ export default {
             if(res.data.code == 200){
                 this.$message.success("添加成功")
                 this.getList()
+                this.$emit('getUserList');
             }
         })
     }

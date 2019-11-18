@@ -12,7 +12,7 @@ VueRouter.prototype.push = function push(to) {
     return VueRouterPush.call(this, to).catch(err => err)
 }
 
-axios.defaults.baseURL = 'http://127.0.0.1:9999/api/v1';
+axios.defaults.baseURL = 'http://api.itsse.cn:9999/api/v1';
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 
