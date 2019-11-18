@@ -67,7 +67,7 @@
 					return;
 				}
 				// 判断账号格式
-				let userReg = /[0-9-()（）]{11}/
+				let userReg =  /^[1][3,4,5,7,8][0-9]{9}$/
 				if (!userReg.test(this.username)) {
 					uni.showToast({
 						title: "电话号码格式不正确",
@@ -115,9 +115,9 @@
 								key: 'user_id',
 								data: res.data.id
 							})
-							 const value = uni.getStorageSync('user_id');
-							 const value1 = uni.getStorageSync('token');
-							 console.log(value,value1)
+							// const value = uni.getStorageSync('user_id');
+							// const value1 = uni.getStorageSync('token');
+							// console.log(value, value1)
 							uni.hideLoading();
 							uni.reLaunch({
 								url: '../index/index'

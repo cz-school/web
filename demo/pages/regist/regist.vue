@@ -36,7 +36,8 @@
 				isCard: true,
 				username: '18502866256',
 				password: '',
-				url: '../../pages/login/login'
+				url: '../../pages/login/login',
+				baseUrl: 'http://127.0.0.1:9999/api/v1'
 			}
 		},
 		methods: {
@@ -49,8 +50,9 @@
 					return;
 				}
 				// 判断账号格式
-				let userReg = /[0-9-()（）]{11}/
+				let userReg = /^[1][3,4,5,7,8][0-9]{9}$/
 				if (!userReg.test(this.username)) {
+					console.log(2)
 					uni.showToast({
 						title: "电话号码格式不正确",
 						image: '../../static/toast/error.png'
@@ -76,6 +78,46 @@
 				uni.showLoading({
 					title: 'loading'
 				});
+				uni.request({
+					url: this.baseUrl + '/regist',
+					method: 'POST',
+					header: {
+						"content-type": "application/x-www-form-urlencoded"
+					},
+					data: {
+						username: this.username,
+						password: this.password
+					},
+					success: function(res) {
+						console.log(res.data);
+
+						if (res.data.code == '200') {
+							uni.hideLoading();
+							uni.showToast({
+								title: res.data.msg,
+							});
+							uni.reLaunch({
+								url: '../login/login'
+							})
+							return
+						} else {
+							uni.showToast({
+								title: res.data.msg,
+								image: '../../static/toast/error.png'
+							});
+							return
+						}
+					},
+					fail: function(error) {
+						console.log(error)
+						uni.hideLoading();
+						uni.showToast({
+							title: '电话号码格式是否正确？',
+							image: '../../static/toast/error.png'
+						});
+					}
+				})
+
 			}
 		},
 		components: {

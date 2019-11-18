@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<cu-custom bgColor="bg-gradual-pink" :isBack="true">
+		<cu-custom bgColor="bg-gradual-pink" :url="url" :isBack="true">
 			<block slot="backText">返回</block>
 			<block slot="content" :isBold='isBold'>聊天</block>
 		</cu-custom>
@@ -98,7 +98,8 @@
 			return {
 				InputBottom: 0,
 				isBold: false,
-				info: ''
+				info: '',
+				url: '../../pages/info/info'
 			};
 		},
 		components: {
