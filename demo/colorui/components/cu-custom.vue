@@ -2,7 +2,7 @@
 	<view>
 		<view class="cu-custom" :style="[{height:CustomBar + 'px'}]">
 			<view class="cu-bar fixed" :style="style" :class="[bgImage!=''?'none-bg text-white bg-img':'',bgColor]">
-				<view class="action" @tap="BackPage" v-if="isBack">
+				<view class="action" @tap="BackPage(url)" v-if="isBack">
 					<text class="cuIcon-back"></text>
 					<slot name="backText"></slot>
 				</view>
@@ -53,14 +53,16 @@
 				type: String,
 				default: ''
 			},
+			url: {
+				type: String,
+				default: ''
+			}
 		},
 		methods: {
-			BackPage() {
-				// uni.navigateBack({
-				// 	delta: 1
-				// });
+			BackPage(url) {	
+				console.log(url)
 				uni.reLaunch({
-					url:'../../pages/info/info'
+					url: url
 				})
 			}
 		}
