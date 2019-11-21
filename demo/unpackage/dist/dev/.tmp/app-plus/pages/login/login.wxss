@@ -1,0 +1,103 @@
+
+.login {
+	position: absolute;
+	margin: 0;
+	padding: 20rpx;
+	width: 100%;
+	height: 100%;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	background: url(https://liuyifan.oss-cn-beijing.aliyuncs.com/school/login/demo.jpg);
+	background-size: cover;
+}
+.fixed {
+	position: relative !important;
+}
+.formCard {
+	position: absolute;
+	bottom: 40rpx;
+	width: -webkit-fill-available;
+	left: 0;
+}
+.loginBox {
+	display: block;
+	width: 100%;
+	height: auto;
+	padding: 16rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.inputBox {
+	height: 80rpx;
+	line-height: 80rpx;
+}
+.inputMargin {
+	/* margin-bottom: 10rpx; */
+}
+.loginInput {
+	display: inline-block;
+	width: 90%;
+	height: 80rpx;
+	/* padding: 20rpx 0; */
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	margin-left: 20rpx;
+	font-size: 30rpx;
+	placeholder-color: #CCCCCC;
+}
+.usernameInput {
+	border-bottom: 1rpx solid #CCCCCC;
+}
+.inputImage {
+	position: relative;
+	top: -20rpx;
+	width: 40rpx;
+	height: 40rpx;
+}
+.submitBtn {
+	background: #FFFFFF;
+}
+.submitBox {
+	display: block;
+	margin-top: 40rpx;
+}
+uni-button:after {
+	border: none;
+}
+button::after {
+	border: none;
+}
+.uni-card {
+	border: none !important;
+}
+.forget {
+	width: 100%;
+	display: block;
+	text-align: center;
+	margin-top: 20rpx;
+	font-size: 34rpx;
+	text-decoration: underline;
+}
+.otherLogin {
+	margin-top: 100rpx;
+	text-align: center;
+}
+.otherLogin-top {
+	margin-bottom: 40rpx;
+}
+.otherImage {
+	width: 60rpx;
+	height: 60rpx;
+}
+.otherLeft {
+	margin-right: 60rpx;
+}
+.otherLogin-bottom {
+	color: #CCCCCC;
+	font-size: 30rpx;
+}
+.otherText {
+	color: black;
+	font-size: 700;
+}
+

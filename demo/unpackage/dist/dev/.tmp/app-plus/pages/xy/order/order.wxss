@@ -1,0 +1,106 @@
+
+.order-list {
+	position: relative;
+}
+.order-box {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	margin-bottom: 20rpx;
+	background-color: #FFFFFF;
+}
+.order-particulars {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	background-color: #ffffff;
+	padding: 20rpx;
+}
+.order-particulars-img {
+	width: 250rpx;
+	height: 250rpx;
+	margin-right: 20rpx;
+}
+.order-particulars-img image {
+	width: 100%;
+	height: 100%;
+}
+.order-particulars-specific {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+}
+.order-particulars-name {
+	width: 100%;
+	font-size: 32rpx;
+	font-weight: 500;
+	color: #000000;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+	white-space: normal ！important;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; /* 显示1行，为auto时不隐藏 */
+	-webkit-box-orient: vertical;
+}
+.order-particulars-price {
+	width: 100%;
+	font-size: 32rpx;
+	color: #f43f3b;
+	line-height: 150rpx;
+}
+.order-particulars-state {
+	width: 100%;
+	font-size: 32rpx;
+	color: #000000;
+}
+.order-comment {
+	width: 100%;
+	height: 80rpx;
+	border-bottom: 1rpx solid #eeeeee;
+	border-top: 1rpx solid #eeeeee;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	position: relative;
+	border-radius: 0;
+}
+.order-comment button {
+	width: 200rpx;
+	height: 60rpx;
+	font-size: 14rpx;
+	border: 1rpx solid #eeeeee;
+	line-height: 60rpx;
+	background-color: #FFFFFF;
+	-webkit-align-self: center;
+	    -ms-flex-item-align: center;
+	        align-self: center;
+	position: absolute;
+	right: 20rpx;
+}
+

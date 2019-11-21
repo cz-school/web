@@ -1,0 +1,83 @@
+
+.index{
+	padding-bottom: 40rpx;
+}
+.index .card-swiper {
+	height: 360rpx !important;
+}
+
+/* 轮播图 */
+.index .card-swiper uni-swiper-item {
+	padding: 22px 0px 22px;
+}
+
+/* 九宫格 */
+.grid {
+	background: #FFFFFF;
+	text-align: center;
+	margin: 20rpx 5%;
+	line-height: 2;
+	padding: 20rpx 40rpx;
+	border-radius: 10rpx;
+}
+.gridBox {
+	display: inline-block;
+	width: 33%;
+	margin: 17rpx 0;
+}
+.gridBox-top image {
+	width: 60rpx;
+	height: 60rpx;
+}
+.gridBox-bottom text {
+	font-size: 30rpx;
+}
+.footer {
+	margin-top: 30rpx;
+	padding: 0 5%;
+}
+.footerTitle {
+	font-size: 30rpx;
+}
+.footerBox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin-top: 20rpx;
+}
+.footerBox-flex {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	width: 48%;
+	border-radius: 10rpx;
+	padding: 40rpx 20rpx;
+	background: #FFFFFF;
+}
+.footerBox-flex-left {
+	position: relative;
+	top: 10rpx;
+	width: 74rpx;
+	height: 74rpx;
+	margin-right: 18rpx;
+}
+.footerBox-margin {
+	margin-right: 4%;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.footerBox-flex-left image {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.rightText {
+	display: block;
+	font-size: 20rpx;
+}
+.rightTitle {
+	font-size: 32rpx;
+}
+

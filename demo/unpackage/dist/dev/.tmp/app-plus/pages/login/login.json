@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "zolysoft-nav-bar": "/colorui/components/zolysoft-nav-bar/zolysoft-nav-bar",
+    "uni-card": "/colorui/components/uni-card/uni-card"
+  }
+}
