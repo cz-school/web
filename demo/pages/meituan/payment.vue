@@ -64,6 +64,10 @@ export default {
 			valSelect:''
 		}
 	},
+	onLaunch(e) {
+		this.orderId = e.id
+	},
+	
 	methods: {
 		radio(value) {
 			// console.log(value)
@@ -88,13 +92,14 @@ export default {
 			})
 		},
 		usersMoney() {
+			let id = uni.getStorageSync('user_id')
 			uni.request({
 				// 接口
 				url: 'http://127.0.0.1:9999/api/v1/getUsersMoney',
 				// 请求方式
 				method: 'GET',
 				// 携带的数据
-				data: '',
+				data: {id:id},
 				// 请求成功
 				success: res => {
 					// console.log(res)
@@ -123,13 +128,14 @@ export default {
 						fail:()=>{},
 						complete:()=>{}
 					})
+					let id = uni.getStorageSync('user_id')
 					uni.request({
 						// 接口
 						url: 'http://127.0.0.1:9999/api/v1/updateOrderMoney',
 						// 请求方式
 						method: 'POST',
 						// 携带的数据
-						data: {price:this.usersTotal - this.orderTotal},
+						data: {price:this.usersTotal - this.orderTotal,id:id},
 						// 请求成功
 						success: res => {
 							console.log(res)

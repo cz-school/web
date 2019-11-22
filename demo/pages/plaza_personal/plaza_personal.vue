@@ -20,8 +20,8 @@
 
 
 				<!-- 详细信息 -->
-				<view class="name padding">刘三三</view>
-				<view class="school padding">惠州学院</view>
+				<view class="name padding">{{users.username}}</view>
+				<view class="school padding">{{users.school}}</view>
 				<view class="comment padding">这个人很懒什么都没有留下</view>
 				<view class="grid text-center col-3">
 					<view class="padding text-left bg-white">0关注</view>
@@ -69,48 +69,38 @@
 						<swiper-item>
 							<scroll-view scroll-y="true" class="list">
 								<view class="cu-card dynamic no-card">
-									<!-- 卡片头部 -->
-									<view class="cu-list menu-avatar">
-										<view class="cu-item">
-											<!-- 头像 -->
-											<view class="cu-avatar round lg" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');"
-											 @tap="openpersonal()"></view>
-											<view class="content flex-sub">
-												<view>凯尔</view>
-												<view class="text-gray text-sm flex justify-between">2019年12月3日</view>
-												<view class="text-gray text-sm flex justify-between">21小时前</view>
-											</view>
-											<view class="padding">
-												<button class="cu-btn round bg-yellow">关注</button>
-												<button class="cu-btn round" v-show="isBottom">已关注</button>
+									<view class="cu-item shadow" v-for="(item, index) in pages" :key="index">
+										<!-- 卡片头部 -->
+										<view class="cu-list menu-avatar">
+											<view class="cu-item">
+												<!-- 头像 -->
+												<view class="cu-avatar round lg" @tap="openpersonal()">
+													<image class="cu-avatar round lg" :src="item.head_img" mode=""></image>
+												</view>
+												<view class="content flex-sub">
+													<view>{{item.username}}</view>
+													<view class="text-gray text-sm flex justify-between">{{item.add_time | dateForma}}</view>
+													<view class="text-gray text-sm flex justify-between">{{item.add_time | dataFormat}}</view>
+												</view>
 											</view>
 										</view>
-									</view>
-									<view class="cu-item shadow" @tap="openinfo()">
 										<!-- 卡片介绍 -->
 										<view class="text-content">
-											折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！
+											{{item.content}}
 										</view>
 										<!-- 卡片图片 -->
 										<view class="grid flex-sub padding-lr col-3 grid-square">
-											<view class="bg-img" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');"></view>
-											<view class="bg-img" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');"></view>
-											<view class="bg-img" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');"></view>
-											<view class="bg-img" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');"></view>
-											<view class="bg-img" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');"></view>
-											<view class="bg-img" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');"></view>
+											<view class="bg-img" v-for="(i,imgIndex) in item.plaza_img" :key="imgIndex">
+												<image :src="i" mode=""></image>
+											</view>
 										</view>
 										<!-- 卡片底部 -->
 										<view class="margin-top-sm flex justify-between padding">
 											<view class="text-gray text-df">
-												<text :class="lovename"></text>
-												<text class="num">10</text>
-												<text :class="infoName"></text>
-												<text class="num">10</text>
-											</view>
-											<view>
-												<text class="cuIcon-appreciate text-gray"></text>
-												<text class="cuIcon-messagefill text-gray margin-left-sm"></text>
+												<text class="cuIcon-likefill"></text>
+												<text class="num">{{item.likefill}}</text>
+												<text class="cuIcon-messagefill"></text>
+												<text class="num">0</text>
 											</view>
 										</view>
 									</view>
@@ -175,7 +165,9 @@
 				infoName: 'cuIcon-messagefill',
 				isBottom: false,
 				baseUrl: 'http://127.0.0.1:9999/api/v1/',
-				userid: 0
+				userid: '',
+				users: [],
+				pages: []
 			};
 		},
 		components: {
@@ -185,24 +177,45 @@
 			swiperTabHead
 		},
 		onLoad: function(option) {
-			// console.log(option)
 			this.userid = option.userid
 			this.getSpeak(this.userid)
 			// console.log(this.userid)
+			uni.request({
+				url: this.baseUrl + 'plaza_fill/' + this.userid,
+				method: 'GET',
+				data: {},
+				success: res => {
+					// console.log(res)
+					this.pages = res.data.data
+				},
+				fail: () => {},
+				complete: () => {}
+			});
 		},
 		methods: {
-			getPlaza(userid) {
+			getSpeak(userid) {
+				// console.log(userid)
 				uni.request({
-					// url: this.baseUrl + 'plaza_details/' + plaza_id,
-					// method: 'GET',
-					// data: {},
-					// success: res => {
-					// 	// console.log(res.data)
-					// 	this.pages = res.data.data
-					// 	// console.log(this.pages)
-					// },
-					// fail: () => {},
-					// complete: () => {}
+					url: this.baseUrl + 'self_info/' + userid,
+					method: 'GET',
+					data: {},
+					success: res => {
+						// console.log(res)
+						this.users = res.data.data
+					},
+					fail: () => {},
+					complete: () => {}
+				});
+				uni.request({
+					url: this.baseUrl + 'our_tag/' + userid,
+					method: 'GET',
+					data: {},
+					success: res => {
+						console.log(res)
+						// this.users = res.data.data
+					},
+					fail: () => {},
+					complete: () => {}
 				});
 			},
 			cardSwiper(e) {

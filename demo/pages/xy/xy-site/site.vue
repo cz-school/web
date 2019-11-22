@@ -41,6 +41,9 @@
 		},
 		methods: {
 			siteAllShow() {
+				// const that = this
+				let id = uni.getStorageSync('user_id')
+				// console.log(id)
 				// 获取数据
 				// console.log(1)
 				uni.request({
@@ -49,7 +52,7 @@
 					// 请求方式
 					method: 'GET',
 					// 携带的数据
-					data: '',
+					data: {id:id},
 					// 请求成功
 					success: res => {
 						// console.log(res)

@@ -197,9 +197,8 @@
 			},
 			// 跳转到广场个人
 			openpersonal(user_id) {
-				
 				var userid = user_id
-				console.log(userid)
+				// console.log(userid)
 				uni.navigateTo({
 					url: '../plaza_personal/plaza_personal?userid=' + userid
 				});
