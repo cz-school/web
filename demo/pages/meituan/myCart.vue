@@ -1,21 +1,21 @@
 <template>
 	<view class="container">
 		<!-- 自定义页头 -->
-		<cu-custom bgColor="bg-gradual-pink" :isBack="true" :isBold="false" :url="previousPage.path+'?id='+previousPage.win_id">
+		<cu-custom bgColor="bg-gradual-pink" :isBack="true" :isBold="false" :url="previousPage?previousPage.path+'?id='+previousPage.win_id:'/pages/meituan/index'">
 			<block slot="backText">返回</block>
 			<block slot="content">购物车</block>
 		</cu-custom>
 		<!-- 空白页 -->
-		<view v-if="cartList.length >0 || empty===true" class="empty">
+		<view v-if="!cartList.length >0" class="empty">
 			<image src="/static/emptyCart.jpg" mode="aspectFit"></image>
 			<view v-if="hasLogin" class="empty-tips">
 				空空如也
 				<navigator class="navigator" v-if="hasLogin" url="../index/index" open-type="switchTab">随便逛逛></navigator>
 			</view>
-			<view v-else class="empty-tips">
+			<!-- <view v-else class="empty-tips">
 				空空如也
 				<view class="navigator" @click="navToLogin">去登陆></view>
-			</view>
+			</view> -->
 		</view>
 		<view>
 			<!-- 列表 -->
@@ -97,9 +97,13 @@
 		},
 		onLoad(e) {
 			this.loadData();
-			e.path = e.path.split("/")
-			e.path = e.path[e.path.length - 1]
-			this.previousPage = e
+			if (!e.path) {
+				this.previousPage = null
+			} else {
+				e.path = e.path.split("/")
+				e.path = e.path[e.path.length - 1]
+				this.previousPage = e
+			}
 		},
 		watch: {
 			//显示空白页

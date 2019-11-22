@@ -108,6 +108,24 @@
 			}
 		},
 		{
+			"path": "pages/xy/xy-site/site",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/xy/xy-addSite/addSite/addSite",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/xy/xy-alertSite/xy-alertSite/xy-alertSite",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/edit_self/edit_self",
 			"style": {
 				"navigationStyle": "custom"

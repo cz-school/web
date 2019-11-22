@@ -108,7 +108,6 @@
 </template>
 
 <script>
-	import Attachment from '../../components/jin-attachment/jin-attachment.vue';
 	export default {
 		data() {
 			return {
