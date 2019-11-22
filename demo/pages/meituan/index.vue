@@ -1080,6 +1080,7 @@
 		font-size: 35upx;
 		color: #363636;
 		font-weight: 900;
+		text-align: left;
 		/* 超出一行文字自动隐藏 */
 		overflow: hidden;
 		/* 文字隐藏后添加省略号 */

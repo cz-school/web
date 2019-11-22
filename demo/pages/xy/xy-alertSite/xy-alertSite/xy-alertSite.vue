@@ -132,13 +132,14 @@
 					});
 					return
 				}
+				let id = uni.getStorageSync('user_id')
 				uni.request({
 					// 接口
 					url: 'http://127.0.0.1:9999/api/v1/alertSite',
 					// 请求方式
 					method: 'GET',
 					// 携带的数据
-					data: {msg:this.siteForm,checked1:this.checked1},
+					data: {msg:this.siteForm,checked1:this.checked1,id:id},
 					// 请求成功
 					success: res => {
 						// console.log(res)

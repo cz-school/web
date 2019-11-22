@@ -85,7 +85,7 @@
 								<!-- 待付款状态 时按钮 -->
 								<view class="flex solid-bottom justify-end" v-if="item.state == 0 && item.return_state == 0">
 									<button class="cu-btn round sm margin-right-sm" @tap="cancelOrder(oindex,item.id)">取消订单</button>
-									<button class="cu-btn round bg-orange sm" @tap="payment(item.id)">立刻支付</button>
+									<button class="cu-btn round bg-orange sm" @tap="payment(oindex,item.id)">立刻支付</button>
 								</view>
 								<!-- 已付款为收货 时按钮 -->
 								<view class="flex solid-bottom justify-end" v-if="item.state > 0 &&  item.state < 3 && item.return_state == 0">
@@ -187,7 +187,8 @@
 						orderList: []
 					}
 				],
-				orderList: []
+				orderList: [],
+				uid:null
 			};
 		},
 
@@ -196,6 +197,8 @@
 			 * 修复app端点击除全部订单外的按钮进入时不加载数据的问题
 			 * 替换onLoad下代码即可
 			 */
+			let id = uni.getStorageSync('user_id')
+			this.uid = id;
 			this.tabCurrentIndex = this.tabCurrentIndex //+options.state;
 			// #ifndef MP
 			this.loadData()
@@ -226,7 +229,7 @@
 
 				uni.request({
 					method: 'GET',
-					url: `http://127.0.0.1:9999/api/v1/order_st/${state}`, //仅为示例，并非真实接口地址。
+					url: `http://47.104.29.236:9999/api/v1/order_st/${state}?id=${this.uid}`, //仅为示例，并非真实接口地址。
 					data: {},
 					header: {
 						// 'custom-header': 'hello' //自定义请求头信息
@@ -264,7 +267,7 @@
 				})
 				uni.request({
 					method: 'DELETE',
-					url: `http://127.0.0.1:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
+					url: `http://47.104.29.236:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
 					data: {},
 					header: {
 						// 'custom-header': 'hello' //自定义请求头信息
@@ -286,7 +289,7 @@
 
 				uni.request({
 					method: 'PUT',
-					url: `http://127.0.0.1:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
+					url: `http://47.104.29.236:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
 					data: {
 						type: 5
 					},
@@ -309,7 +312,7 @@
 
 				uni.request({
 					method: 'PUT',
-					url: `http://127.0.0.1:9999/api/v1/order_st/refund/${id}`, //仅为示例，并非真实接口地址。
+					url: `http://47.104.29.236:9999/api/v1/order_st/refund/${id}`, //仅为示例，并非真实接口地址。
 					data: {
 						type: 1
 					},
@@ -332,7 +335,7 @@
 
 				uni.request({
 					method: 'PUT',
-					url: `http://127.0.0.1:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
+					url: `http://47.104.29.236:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
 					data: {
 						type: 3
 					},
@@ -348,9 +351,10 @@
 				});
 			},
 			// 去支付
-			payment(id) {
+			payment(index,id) {
+				console.log(this.orderList[index])
 				uni.redirectTo({
-					url: `/pages/index/index?id=${id}`
+					url: `/pages/meituan/payment?id=${id}`
 				});
 			},
 			//订单状态文字和颜色
