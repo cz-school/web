@@ -116,11 +116,6 @@
 
 			</view>
 		</view>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 666ddf434f86a444006bcd8530d0b9bb647a3beb
 	</view>
 </template>
 

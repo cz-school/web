@@ -155,6 +155,21 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		}, {
+			"path": "pages/plaza_personal/plaza_personal", // 个人详情页面
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/plaza_publish/plaza_publish", // 个人详情页面
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/plaza_details/plaza_details",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
