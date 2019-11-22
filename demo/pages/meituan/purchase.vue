@@ -213,7 +213,11 @@
 						data:data
 					},
 					success: (res) => {
-						
+						if(res.data.ok == 1) {
+							uni.redirectTo({
+								url: `/pages/meituan/payment?id=${res.data.id}`
+							});
+						}
 					}
 				});
 			},
