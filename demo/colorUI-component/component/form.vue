@@ -164,7 +164,6 @@
 					</view>
 				</view>
 			</view>
-			
 			<view class="cu-form-group margin-top">
 				<view class="title">头像</view>
 				<view class="cu-avatar radius bg-gray"></view>

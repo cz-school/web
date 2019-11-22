@@ -48,7 +48,7 @@
 			return {
 				username: '13778424516',
 				password: '123456',
-				baseUrl: 'http://api.itsse.cn:9999/api/v1/'
+				baseUrl: 'http://127.0.0.1:9999/api/v1'
 			}
 		},
 		components: {

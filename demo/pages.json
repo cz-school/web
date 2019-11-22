@@ -1,16 +1,5 @@
 {
-	"pages": [{
-			"path": "pages/login/login",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/regist/regist",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -26,61 +15,39 @@
 		{
 			"path": "pages/plaza/plaza",
 			"style": {
+				"navigationStyle": "custom",
+				// "enablePullDownRefresh":true//开启下拉刷新
 				"navigationBarTitleText": "广场"
 			}
-		},
-		{
+		}, {
 			"path": "pages/info/info",
 			"style": {
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "消息"
 			}
-		},
-		{
-			"path": "pages/info/chat",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
+		}, {
 			"path": "pages/self/self",
 			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}, {
+			"path": "pages/regist/regist",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		}, {
+			"path": "pages/plaza_details/plaza_details",
+			"style": {
 				"navigationStyle": "custom"
 			}
-		},
-		{
-			"path": "pages/meituan/payment",
+		}, {
+			"path": "pages/regist/regist",
 			"style": {
-				"navigationBarTitleText": "支付"
-			}
-		},
-		{
-			"path": "pages/meituan/order",
-			"style": {
-				"navigationBarTitleText": "订单"
-			}
-		},
-		{
-			"path": "pages/meituan/myCart",
-			"style": {
-				"navigationBarTitleText": "购物车"
-			}
-		},
-		{
-			"path": "pages/meituan/index",
-			"style": {
-				"navigationBarTitleText": "食堂首页"
-			}
-		},
-		{
-			"path": "pages/meituan/menu",
-			"style": {
-				"navigationBarTitleText": "菜详情"
-			}
-		},
-		{
-			"path": "pages/meituan/win",
-			"style": {
-				"navigationBarTitleText": "窗口详情"
+				"navigationBarTitleText": "注册"
 			}
 		},
 		{
@@ -90,55 +57,40 @@
 			}
 		},
 		{
-			"path": "pages/xy/order/order",
+			"path": "pages/xy/commodity/site",
 			"style": {
 				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path": "pages/xy/evaluate/evaluate",
+			"path": "pages/xy/payment/success",
 			"style": {
 				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path": "pages/edit_self/edit_self",
+			"path": "pages/xy/payment/failure",
+			"style": {
+				"navigationBarTitleText": "广场详情"
+			}
+		}, {
+			"path": "pages/plaza_personal/plaza_personal", // 个人详情页面
 			"style": {
 				"navigationStyle": "custom"
 			}
 		}, {
-			"path": "pages/self_tag_our/self_tag_our",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		}, {
-			"path": "pages/self_tag_sports/self_tag_sports",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		}, {
-			"path": "pages/self_tag_foods/self_tag_foods",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		}, {
-			"path": "pages/self_tag_music/self_tag_music",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		}, {
-			"path": "pages/self_tag_games/self_tag_games",
+			"path": "pages/plaza_publish/plaza_publish", // 个人详情页面
 			"style": {
 				"navigationStyle": "custom"
 			}
 		}
+
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8",
-		"navigationStyle": "custom"
+		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
 		"color": "#000000",
@@ -146,43 +98,30 @@
 		"backgroundColor": "#FFFFFF",
 		"borderStyle": "black",
 		"list": [{
-				"pagePath": "pages/index/index",
-				"iconPath": "static/tarbar/index.png",
-				"selectedIconPath": "static/tarbar/index.png",
-				"text": "首页"
-			},
-			{
-				"pagePath": "pages/mate/mate",
-				"iconPath": "static/tarbar/mate.png",
-				"selectedIconPath": "static/tarbar/mate.png",
-				"text": "匹配"
-			},
-			{
-				"pagePath": "pages/plaza/plaza",
-				"iconPath": "static/tarbar/plaza.png",
-				"selectedIconPath": "static/tarbar/plaza.png",
-				"text": "广场"
-			},
-			{
-				"pagePath": "pages/info/info",
-				"iconPath": "static/tarbar/info.png",
-				"selectedIconPath": "static/tarbar/info.png",
-				"text": "消息"
-			},
-			{
-				"pagePath": "pages/self/self",
-				"iconPath": "static/tarbar/self.png",
-				"selectedIconPath": "static/tarbar/self.png",
-				"text": "我的"
-			}
-		]
-	},
-	"condition": { //模式配置，仅开发期间生效
-		"current": 0, //当前激活的模式(list 的索引项)
-		"list": [{
-			"name": "", //模式名称
-			"path": "/pages/edit_self/edit_self", //启动页面，必选
-			"query": "" //启动参数，在页面的onLoad函数里面得到
+			"pagePath": "pages/index/index",
+			"iconPath": "static/tarbar/index.png",
+			"selectedIconPath": "static/tarbar/index.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/mate/mate",
+			"iconPath": "static/tarbar/mate.png",
+			"selectedIconPath": "static/tarbar/mate.png",
+			"text": "匹配"
+		}, {
+			"pagePath": "pages/plaza/plaza",
+			"iconPath": "static/tarbar/plaza.png",
+			"selectedIconPath": "static/tarbar/plaza.png",
+			"text": "广场"
+		}, {
+			"pagePath": "pages/info/info",
+			"iconPath": "static/tarbar/info.png",
+			"selectedIconPath": "static/tarbar/info.png",
+			"text": "消息"
+		}, {
+			"pagePath": "pages/self/self",
+			"iconPath": "static/tarbar/self.png",
+			"selectedIconPath": "static/tarbar/self.png",
+			"text": "我的"
 		}]
 	}
 }
