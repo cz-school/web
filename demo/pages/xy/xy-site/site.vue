@@ -4,22 +4,19 @@
 			<block slot="content">收货地址</block>
 		</cu-custom>
 		<view class="box">
-			<view class="site-shopSite" v-for="(item,index) in siteAll" @click="alterSite(item.id)">
-				<view class="site-shopSite-top">
+			<view class="site-shopSite" v-for="(item,index) in siteAll" :key='index'>
+				<view class="site-shopSite-top"  @tap="change" :data-id='item.id'>
 					<span class="site-name">{{item.users_name}}</span>
 					<span class="site-phone">{{item.users_mobile}}</span>
 					<span class="site-default" v-if="item.sdefault == 1">默认</span>
 				</view>
 				<view class="site-shopSite-bottom">
 					<span>{{item.dormitory}}{{item.dormitory_no}}</span>
-					<view class="site-alertImage">
-						<image src="../../../static/xy-site/siteAlter.png" mode=""></image>
+					<view class="site-alertImage"  @click="alterSite(item.id)">
+						<image src="../../../static/xy-site/chuangzuo.png" mode=""></image>
 					</view>
 				</view>
 			</view>
-			
-			
-				
 		</view>
 	
 		<view class="site-bootom">
@@ -45,6 +42,7 @@
 		methods: {
 			siteAllShow() {
 				// 获取数据
+				// console.log(1)
 				uni.request({
 					// 接口
 					url: 'http://127.0.0.1:9999/api/v1/siteAll',
@@ -56,7 +54,6 @@
 					success: res => {
 						// console.log(res)
 						this.siteAll = res.data.data
-						
 						for(var i = 0;i<this.siteAll.length;i++) {
 							if(this.siteAll[i].sdefault == 1) {
 								let aa = this.siteAll[i]
@@ -64,7 +61,7 @@
 								this.siteAll.unshift(aa)
 							}
 						}
-						console.log(this.siteAll)
+						// console.log(this.siteAll)
 						
 					},
 					// 请求失败
@@ -94,7 +91,18 @@
 					fail:()=>{},
 					complete:()=>{}
 				})
-			}
+			},
+		    // 更换地址
+			change(e){
+		    	// 点击地址的id
+		    	let id = e.currentTarget.dataset.id
+		    	uni.navigateTo({
+		    		url:'../purchase/purchase?id='+id,
+		    		success:res =>{},
+		    		fail:()=>{},
+		    		complete:()=>{}
+		    	})
+		    }
 		},
 		components: {
 			cuCustom

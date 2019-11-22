@@ -79,11 +79,11 @@
 						<text class="rightText">周末宿舍放心宅</text>
 					</view>
 				</view>
-				<view class="footerBox-flex">
+				<view class="footerBox-flex"  @tap="xydt">
 					<view class="footerBox-flex-left">
 						<image src="../../static/goodMood.jpg" mode=""></image>
 					</view>
-					<view class="footerBox-flex-right">
+					<view class="footerBox-flex-right" >
 						<text class="rightTitle">校园地摊</text>
 						<text class="rightText">校园好物随意选</text>
 					</view>
@@ -116,11 +116,6 @@
 
 			</view>
 		</view>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 666ddf434f86a444006bcd8530d0b9bb647a3beb
 	</view>
 </template>
 
@@ -163,6 +158,11 @@
 			linkMT(){
 				uni.reLaunch({
 				    url: '/pages/meituan/index'
+				});
+			},
+			xydt(){
+				uni.reLaunch({
+				    url: '/pages/xy/bazaarIndex/bazaarIndex'
 				});
 			}
 		}

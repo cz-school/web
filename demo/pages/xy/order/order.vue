@@ -3,34 +3,23 @@
 		<cu-custom bgColor="bg-gradual-white" :isBold="isBold" :isBack="true"><block slot="content">我买到的</block></cu-custom>
 		<view class="order-list">
 			<!-- 第一个订单 -->
-			<view class="order-box">
+			<view class="order-box" v-for="(item,index) in orderlist" :key='index'>
 				<!-- 订单图片名字价格状态 -->
 				<view class="order-particulars">
-					<view class="order-particulars-img"><image src="../../../static/goodMood.jpg" mode=""></image></view>
+					<view class="order-particulars-img"><image :src="item.shop_img"></image></view>
 					<view class="order-particulars-specific">
-						<view class="order-particulars-name"><text>浪潮之巅[买5送一]--162212312312321321</text></view>
-						<view class="order-particulars-price"><text>￥99.00</text></view>
-						<view class="order-particulars-state"><text>交易成功</text></view>
-					</view>
-				</view>
-				<!-- 订单评价 -->
-				<view class="order-comment"><button>评价</button></view>
-			</view>
-			<!--  -->
-			<view class="order-box">
-				<!-- 订单图片名字价格状态 -->
-				<view class="order-particulars">
-					<view class="order-particulars-img"><image src="../../../static/goodMood.jpg" mode=""></image></view>
-					<view class="order-particulars-specific">
-						<view class="order-particulars-name"><text>浪潮之巅[买5送一]--162212312312321321</text></view>
-						<view class="order-particulars-price"><text>￥99.00</text></view>
-						<view class="order-particulars-state"><text>交易成功</text></view>
+						<view class="order-particulars-name"><text>{{item.shop_name}}</text></view>
+						<view class="order-particulars-price"><text>￥{{item.shop_price}}</text></view>
+						<view class="order-particulars-state"><text @tap="ck(item.order_comment)">交易成功</text></view>
 					</view>
 				</view>
 				<!-- 订单评价 -->
 				<view class="order-comment">
-					
-					<button>评价</button>
+					<button  v-if="item.order_comment == null" @tap="btn(item.id)">评论</button>
+					<button  v-if="item.order_comment !== null" @tap="examine(item.order_comment)">查看评论</button>
+				</view>
+				<view class="content">
+				    <Modal v-model="show" :title='title' @confirm='confirm' @event='event'/>
 				</view>
 			</view>
 		</view>
@@ -40,17 +29,74 @@
 <script>
 // 导航栏组件
 import cuCustom from '@/colorui/components/cu-custom.vue';
+// 
+import Modal from '@/components/x-modal/x-modal'
 export default {
 	components: {
-		cuCustom
+		cuCustom,
+		Modal
 	},
 	data() {
 		return {
-			key: value
+			// 控制自定义导航栏是否字体加粗
+			isBold: true,
+			// 用户id
+			userid:1,
+			// 订单列表
+			orderlist:[],
+			show: false,
+			title:''
 		};
 	},
 	methods: {
-		name() {}
+		ck(num){
+			console.log(num)
+		},
+		gainOrder(){
+			uni.request({
+				url: 'http://127.0.0.1:9999/api/v1/gainOrder',
+				method: 'POST',
+				data:{userid:this.userid},
+				success: res => {
+					// console.log(res.data.data.reverse())
+					
+					this.orderlist = res.data.data.reverse()
+				},
+				fail: () => {},
+				complete: () => {}
+			});
+		},
+		// 评论
+		btn(id){
+			uni.navigateTo({
+				url: '../evaluate/evaluate?id='+id,
+				success: res => {},
+				fail: () => {},
+				complete: () => {}
+			});
+		},
+		// 查看评论
+		examine(comment){
+			this.show = true
+			this.title = comment
+			console.log(comment)
+		},
+		confirm(e){
+			   console.log(e,"成功");
+		},
+		event(e){
+		console.log(e)
+		},
+	},
+	onLoad() {
+		this.gainOrder()
+		uni.getStorage({
+		    key: 'user_id',
+		    success: function (res) {
+		        // console.log(res.data);
+				this.userid = res.data
+		    }
+		})
 	}
 };
 </script>
@@ -76,10 +122,12 @@ export default {
 	width: 250upx;
 	height: 250upx;
 	margin-right: 20upx;
+	box-sizing: border-box;
 }
 .order-particulars-img image {
 	width: 100%;
 	height: 100%;
+	box-sizing: border-box;
 }
 .order-particulars-specific {
 	display: flex;

@@ -102,6 +102,18 @@
 			}
 		},
 		{
+			"path": "pages/xy/payment/failure",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/xy/payment/success",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/xy/evaluate/evaluate",
 			"style": {
 				"navigationStyle": "custom"
@@ -121,6 +133,24 @@
 		},
 		{
 			"path": "pages/xy/xy-alertSite/xy-alertSite/xy-alertSite",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/xy/bazaarClass/bazaarClass",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/xy/bazaarIndex/bazaarIndex",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/xy/bazaarIssue/bazaarIssue",
 			"style": {
 				"navigationStyle": "custom"
 			}
