@@ -15,6 +15,13 @@
 				<view class="uni-padding-wrap uni-common-mt">
 					<view>
 						<scroll-view class="scroll-view_H" scroll-x="true" @scroll="scroll" scroll-left="0">
+							<view @tap="activeClick(null)" v-bind:class="{
+								active:active === null,
+								'scroll-view-item' : true, 
+								'uni-bg-red' : true
+								} ">
+								全部
+							</view>
 							<view @tap="activeClick(index)" v-for="(item, index) in esclassify" :key="index" :id="item.id" v-bind:class="{ 
 								active:active === index,
 								'scroll-view-item' : true, 
@@ -71,7 +78,7 @@
 				method: 'GET',
 				data: {},
 				success: res => {
-					this.esclassify = res.data.data
+					this.esclassify = res.data.data[1]
 				},
 				fail: () => {},
 				complete: () => {}
@@ -108,14 +115,15 @@
 		methods: {
 			getShop(e) {
 				uni.request({
-					url: `http://127.0.0.1:9999/api/v1/shop/${ this.active }`,
+					url: `http://127.0.0.1:9999/api/v1/shop/${this.active}`,
 					method: 'GET',
 					data: {
 						inputVal: e
 					},
 					success: res => {
-						console.log(res.data.data)
-						this.shop = res.data.data
+						console.log(res)
+						this.shop = res.data.data[1]
+						console.log(this.shop)
 					},
 					fail: () => {},
 					complete: () => {}
@@ -138,16 +146,17 @@
 				this.getShop(e)
 			},
 			// 点击购买
-			dianji(shopid){
+			dianji(shopid) {
 				console.log(shopid)
 				uni.setStorage({
-				    key: 'storage_key',
-				    data: {shopid},
-				    success: function () {
-				    }
+					key: 'storage_key',
+					data: {
+						shopid
+					},
+					success: function() {}
 				});
 				uni.navigateTo({
-					url: '../purchase/purchase',
+					url: '../shopDetail/shopDetail?shopid=' + shopid,
 					success: res => {},
 					fail: () => {},
 					complete: () => {}
@@ -169,18 +178,21 @@
 </script>
 
 <style>
-	.uni-product-price-favour{
+	.uni-product-price-favour {
 		text-decoration: none;
 	}
-	.uni-bg-red{
+
+	.uni-bg-red {
 		background-color: #fafafa;
 		color: #000;
 	}
-	.uni-padding-wrap{
+
+	.uni-padding-wrap {
 		padding: 0;
 		margin: 0;
 		width: auto;
 	}
+
 	/* product */
 	page {
 		background: #F8F8F8;

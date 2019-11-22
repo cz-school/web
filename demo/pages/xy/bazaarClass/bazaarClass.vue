@@ -34,7 +34,7 @@
 				data: {},
 				success: res => {
 					console.log(res)
-					this.esclassify = res.data.data
+					this.esclassify = res.data.data[1]
 				},
 				fail: () => {},
 				complete: () => {}

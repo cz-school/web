@@ -13,7 +13,7 @@
 			<view>
 				<view class='sunsin_picture_item sunsin_width' v-show="upload_picture_list.length<upImgConfig.count || upImgConfig.notli"
 				 v-if="upImgConfig.iconReplace =='' || upImgConfig.iconReplace==undefined">
-					<view class="sunsin_add_image sunsin_width" @click='chooseImage(upImgConfig.count)' :style="'background-color:'+upImgConfig.upBgColor+''"
+					<view class="sunsin_add_image sunsin_width" @click='chooseImage(upImgConfig.count)' 
 					 v-show="!upImgConfig.isAddImage || false">
 						<view>
 							<text class="iconfont" :class="[upImgConfig.upIconName==undefined?'icon-shangchuantupian':upImgConfig.upIconName]"
@@ -223,9 +223,9 @@
 
 	/* 宽度 */
 	.sunsin_width {
-		width: 160upx !important;
-		height: 160upx !important;
-		line-height: 160upx !important;
+		width: 170upx !important;
+		height: 170upx !important;
+		line-height: 170upx !important;
 	}
 
 	/* 循环列表样式 */
