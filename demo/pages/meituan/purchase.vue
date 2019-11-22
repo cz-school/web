@@ -1,12 +1,12 @@
 <template>
 	<view class="purchase">
 		<!-- 自定义页头 -->
-		<cu-custom bgColor="bg-gradual-pink" :isBold='false' :isBack="true">
+		<cu-custom bgColor="bg-gradual-pink" :isBold='false' :url="'/pages/meituan/myCart'" :isBack="true">
 			<block slot="backText">返回</block>
 			<block slot="content">创建订单</block>
 		</cu-custom>
 		<!-- 地址显示 -->
-		<view class="flex p-xs padding-tb-sm mb-sm ">
+		<view class="flex p-xs padding-tb-sm mb-sm" @click="toseit">
 			<view class="flex-sub">
 				<!-- 图标 -->
 				<view class="cu-item text-xxl">
@@ -209,6 +209,12 @@
 					success: (res) => {
 						
 					}
+				});
+			},
+			// 去地址页
+			toseit(){
+				uni.reLaunch({
+					url: `/pages/xy/xy-site/site`
 				});
 			}
 		}
