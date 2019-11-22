@@ -11,19 +11,7 @@
 					<textarea maxlength="-1" :disabled="modalName!=null" @input="textareaAInput" placeholder="多行文本输入框"></textarea>
 				</view>
 				<!-- 图片上传 -->
-				<view class="cu-form-group">
-					<view class="grid col-4 grid-square flex-sub">
-						<view class="bg-img" v-for="(item,index) in imgList" :key="index" @tap="ViewImage" :data-url="imgList[index]">
-							<image :src="imgList[index]" mode="aspectFill"></image>
-							<view class="cu-tag bg-red" @tap.stop="DelImg" :data-index="index">
-								<text class='cuIcon-close'></text>
-							</view>
-						</view>
-						<view class="solids" @tap="ChooseImage" v-if="imgList.length<4">
-							<text class='cuIcon-cameraadd'></text>
-						</view>
-					</view>
-				</view>
+				<sunui-upbasic :upImgConfig="upImgBasic" @onUpImg="upBasicData" @onImgDel="delImgInfo" ref="uImage"></sunui-upbasic>
 				<!-- 单选框 -->
 				<radio-group class="block" @change="RadioChange">
 					<view class="cu-form-group">
@@ -46,7 +34,6 @@
 </template>
 
 <script>
-	import robbyTags from '@/components/robby-tags/robby-tags.vue'
 	import cuCustom from '@/colorui/components/cu-custom.vue'
 	export default {
 		data() {
@@ -57,21 +44,116 @@
 				baseUrl: 'http://127.0.0.1:9999/api/v1/',
 				// 输入框
 				textareaAValue: '',
-				radio: 0
+				radio: 0,
+				user_id: '',
+				basicArr: [],
+				basic: [],
+				// 基础版配置
+				upImgBasic: {
+					// 后端图片接口地址
+					basicConfig: {
+						url: 'http://127.0.0.1:9999/api/v1/upload_phone'
+					},
+					// 是否开启notli(开启的话就是选择完直接上传，关闭的话当count满足数量时才上传)
+					notli: true,
+					// 图片数量
+					count: 2,
+					// 相机来源(相机->camera,相册->album,两者都有->all,默认all)
+					sourceType: 'camera',
+					// 是否压缩上传照片(仅小程序生效)
+					sizeType: true,
+					// 上传图片背景修改 
+					upBgColor: '#E8A400',
+					// 上传icon图标颜色修改(仅限于iconfont)
+					upIconColor: '#fff',
+					// 上传svg图标名称
+					// upSvgIconName: 'icon-card',
+					// 上传文字描述(仅限四个字)
+					// upTextDesc: '上传证书',
+					// 删除按钮位置(left,right,bleft,bright),默认右上角
+					delBtnLocation: '',
+					// 是否隐藏添加图片
+					isAddImage: false,
+					// 是否隐藏删除图标
+					// isDelIcon: false,
+					// 删除图标定义背景颜色
+					// delIconColor: '',
+					// 删除图标字体颜色
+					// delIconText: '',
+					// 上传图标替换(+),是个http,https图片地址(https://www.playsort.cn/right.png)
+					iconReplace: ''
+				}
 			}
 		},
 		components: {
-			robbyTags,
 			cuCustom
 		},
+		onLoad() {
+			// that = this.user_id
+			// console.log(this.user_id)
+			var that = this
+			// console.log(that)
+			uni.getStorage({
+				key: 'user_id',
+				success: function(res) {
+					that.user_id = res.data
+					// console.log(that.user_id)
+				}
+			})
+		},
 		methods: {
+			// 删除图片 -2019/05/12(本地图片进行删除)
+			async delImgInfo(e) {
+				console.log('你删除的图片地址为:', e, this.basicArr.splice(e.index, 1));
+			},
+			// 基础版
+			async upBasicData(e) {
+				console.log(e);
+				// 上传图片数组
+				let arrImg = [];
+				// console.log(e[0].path_server.split(','))
+				// arrImg = e[0].path_server.split(',')
+				for (let i = 0, len = e.length; i < len; i++) {
+					try {
+						if (e[i].path_server != "") {
+							await arrImg.push(e[i].path_server.split(','));
+						}
+					} catch (err) {
+						console.log('上传失败...');
+					}
+				}
+				// 图片信息保存到data数组
+				this.basicArr = arrImg;
+				// console.log(this.basicArr)
+				// // 可以根据长度来判断图片是否上传成功. 2019/4/11新增
+				// if (arrImg.length == this.upImgBasic.count) {
+				// 	uni.showToast({
+				// 		title: `loading`,
+				// 		icon: 'none'
+				// 	});
+				// 	uni.hideLoading({
+				// 		title: `上传成功`,
+				// 		icon: 'none'
+				// 	});
+				// }
+			},
 			addPlaza() {
 				if (this.textareaAValue !== "") {
+					this.basic = this.basicArr.join(",")
+					var date = new Date();
+					// console.log(this.user_id)
 					let info = {
+						// 内容
 						textareaAValue: this.textareaAValue,
-						radio: this.radio
+						// 选择
+						radio: this.radio,
+						// 图片
+						basic: this.basic,
+						// 时间
+						time: parseInt(Number(date) / 1000),
+						// 用户id
+						user_id: this.user_id
 					}
-					// console.log(info)
 					uni.request({
 						url: this.baseUrl + 'addPlaza',
 						method: 'POST',
@@ -79,6 +161,13 @@
 						success: res => {},
 						fail: () => {},
 						complete: () => {}
+					});
+					uni.showToast({
+						title: "发布成功",
+
+					})
+					uni.navigateTo({
+						url: '../plaza/plaza'
 					});
 				} else {
 					uni.showToast({
@@ -94,32 +183,6 @@
 			textareaAInput(e) {
 				this.textareaAValue = e.detail.value
 				// console.log(this.textareaAValue)
-			},
-			ChooseImage() {
-				uni.chooseImage({
-					count: 4, //默认9
-					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-					sourceType: ['album'], //从相册选择
-					success: (res) => {
-						if (this.imgList.length != 0) {
-							this.imgList = this.imgList.concat(res.tempFilePaths)
-						} else {
-							this.imgList = res.tempFilePaths
-						}
-					}
-				});
-			},
-			DelImg(e) {
-				uni.showModal({
-					content: '确定要删除这段回忆吗？',
-					cancelText: '留下',
-					confirmText: '删除',
-					success: res => {
-						if (res.confirm) {
-							this.imgList.splice(e.currentTarget.dataset.index, 1)
-						}
-					}
-				})
 			},
 			openpersonal() {
 				uni.navigateTo({
