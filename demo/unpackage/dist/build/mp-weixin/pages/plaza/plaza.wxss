@@ -1,0 +1,1 @@
+.index .bold{font-size:40rpx;font-weight:700}.cu-list.menu-avatar>.cu-item:after,.cu-list.menu>.cu-item:after{border-bottom:0}.cu-card{margin-bottom:20rpx}.cu-card.dynamic>.cu-item>.text-content{font-size:14px}.cu-btn{font-size:12px;font-weight:800}.text-sm{display:inline-block;margin-right:20rpx}.num{margin-left:10rpx;margin-right:10rpx;font-size:10rpx}

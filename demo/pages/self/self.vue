@@ -1,17 +1,19 @@
 <template>
 	<view class="self">
 		<!-- 自定义导航栏 -->
-		<view class="cu-bar bg-white fixed">
+		<view class="cu-bar bg-white">
 			<cu-custom bgColor="bg-gradual-white">
 				<block slot="content">我的</block>
 			</cu-custom>
 		</view>
 		<!-- 头部个人信息 -->
 		<view class="cu-bar bg-white solid-bottom  top_self_info">
-			<view class="padding">
-				<view class="cu-avatar xl round margin-left" @tap="edit_info" :style="[{ backgroundImage:'url(' + userlist.head_img+ ')' }]"></view>
-			</view>
-			<text>{{userlist.username}}<text>({{userlist.school}})</text></text>
+			<image @click="edit_info" src="../../static/goodMood.jpg" mode="">
+				<view class="self_rezheng">
+					<text>未认证</text>
+				</view>
+			</image>
+			<text>浅，陌<text>(北京交通大学)</text></text>
 		</view>
 		<!-- 服务列表 -->
 		<view class="cu-bar bg-white solid-bottom  botton_list">
@@ -53,8 +55,6 @@
 	export default {
 		data() {
 			return {
-				// 用户信息
-				userlist: {},
 				// 服务列表			
 				serviceList: [{
 						name: 'favorfill',
@@ -102,9 +102,7 @@
 						name: 'mail',
 						service: '意见反馈',
 					}
-				],
-				// 用户id
-				id: '',
+				]
 			}
 		},
 		methods: {
@@ -114,27 +112,6 @@
 					url: '../edit_self/edit_self'
 				})
 			}
-		},
-		// 监听页面加载
-		onLoad() {
-			const userId = uni.getStorageSync('user_id');
-			this.id = userId
-			uni.request({
-				url: `http://127.0.0.1:9999/api/v1/self_info/${userId}`,
-				method: 'GET',
-				data: {
-					id: userId
-				},
-				success: (res) => {
-					if (res.data.ok !== 1) {
-						uni.showToast({
-							title: "请求失败"
-						})
-					} else {
-						this.userlist = res.data.data
-					}
-				}
-			})
 		}
 	}
 </script>
@@ -146,8 +123,25 @@
 		align-items: center;
 		font-size: 30rpx;
 		font-weight: 600;
-		padding: 150rpx;
+		padding: 100rpx;
 		margin-bottom: 30rpx;
+	}
+
+	.top_self_info image {
+		align-items: center;
+		width: 120rpx;
+		height: 120rpx;
+		border-radius: 100%;
+	}
+
+	.top_self_info .self_rezheng {
+		position: relative;
+		left: 120rpx;
+		top: -100rpx;
+		padding: 5rpx 20rpx;
+		font-size: 30rpx;
+		background-color: yellow;
+		border-radius: 30rpx;
 	}
 
 	.botton_list {

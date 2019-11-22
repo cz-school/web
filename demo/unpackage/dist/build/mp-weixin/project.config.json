@@ -1,0 +1,31 @@
+{
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.7.0",
+  "appid": "wxee0511f003ea1122",
+  "projectname": "传智校园",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": []
+    }
+  }
+}

@@ -60,7 +60,7 @@
 		},
 		methods: {
 			BackPage(url) {	
-				// console.log(url)
+				console.log(url)
 				uni.reLaunch({
 					url: url
 				})

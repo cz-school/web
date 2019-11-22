@@ -3,35 +3,18 @@
 		<cu-custom bgColor="bg-gradual-white" :isBold="isBold" :isBack="true"><block slot="content">我买到的</block></cu-custom>
 		<view class="order-list">
 			<!-- 第一个订单 -->
-			<view class="order-box">
+			<view class="order-box" v-for="(item,index) in orderlist" :key='index'>
 				<!-- 订单图片名字价格状态 -->
 				<view class="order-particulars">
-					<view class="order-particulars-img"><image src="../../../static/goodMood.jpg" mode=""></image></view>
+					<view class="order-particulars-img"><image :src="item.shop_img"></image></view>
 					<view class="order-particulars-specific">
-						<view class="order-particulars-name"><text>浪潮之巅[买5送一]--162212312312321321</text></view>
-						<view class="order-particulars-price"><text>￥99.00</text></view>
+						<view class="order-particulars-name"><text>{{item.shop_name}}</text></view>
+						<view class="order-particulars-price"><text>￥{{item.shop_price}}</text></view>
 						<view class="order-particulars-state"><text>交易成功</text></view>
 					</view>
 				</view>
 				<!-- 订单评价 -->
-				<view class="order-comment"><button>评价</button></view>
-			</view>
-			<!--  -->
-			<view class="order-box">
-				<!-- 订单图片名字价格状态 -->
-				<view class="order-particulars">
-					<view class="order-particulars-img"><image src="../../../static/goodMood.jpg" mode=""></image></view>
-					<view class="order-particulars-specific">
-						<view class="order-particulars-name"><text>浪潮之巅[买5送一]--162212312312321321</text></view>
-						<view class="order-particulars-price"><text>￥99.00</text></view>
-						<view class="order-particulars-state"><text>交易成功</text></view>
-					</view>
-				</view>
-				<!-- 订单评价 -->
-				<view class="order-comment">
-					
-					<button>评价</button>
-				</view>
+				<view class="order-comment" v-if="item.order_comment == null"><button @tap="btn(item.id)">评论</button></view>
 			</view>
 		</view>
 	</view>
@@ -46,11 +29,38 @@ export default {
 	},
 	data() {
 		return {
-			key: value
+			// 控制自定义导航栏是否字体加粗
+			isBold: true,
+			// 用户id
+			userid:1,
+			// 订单列表
+			orderlist:[]
 		};
 	},
 	methods: {
-		name() {}
+		gainOrder(){
+			uni.request({
+				url: 'http://127.0.0.1:9999/api/v1/gainOrder',
+				method: 'POST',
+				data:{userid:this.userid},
+				success: res => {
+					this.orderlist = res.data.data
+				},
+				fail: () => {},
+				complete: () => {}
+			});
+		},
+		btn(id){
+			uni.navigateTo({
+				url: '../evaluate/evaluate?id='+id,
+				success: res => {},
+				fail: () => {},
+				complete: () => {}
+			});
+		}
+	},
+	onLoad() {
+		this.gainOrder()
 	}
 };
 </script>

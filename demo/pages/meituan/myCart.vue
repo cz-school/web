@@ -1,22 +1,38 @@
 <template>
 	<view class="container">
 		<!-- 自定义页头 -->
+<<<<<<< HEAD
 		<cu-custom bgColor="bg-gradual-pink" :isBack="true" :isBold="false" :url="previousPage?previousPage.path+'?id='+previousPage.win_id:'/pages/meituan/index'">
+=======
+		<cu-custom bgColor="bg-gradual-pink" :isBack="true" :url="'/pages/index/index'">
+>>>>>>> baijunwu
 			<block slot="backText">返回</block>
 			<block slot="content">购物车</block>
 		</cu-custom>
 		<!-- 空白页 -->
+<<<<<<< HEAD
 		<view v-if="!cartList.length >0" class="empty">
+=======
+		<!-- 		<view v-if="!hasLogin || empty===true" class="empty">
+>>>>>>> baijunwu
 			<image src="/static/emptyCart.jpg" mode="aspectFit"></image>
 			<view v-if="hasLogin" class="empty-tips">
 				空空如也
 				<navigator class="navigator" v-if="hasLogin" url="../index/index" open-type="switchTab">随便逛逛></navigator>
 			</view>
+<<<<<<< HEAD
 			<!-- <view v-else class="empty-tips">
 				空空如也
 				<view class="navigator" @click="navToLogin">去登陆></view>
 			</view> -->
 		</view>
+=======
+			<view v-else class="empty-tips">
+				空空如也
+				<view class="navigator" @click="navToLogin">去登陆></view>
+			</view>
+		</view> -->
+>>>>>>> baijunwu
 		<view>
 			<!-- 列表 -->
 			<view class="cart-list">
@@ -91,6 +107,7 @@
 				hasLogin: false,
 				cartList: [],
 				modalName: null,
+<<<<<<< HEAD
 				text: null,
 				previousPage: {}
 			};
@@ -104,6 +121,13 @@
 				e.path = e.path[e.path.length - 1]
 				this.previousPage = e
 			}
+=======
+				text: null
+			};
+		},
+		onLoad() {
+			this.loadData();
+>>>>>>> baijunwu
 		},
 		watch: {
 			//显示空白页
@@ -140,7 +164,11 @@
 			},
 			navToLogin() {
 				uni.navigateTo({
+<<<<<<< HEAD
 					url: 'pages/login/login'
+=======
+					url: '/pages/public/login'
+>>>>>>> baijunwu
 				})
 			},
 			//选中状态处理
@@ -321,6 +349,7 @@
 				let list = this.cartList;
 				let goodsData = [];
 				list.forEach(item => {
+<<<<<<< HEAD
 					if (item.menu_check) {
 						goodsData.push({
 							id: item.menu_id,
@@ -341,6 +370,23 @@
 				});
 			},
 			// 关闭提示信息
+=======
+					if (item.checked) {
+						goodsData.push({
+							attr_val: item.attr_val,
+							number: item.number
+						})
+					}
+				})
+
+				uni.navigateTo({
+					url: `/pages/order/createOrder?data=${JSON.stringify({
+						goodsData: goodsData
+					})}`
+				})
+				this.$api.msg('跳转下一页 sendData');
+			},
+>>>>>>> baijunwu
 			hideModal(e) {
 				this.modalName = null
 			}

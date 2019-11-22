@@ -16,7 +16,10 @@
             "delay" : 0
         },
         /* 模块配置 */
-        "modules" : {},
+        "modules" : {
+            "Share" : {},
+            "OAuth" : {}
+        },
         /* 应用发布信息 */
         "distribute" : {
             /* android打包配置 */
@@ -49,14 +52,16 @@
             /* ios打包配置 */
             "ios" : {},
             /* SDK配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {
+                "oauth" : {}
+            }
         }
     },
     /* 快应用特有相关 */
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wx876b25fce1255304",
         "setting" : {
             "urlCheck" : false
         },
