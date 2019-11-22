@@ -8,7 +8,7 @@
 		</view>
 		<!-- 上传图片 -->
 		<view class="photo">
-			<view class="photo_top">
+			<!-- 	<view class="photo_top">
 				<view class="imageItem">
 					<image class="image" :src="urlImge[0]" mode="aspectFill" @tap="ChooseImage"></image>
 				</view>
@@ -18,12 +18,24 @@
 				</view>
 			</view>
 			<view class="photo_bottom">
+<<<<<<< HEAD
 				<view class="imageUpload" @tap="selectImage3">+</view>
 				<view class="imageUpload" @tap="selectImage4">+</view>
 				<view class="imageUpload" @tap="selectImage5">+</view>
 			</view>
 
 		</view <!-- card组件 -->
+=======
+				<view class="imageUpload" @tap="selectImage">+</view>
+				<view class="imageUpload" @tap="selectImage">+</view>
+				<view class="imageUpload" @tap="selectImage">+</view>
+			</view> -->
+			<!-- 上传显示 -->
+			<!-- <image class="moveImage"></image> -->
+			<sunui-upbasic :upImgConfig="upImgBasic" @onUpImg="upBasicData" @onImgDel="delImgInfo" ref="uImage"></sunui-upbasic>
+		</view>
+		<!-- card组件 -->
+>>>>>>> chemengxiao
 		<!-- 我的标签 -->
 		<view class="cu-bar bg-white padding">
 			<view class="tag_box">
@@ -135,6 +147,7 @@
 </template>
 
 <script>
+	import Attachment from '../../components/jin-attachment/jin-attachment.vue';
 	export default {
 		data() {
 			return {
@@ -142,6 +155,7 @@
 				sexindex: 0,
 				sexbox: ['男', '女'],
 				// 出生日期
+<<<<<<< HEAD
 				modalName: null,
 				// 用户id
 				userId: '',
@@ -167,6 +181,46 @@
 				// 我的getmusic
 				our_music: [],
 				urlImge: []
+=======
+				birthday: '0000-00-00',
+				modalName: null,
+				basicArr: [],
+				// 基础版配置
+				upImgBasic: {
+					// 后端图片接口地址
+					basicConfig: {
+						url: 'http://127.0.0.1:9999/api/v1/upload_phone'
+					},
+					// 是否开启notli(开启的话就是选择完直接上传，关闭的话当count满足数量时才上传)
+					notli: true,
+					// 图片数量
+					count: 2,
+					// 相机来源(相机->camera,相册->album,两者都有->all,默认all)
+					sourceType: 'camera',
+					// 是否压缩上传照片(仅小程序生效)
+					sizeType: true,
+					// 上传图片背景修改 
+					upBgColor: '#E8A400',
+					// 上传icon图标颜色修改(仅限于iconfont)
+					upIconColor: '#fff',
+					// 上传svg图标名称
+					// upSvgIconName: 'icon-card',
+					// 上传文字描述(仅限四个字)
+					// upTextDesc: '上传证书',
+					// 删除按钮位置(left,right,bleft,bright),默认右上角
+					delBtnLocation: '',
+					// 是否隐藏添加图片
+					isAddImage: false,
+					// 是否隐藏删除图标
+					// isDelIcon: false,
+					// 删除图标定义背景颜色
+					// delIconColor: '',
+					// 删除图标字体颜色
+					// delIconText: '',
+					// 上传图标替换(+),是个http,https图片地址(https://www.playsort.cn/right.png)
+					iconReplace: ''
+				}
+>>>>>>> chemengxiao
 			}
 		},
 		onLoad() {
@@ -222,6 +276,7 @@
 				this.userInfo.sex = this.sexindex
 			},
 			DateChange(e) {
+<<<<<<< HEAD
 				this.userInfo.birthday = e.detail.value
 			},
 			// 获取我的标签
@@ -310,6 +365,47 @@
 						})
 					}
 				})
+=======
+				this.birthday = e.detail.value
+			},
+			// 删除图片 -2019/05/12(本地图片进行删除)
+			async delImgInfo(e) {
+				console.log('你删除的图片地址为:', e, this.basicArr.splice(e.index, 1));
+			},
+			// 基础版
+			async upBasicData(e) {
+				// console.log(e);
+				// 上传图片数组
+				let arrImg = [];
+				console.log(e[0].path_server.split(','))
+				arrImg = e[0].path_server.split(',')
+				// for (let i = 0, len = e.length; i < len; i++) {
+				// 	try {
+				// 		if (e[i].path_server != "") {
+				// 			await arrImg.push(e[i].path_server.split(','));
+				// 		}
+				// 	} catch (err) {
+				// 		console.log('上传失败...');
+				// 	}
+				// }
+				// 图片信息保存到data数组
+				this.basicArr = arrImg;
+				// // 可以根据长度来判断图片是否上传成功. 2019/4/11新增
+				// if (arrImg.length == this.upImgBasic.count) {
+				// 	uni.showToast({
+				// 		title: `loading`,
+				// 		icon: 'none'
+				// 	});
+				// 	uni.hideLoading({
+				// 		title: `上传成功`,
+				// 		icon: 'none'
+				// 	});
+				// }
+			},
+			// 获取上传图片basic
+			getUpImgInfoBasic() {
+				console.log(this.basicArr.join().split(','));
+>>>>>>> chemengxiao
 			}
 		}
 	}
