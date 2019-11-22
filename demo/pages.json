@@ -66,6 +66,12 @@
 			}
 		},
 		{
+			"path": "pages/meituan/purchase",
+			"style": {
+				"navigationBarTitleText": "创建订单"
+			}
+		},
+		{
 			"path": "pages/meituan/index",
 			"style": {
 				"navigationBarTitleText": "食堂首页"

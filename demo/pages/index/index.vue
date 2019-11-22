@@ -74,7 +74,7 @@
 					<view class="footerBox-flex-left">
 						<image src="../../static/goodMood.jpg" mode=""></image>
 					</view>
-					<view class="footerBox-flex-right">
+					<view class="footerBox-flex-right" @click="linkMT">
 						<text class="rightTitle">食堂外卖</text>
 						<text class="rightText">周末宿舍放心宅</text>
 					</view>
@@ -116,6 +116,11 @@
 
 			</view>
 		</view>
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 666ddf434f86a444006bcd8530d0b9bb647a3beb
 	</view>
 </template>
 
@@ -154,6 +159,11 @@
 		methods: {
 			cardSwiper(e) {
 				this.cardCur = e.detail.current
+			},
+			linkMT(){
+				uni.reLaunch({
+				    url: '/pages/meituan/index'
+				});
 			}
 		}
 	}
