@@ -22,16 +22,10 @@
 				<view class="imageUpload" @tap="selectImage">+</view>
 				<view class="imageUpload" @tap="selectImage">+</view>
 				<view class="imageUpload" @tap="selectImage">+</view>
-<<<<<<< HEAD
 			</view> -->
 			<!-- 上传显示 -->
 			<!-- <image class="moveImage"></image> -->
 			<sunui-upbasic :upImgConfig="upImgBasic" @onUpImg="upBasicData" @onImgDel="delImgInfo" ref="uImage"></sunui-upbasic>
-=======
-			</view>
-			<!-- 上传显示 -->
-			<!-- <image class="moveImage"></image> -->
->>>>>>> baijunwu
 		</view>
 		<!-- card组件 -->
 		<!-- 我的标签 -->
@@ -121,7 +115,6 @@
 				sexbox: ['男', '女'],
 				// 出生日期
 				birthday: '0000-00-00',
-<<<<<<< HEAD
 				modalName: null,
 				basicArr: [],
 				// 基础版配置
@@ -159,9 +152,6 @@
 					// 上传图标替换(+),是个http,https图片地址(https://www.playsort.cn/right.png)
 					iconReplace: ''
 				}
-=======
-				modalName: null
->>>>>>> baijunwu
 			}
 		},
 		methods: {
@@ -171,7 +161,6 @@
 			},
 			DateChange(e) {
 				this.birthday = e.detail.value
-<<<<<<< HEAD
 			},
 			// 删除图片 -2019/05/12(本地图片进行删除)
 			async delImgInfo(e) {
@@ -210,8 +199,6 @@
 			// 获取上传图片basic
 			getUpImgInfoBasic() {
 				console.log(this.basicArr.join().split(','));
-=======
->>>>>>> baijunwu
 			}
 		}
 	}
