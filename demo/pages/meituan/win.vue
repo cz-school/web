@@ -77,7 +77,8 @@
 		},
 		data() {
 			return {
-				host: "http://127.0.0.1:9999/api/v1",
+				host: "http://47.104.29.236:9999/api/v1",
+				// host: "http://127.0.0.1:9999/api/v1",
 				win_id: 0,
 				list: [],
 				classify: [],
@@ -163,6 +164,7 @@
 				uni.request({
 					url: `${this.host}/classify_list_st/${this.win_id}`,
 					success: (data) => {
+						console.log(data)
 						this.menu = data.data.data.menu;
 						this.classify = data.data.data.classify;
 					}

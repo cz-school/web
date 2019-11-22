@@ -149,7 +149,7 @@
 
 			// siteDefault
 			uni.request({
-				url: `http://127.0.0.1:9999/api/v1/siteDefault`, //仅为示例，并非真实接口地址。
+				url: `http://47.104.29.236:9999/api/v1/siteDefault`, //仅为示例，并非真实接口地址。
 				success: (res) => {
 					if (res.data.ok == 1) {
 						this.site = res.data.data[0]
@@ -171,7 +171,7 @@
 				})
 				this.myCart = cart
 				uni.request({
-					url: `http://127.0.0.1:9999/api/v1/purchase/${ids.join(",")}`, //仅为示例，并非真实接口地址。
+					url: `http://47.104.29.236:9999/api/v1/purchase/${ids.join(",")}`, //仅为示例，并非真实接口地址。
 					success: (res) => {
 						if (res.data.ok === 1) {
 							this.goodsList = res.data.data;
@@ -188,21 +188,27 @@
 			},
 			// 创建订单
 			createOrder() {
-				let id = []
+				// console.log(this.goodsList)
+				let goodsdata = []
 				this.goodsList.forEach(item => {
-					id.push(item.id)
+					goodsdata.push({
+						id:item.id,
+						menu_price:item.menu_price,
+						menu_num:item.num,
+						menu_name:item.menu_name
+					})
 				})
 				// createorder_st
 				let data = {
 					...this.site,
 					totalPrice: this.totalPrice,
-					ids: id,
+					goodsdata: goodsdata,
 					cartid:this.myCart
 				}
 				// console.log(data)
 				uni.request({
 					method:'POST',
-					url: `http://127.0.0.1:9999/api/v1/createorder_st`, //仅为示例，并非真实接口地址。
+					url: `http://47.104.29.236:9999/api/v1/createorder_st`, //仅为示例，并非真实接口地址。
 					data:{
 						data:data
 					},

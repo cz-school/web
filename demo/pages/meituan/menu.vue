@@ -19,7 +19,7 @@
 				</view>
 				<!-- 介绍 -->
 				<view class="menu_describe">
-						{{list.menu_describe}}
+					{{list.menu_describe}}
 				</view>
 				<!-- 价格模块 -->
 				<view class="menu_price">
@@ -27,7 +27,7 @@
 						${{list.menu_unit}}
 					</view>
 					<view class="care" @click="buycare">
-						 + 立即购买
+						+ 立即购买
 					</view>
 				</view>
 			</view>
@@ -40,10 +40,10 @@
 				</view>
 				购物车
 			</view>
-		
+
 		</view>
 	</view>
-	
+
 </template>
 
 <script>
@@ -54,12 +54,13 @@
 		},
 		data() {
 			return {
-				menu_id:0,
+				host: "http://47.104.29.236:9999/api/v1",
+				// host: "http://127.0.0.1:9999/api/v1",
+				menu_id: 0,
 				list: [],
-				win_id:0,
-				host:"http://127.0.0.1:9999/api/v1",
-				user_id:0,
-				stusersid:0,
+				win_id: 0,
+				user_id: 0,
+				stusersid: 0,
 				care_num: 0
 			};
 		},
@@ -68,19 +69,19 @@
 			let that = this;
 			// 获取到窗口id
 			uni.getStorage({
-			    key: 'winid',
-			    success: function (res) {
-					that.win_id=res.data.win_id;
-			    }
+				key: 'winid',
+				success: function(res) {
+					that.win_id = res.data.win_id;
+				}
 			});
 			// 获取到用户id
 			uni.getStorage({
-			    key: 'user_id',
-			    success: function (res) {
-					that.user_id=res.data;
-			    }
+				key: 'user_id',
+				success: function(res) {
+					that.user_id = res.data;
+				}
 			});
-	
+
 			uni.showLoading({
 				title: '加载中...',
 				mask: true
@@ -92,43 +93,43 @@
 
 		methods: {
 			// 获取的到菜品
-			getmenu(){
+			getmenu() {
 				uni.request({
-					url:`${this.host}/list_st/${this.menu_id}`,
-					data:"",
-					success:(data)=>{
+					url: `${this.host}/list_st/${this.menu_id}`,
+					data: "",
+					success: (data) => {
 						this.list = data.data.data[0];
 					}
 				})
 			},
 			// 获取到商铺用户id
-				
-			getStusersId(){
+
+			getStusersId() {
 				uni.request({
-					url:`${this.host}/stusers_id`,
-					data:{
-						win_id:this.win_id
+					url: `${this.host}/stusers_id`,
+					data: {
+						win_id: this.win_id
 					},
-					success:(data)=>{
-						this.stusersid=data.data.data[0].stuser_id
+					success: (data) => {
+						this.stusersid = data.data.data[0].stuser_id
 					}
 				})
 			},
 			// 点击购买添加到购物车
-			buycare(){
+			buycare() {
 				this.getStusersId()
 				// console.log(this.stusersid);
 				// console.log(this.menu_id);
 				// console.log(this.user_id);
 				uni.request({
-					url:`${this.host}/add_care`,
-					method:'post',
-					data:{
-						user_id:this.user_id,
-						menu_id:this.menu_id,
-						stusersid:this.stusersid
+					url: `${this.host}/add_care`,
+					method: 'post',
+					data: {
+						user_id: this.user_id,
+						menu_id: this.menu_id,
+						stusersid: this.stusersid
 					},
-					success:()=>{
+					success: () => {
 						this.getcare();
 					}
 				})
@@ -147,7 +148,7 @@
 				})
 			},
 			// 点击购物车进行跳转
-			clickcare(){
+			clickcare() {
 				let CurrentPages = getCurrentPages()
 				// console.log(`${CurrentPages[0].route}`);
 				uni.reLaunch({
@@ -155,7 +156,7 @@
 				});
 			}
 		},
-		onShow(){
+		onShow() {
 			this.getmenu();
 			this.getStusersId();
 			this.getcare();
@@ -164,33 +165,39 @@
 </script>
 
 <style>
-	.menu{
+	.menu {
 		width: 100%;
 		height: 100%;
 	}
-	.menu_img{
+
+	.menu_img {
 		width: 100%;
 		height: 400upx;
 		background-color: red;
 	}
-	.details{
+
+	.details {
 		width: 100%;
 		height: 260upx;
 		padding: 20upx;
 		background-color: white;
 	}
-	.details> view{
+
+	.details>view {
 		margin: 10upx 0upx;
 	}
-	.deta_title{
+
+	.deta_title {
 		overflow: hidden;
 	}
-	.deta_title > view{
+
+	.deta_title>view {
 		float: left;
 		margin-right: 10upx;
 		text-align: center;
 	}
-	.deta_title > .menu_commend {
+
+	.deta_title>.menu_commend {
 		width: 70upx;
 		height: 40upx;
 		line-height: 40upx;
@@ -198,14 +205,16 @@
 		margin-right: 30upx;
 		box-sizing: border-box;
 	}
-	.deta_title > .menu_name {
+
+	.deta_title>.menu_name {
 		font-size: 36upx;
 		font-weight: 900;
 	}
+
 	/* 菜品的介绍 */
-	.menu_describe{
+	.menu_describe {
 		font-size: 20upx;
-		color:#9e9e9e;
+		color: #9e9e9e;
 		width: 100%;
 		/* 超出一行文字自动隐藏 */
 		overflow: hidden;
@@ -214,30 +223,35 @@
 		/* //强制不换行 */
 		white-space: nowrap;
 	}
-	.menu_price{
+
+	.menu_price {
 		width: 100%;
 		height: 70upx;
 		font-size: 40upx;
 		line-height: 70upx;
 		overflow: hidden;
 	}
-	.menu_price > view{
+
+	.menu_price>view {
 		float: left;
 		height: 100%;
 		font-size: 40upx;
 		line-height: 70upx;
 	}
-	.price{
+
+	.price {
 		color: red;
 	}
-	.care{
+
+	.care {
 		padding: 0upx 20upx;
 		font-size: 30upx !important;
 		float: right !important;
 		border-radius: 30upx;
 		background-color: orange;
 	}
-	.shopcare{
+
+	.shopcare {
 		margin-top: 540upx;
 	}
 </style>

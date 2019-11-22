@@ -119,13 +119,18 @@
 		},
 		methods: {
 			//请求数据
-			async loadData() {
+			loadData() {
 				uni.request({
 					url: 'http://127.0.0.1:9999/api/v1/myCart_st', //仅为示例，并非真实接口地址。
+					header: {
+						"content-type": "application/x-www-form-urlencoded"
+					},
 					success: (res) => {
+						console.log(res.data)
 						this.cartList = res.data.data;
-						// console.log(this.cartList)
-						this.calcTotal();
+						if (res.data.data.length != 0) {
+							this.calcTotal();
+						}
 					}
 				});
 				// this.calcTotal(); //计算总价
@@ -148,7 +153,7 @@
 				if (type === 'item') {
 					uni.request({
 						method: 'put',
-						url: `http://127.0.0.1:9999/api/v1/myCart_st/${this.cartList[index].id}`, //仅为示例，并非真实接口地址。
+						url: `http://47.104.29.236:9999/api/v1/myCart_st/${this.cartList[index].id}`, //仅为示例，并非真实接口地址。
 						data: {
 							ischeck: !(this.cartList[index].menu_check)
 						},
@@ -178,7 +183,7 @@
 
 					uni.request({
 						method: 'put',
-						url: `http://127.0.0.1:9999/api/v1/myCart_s_all`, //仅为示例，并非真实接口地址。
+						url: `http://47.104.29.236:9999/api/v1/v1/myCart_s_all`, //仅为示例，并非真实接口地址。
 						data: {
 							ischeck: checked,
 							id: ids
@@ -210,7 +215,7 @@
 				}
 				uni.request({
 					method: 'put',
-					url: 'http://127.0.0.1:9999/api/v1/myCart_st', //仅为示例，并非真实接口地址。
+					url: 'http://47.104.29.236:9999/api/v1/myCart_st', //仅为示例，并非真实接口地址。
 					data: {
 						id: this.cartList[data.index].id,
 						menu_num: data.number
@@ -241,7 +246,7 @@
 							// 发起请求 删除
 							uni.request({
 								method: 'DELETE',
-								url: `http://127.0.0.1:9999/api/v1/myCart_st/${id}`, //仅为示例，并非真实接口地址。
+								url: `http://47.104.29.236:9999/api/v1/myCart_st/${id}`, //仅为示例，并非真实接口地址。
 								header: {
 									// 'custom-header': 'hello' //自定义请求头信息
 								},
@@ -275,7 +280,7 @@
 							// 发起请求 删除
 							uni.request({
 								method: 'DELETE',
-								url: `http://127.0.0.1:9999/api/v1/myCart_st`, //仅为示例，并非真实接口地址。
+								url: `http://47.104.29.236:9999/api/v1/myCart_st`, //仅为示例，并非真实接口地址。
 								data: {
 									id: ids
 								},
