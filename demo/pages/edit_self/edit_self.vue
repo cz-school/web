@@ -5,15 +5,27 @@
 			<cu-custom bgColor="bg-gradual-white " :url="'/pages/self/self'" isBack="true">
 				<block slot="content">编辑个人信息</block>
 			</cu-custom>
-			<text class="save_info">保存</text>
 		</view>
 		<!-- 上传图片 -->
 		<view class="photo">
-			<!-- 	<view class="photo_top">
-				<view class="imageItem">
-					<image src="../../static/goodMood.jpg" mode=""></image>
+			<view class="photo_top">
+				<!-- <view class="cu-form-group">
+				<view class="grid col-4 grid-square flex-sub">
+					<view class="bg-img" v-for="(item,index) in imgList" :key="index" :data-url="imgList[index]">
+						<image :src="imgList[0]" mode="aspectFill"></image>
+						<view class="cu-tag bg-red" :data-index="index">
+							<text class='cuIcon-close'></text>
+						</view>
+					</view>
+					<view class="solids"  v-if="imgList.length<4">
+						<text class='cuIcon-cameraadd'></text>
+					</view>
 				</view>
-				<view class="photo_uplod">
+			</view> -->
+				<view class="imageItem">
+					<image :src=" imgList[0]" mode="aspectFill" @tap="ChooseImage"></image>
+				</view>
+				<view class=" photo_uplod">
 					<view class="imageUpload" @tap="selectImage">+</view>
 					<view class="imageUpload" @tap="selectImage">+</view>
 				</view>
@@ -22,10 +34,7 @@
 				<view class="imageUpload" @tap="selectImage">+</view>
 				<view class="imageUpload" @tap="selectImage">+</view>
 				<view class="imageUpload" @tap="selectImage">+</view>
-			</view> -->
-			<!-- 上传显示 -->
-			<!-- <image class="moveImage"></image> -->
-			<sunui-upbasic :upImgConfig="upImgBasic" @onUpImg="upBasicData" @onImgDel="delImgInfo" ref="uImage"></sunui-upbasic>
+			</view>
 		</view>
 		<!-- card组件 -->
 		<!-- 我的标签 -->
@@ -34,10 +43,12 @@
 				<view class="tag_title">
 					<text>我的标签</text>
 				</view>
-				<view class="tag_content">
-					<view class="icon_tag">#</view>
-					<view class='cu-tag bg-black'>无趣</view>
-					<view class="cuIcon-right"></view>
+				<view class="flex cf padding-sm" @tap="our_tags">
+					<view class=" fl text-bold text-xl margin-right-sm text-bold">#</view>
+					<view class=' content_tag fl'>
+						<view class='cu-tag bg-black margin-left-xs radius' v-for="v in ourTags">{{v.tag_name}}</view>
+					</view>
+					<view class=" cuIcon-right fr"></view>
 				</view>
 			</view>
 		</view>
@@ -47,25 +58,33 @@
 				<view class="tag_title">
 					<text>我的兴趣</text>
 				</view>
-				<view class="tag_content">
-					<view class="cuIcon-tag icon_tag"></view>
-					<view class='cu-tag bg-black'>极品飞车</view>
-					<view class="cuIcon-right"></view>
+				<view class="flex cf padding-sm" @tap='our_sports'>
+					<view class="cuIcon-brand icon_tag fl text-bold text-xl margin-right-sm"></view>
+					<view class=' content_tag fl'>
+						<view class='cu-tag bg-orange margin-left-xs radius' v-for="v in ourSports">{{v.tag_name}}</view>
+					</view>
+					<view class=" cuIcon-right fr"></view>
 				</view>
-				<view class="tag_content">
-					<view class="cuIcon-tag icon_tag"></view>
-					<view class='cu-tag bg-purple'>民谣</view>
-					<view class="cuIcon-right"></view>
+				<view class="flex cf padding-sm" @tap='our_games'>
+					<view class="cuIcon-game icon_tag fl text-bold text-xl margin-right-sm"></view>
+					<view class=' content_tag fl'>
+						<view class='cu-tag bg-purple margin-left-xs radius' v-for="v in ourGames">{{v.tag_name}}</view>
+					</view>
+					<view class=" cuIcon-right fr"></view>
 				</view>
-				<view class="tag_content">
-					<view class="cuIcon-musicfill icon_tag"></view>
-					<view class='cu-tag bg-brown'>戏剧</view>
-					<view class="cuIcon-right"></view>
+				<view class="flex cf padding-sm" @tap='our_music'>
+					<view class="cuIcon-musicfill icon_tag fl text-bold text-xl margin-right-sm"></view>
+					<view class=' content_tag fl'>
+						<view class='cu-tag bg-cyan margin-left-xs radius' v-for="v in ourMusic">{{v.tag_name}}</view>
+					</view>
+					<view class=" cuIcon-right fr"></view>
 				</view>
-				<view class="tag_content">
-					<view class="cuIcon-tag icon_tag"></view>
-					<view class='cu-tag bg-orange'>北京烤鸭</view>
-					<view class="cuIcon-right"></view>
+				<view class="flex cf padding-sm" @tap="our_foods">
+					<view class="cuIcon-presentfill icon_tag fl text-bold text-xl margin-right-sm"></view>
+					<view class=' content_tag fl'>
+						<view class='cu-tag bg-pink margin-left-xs radius' v-for="v in ourFoods">{{v.tag_name}}</view>
+					</view>
+					<view class=" cuIcon-right fr"></view>
 				</view>
 			</view>
 		</view>
@@ -101,6 +120,12 @@
 					<view class="title">签名</view>
 					<textarea maxlength="-1" :disabled="modalName!=null" @input="textareaAInput" placeholder="请填写你的个性签名"></textarea>
 				</view>
+				<view class="padding flex flex-direction">
+					<button class="cu-btn bg-green lg" @tap="savefix">保存修改</button>
+				</view>
+				<view class="padding flex flex-direction">
+					<button class="cu-btn bg-grey lg" @tap="layout">退出登录</button>
+				</view>
 			</form>
 		</view>
 	</view>
@@ -109,52 +134,86 @@
 
 <script>
 	export default {
+		onLoad() {
+			this.getselfInfo()
+			// 获取game tag
+			uni.getStorage({
+				key: 'games',
+				success: (res) => {
+					this.ourGames = JSON.parse(res.data)
+				}
+			})
+			// 获取我的tag
+			uni.getStorage({
+				key: 'ourTags',
+				success: (res) => {
+					this.ourTags = JSON.parse(res.data)
+				}
+			})
+			// 获取 sports tag
+			uni.getStorage({
+				key: 'ourSports',
+				success: (res) => {
+					this.ourSports = JSON.parse(res.data)
+				}
+			})
+			// 获取 music tag
+			uni.getStorage({
+				key: 'ourMusic',
+				success: (res) => {
+					this.ourMusic = JSON.parse(res.data)
+				}
+			})
+			// 获取 foods tag
+			uni.getStorage({
+				key: 'ourFoods',
+				success: (res) => {
+					this.ourFoods = JSON.parse(res.data)
+				}
+			})
+		},
 		data() {
 			return {
+				imgList: [],
+				// 游戏tag
+				ourGames: [],
+				// 我的tag
+				ourTags: [],
+				// 我的运动
+				ourSports: [],
+				// 我的食物
+				ourFoods: [],
+				// 我的音乐
+				ourMusic: [],
 				sexindex: -1,
 				sexbox: ['男', '女'],
 				// 出生日期
 				birthday: '0000-00-00',
 				modalName: null,
 				basicArr: [],
-				// 基础版配置
-				upImgBasic: {
-					// 后端图片接口地址
-					basicConfig: {
-						url: 'http://127.0.0.1:9999/api/v1/upload_phone'
-					},
-					// 是否开启notli(开启的话就是选择完直接上传，关闭的话当count满足数量时才上传)
-					notli: true,
-					// 图片数量
-					count: 2,
-					// 相机来源(相机->camera,相册->album,两者都有->all,默认all)
-					sourceType: 'camera',
-					// 是否压缩上传照片(仅小程序生效)
-					sizeType: true,
-					// 上传图片背景修改 
-					upBgColor: '#E8A400',
-					// 上传icon图标颜色修改(仅限于iconfont)
-					upIconColor: '#fff',
-					// 上传svg图标名称
-					// upSvgIconName: 'icon-card',
-					// 上传文字描述(仅限四个字)
-					// upTextDesc: '上传证书',
-					// 删除按钮位置(left,right,bleft,bright),默认右上角
-					delBtnLocation: '',
-					// 是否隐藏添加图片
-					isAddImage: false,
-					// 是否隐藏删除图标
-					// isDelIcon: false,
-					// 删除图标定义背景颜色
-					// delIconColor: '',
-					// 删除图标字体颜色
-					// delIconText: '',
-					// 上传图标替换(+),是个http,https图片地址(https://www.playsort.cn/right.png)
-					iconReplace: ''
-				}
+				forlist: [],
+				baseUrl: 'http:/127.0.0.1:9999/api/v1',
+				id: '',
+				imgList: [],
 			}
 		},
 		methods: {
+			// 获取个人用户信息
+			getselfInfo() {
+				let userId = uni.getStorageSync('user_id')
+				this.id = userId
+				console.log(this.id)
+				uni.request({
+					url: this.baseUrl + `/selfInfo/${this.id}`,
+					data:{
+						id:this.id
+					},
+					method: 'GET',
+					success: (res) => {
+						console.log(res)
+					}
+				})
+			},
 			PickerChange(e) {
 				console.log(e)
 				this.sexindex = e.detail.value
@@ -162,54 +221,72 @@
 			DateChange(e) {
 				this.birthday = e.detail.value
 			},
-			// 删除图片 -2019/05/12(本地图片进行删除)
-			async delImgInfo(e) {
-				console.log('你删除的图片地址为:', e, this.basicArr.splice(e.index, 1));
+			ChooseImage() {
+				let _self = this;
+				uni.chooseImage({
+					count: 1,
+					sizeType: ['original'], //可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album'], //从相册选择
+					success: (res) => {
+						const tempFilePaths = res.tempFilePaths;
+						const uploadTask = uni.uploadFile({
+							url: 'http://127.0.0.1:9999/api/v1/upload_phone',
+							filePath: tempFilePaths[0],
+							name: 'file',
+							formData: {
+								'user': 'test'
+							},
+							success: (uploadFileRes) => {
+								let aa = JSON.parse(uploadFileRes.data)
+								this.imgList.push(aa.info)
+								console.log(this.imgList);
+								// this.imgList.push(aa.info)
+							}
+						});
+					},
+					error: function(e) {
+						console.log(e);
+					}
+				});
 			},
-			// 基础版
-			async upBasicData(e) {
-				console.log(e);
-				// 上传图片数组
-				let arrImg = [];
-				console.log(e[0].path_server.split(','))
-				arrImg = e[0].path_server.split(',')
-				// for (let i = 0, len = e.length; i < len; i++) {
-				// 	try {
-				// 		if (e[i].path_server != "") {
-				// 			await arrImg.push(e[i].path_server.split(','));
-				// 		}
-				// 	} catch (err) {
-				// 		console.log('上传失败...');
-				// 	}
-				// }
-				// 图片信息保存到data数组
-				this.basicArr = arrImg;
-				// // 可以根据长度来判断图片是否上传成功. 2019/4/11新增
-				// if (arrImg.length == this.upImgBasic.count) {
-				// 	uni.showToast({
-				// 		title: `loading`,
-				// 		icon: 'none'
-				// 	});
-				// 	uni.hideLoading({
-				// 		title: `上传成功`,
-				// 		icon: 'none'
-				// 	});
-				// }
+
+			// 退出登录
+			layout() {
+				uni.clearStorage()
+				uni.navigateTo({
+					url: '../login/login'
+				})
 			},
-			// 获取上传图片basic
-			getUpImgInfoBasic() {
-				console.log(this.basicArr.join().split(','));
-			}
+			// 点击跳转到tag页面
+			our_sports() {
+				uni.navigateTo({
+					url: '../self_tag_sports/self_tag_sports'
+				})
+			},
+			our_tags() {
+				uni.navigateTo({
+					url: '../self_tag_our/self_tag_our'
+				})
+			},
+			our_games() {
+				uni.navigateTo({
+					url: '../self_tag_games/self_tag_games'
+				})
+			},
+			our_music() {
+				uni.navigateTo({
+					url: '../self_tag_music/self_tag_music'
+				})
+			},
+			our_foods() {
+				uni.navigateTo({
+					url: '../self_tag_foods/self_tag_foods'
+				})
+			},
 		}
 	}
 </script>
 <style>
-	.edit_self .save_info {
-		margin-right: 20rpx;
-		color: red;
-		font-size: 35rpx;
-	}
-
 	.photo {
 		margin-top: 100rpx;
 		width: 100%;
@@ -263,40 +340,11 @@
 		background-color: #8799A3;
 	}
 
+	.content_tag {
+		width: 600rpx;
+	}
+
 	.photo_bottom>.imageUpload:nth-child(3) {
 		margin-right: 0rpx;
-	}
-
-	.tag_box {
-		width: 700rpx;
-	}
-
-	.tag_title {
-		width: 100%;
-		font-size: 30rpx;
-		font-weight: 700;
-	}
-
-	.tag_content {
-		float: left;
-		padding: 20rpx 0rpx;
-		width: 700rpx;
-		line-height: 40rpx;
-	}
-
-	.tag_content .icon_tag {
-		float: left;
-		font-weight: 700;
-		font-size: 30rpx;
-		margin-right: 20rpx;
-	}
-
-	.tag_content .cu-tag {
-		float: left;
-	}
-
-	.tag_content .cuIcon-right {
-		float: right;
-		margin-left: 100rpx;
 	}
 </style>
