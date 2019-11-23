@@ -20,9 +20,19 @@
 					 placeholder="详细描述商品的新旧程度,使用情况及出售原因能更快的帮您将商品出售哦~" />
 					</view>
 					
-					<view @tap="uImageTap" class="addImg-box">
-						<sunui-upbasic  :upImgConfig="upImgBasic" @onUpImg="upBasicData" @onImgDel="delImgInfo" ref="uImage"></sunui-upbasic>
-						<!-- <button type="primary" >手动上传图片</button> -->
+					<!-- 发布商品缩略图 -->
+						<view>
+							<view class="title padding-lr-lg">商品缩略图</view>
+							<view @tap="uImageTap" class="addImg-box">
+								<sunui-upbasic  :upImgConfig="upImgBasic" @onUpImg="upBasicData" @onImgDel="delImgInfo" ref="uImage"></sunui-upbasic>
+							</view>
+						</view>
+					<!-- 发布商品详情图 -->
+					<view>
+						<view class="title padding-lr-lg">商品缩略图</view>
+						<view @tap="uImagesTap" class="addImg-box">
+							<sunui-upbasic  :upImgConfig="upImgBasics" @onUpImg="upBasicsData" @onImgDel="delImgsInfo" ref="uImages"></sunui-upbasic>
+						</view>
 					</view>
 			</view>
 			<view class="IssueMsg price">
@@ -47,16 +57,7 @@
 						<input class="uni-input" v-model="shop_num_new" name="shop_num_new" placeholder="10" type="number" maxlength=1/>
 					</view>
 				</view>
-				<!-- <view class="priceClass">
-					<navigator url="/pages/xy/bazaarClass/bazaarClass">
-						<view class="priceClassText">
-							分类
-						</view>
-						<view class="priceClassIcon">
-							<svg t="1574062221064" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1829" width="16" height="16"><path d="M438.584533 738.132267c14.946133 15.374933 39.2 15.374933 54.1792 0l192.600533-198.250667c14.9376-15.403733 14.9376-40.3744 0-55.746133L492.763733 285.890133c-14.9792-15.403733-39.233067-15.403733-54.1792 0-14.970667 15.3792-14.970667 40.3456 0 55.7504L604.1056 512.0064l-165.521067 170.346667C423.613867 697.7568 423.613867 722.7232 438.584533 738.132267L438.584533 738.132267zM438.584533 738.132267" p-id="1830"></path></svg>
-						</view>
-					</navigator>
-				</view> -->
+	
 			</view>
 			<view class="IssueMsg submit-box">
 				<view class="submit-btn" @tap="addShop">
@@ -93,6 +94,8 @@
 				shop_original_cost: "",
 				shop_unit: "",
 				shop_num_new: "",
+				basicArr:null, //商品缩略图
+				basicsArr:null, // 商品详情图
 				// 上传图片
 				// 删除图片
 				enableDel : false,
@@ -140,6 +143,40 @@
 					// delIconText: '',
 					// 上传图标替换(+),是个http,https图片地址(https://www.playsort.cn/right.png)
 					iconReplace: ''
+				},
+				upImgBasics: {
+					// 后端图片接口地址
+					basicConfig: {
+						url: 'http://127.0.0.1:9999/api/v1/upload_phone'
+					},
+					// 是否开启notli(开启的话就是选择完直接上传，关闭的话当count满足数量时才上传)
+					notli: false,
+					// 图片数量
+					count: 2,
+					// 相机来源(相机->camera,相册->album,两者都有->all,默认all)
+					sourceType: 'camera',
+					// 是否压缩上传照片(仅小程序生效)
+					sizeType: true,
+					// 上传图片背景修改 
+					upBgColor: '#E8A400',
+					// 上传icon图标颜色修改(仅限于iconfont)
+					upIconColor: '#fff',
+					// 上传svg图标名称
+					// upSvgIconName: 'icon-card',
+					// 上传文字描述(仅限四个字)
+					// upTextDesc: '上传证书',
+					// 删除按钮位置(left,right,bleft,bright),默认右上角
+					delBtnLocation: '',
+					// 是否隐藏添加图片
+					// isAddImage: false,
+					// 是否隐藏删除图标
+					// isDelIcon: false,
+					// 删除图标定义背景颜色
+					// delIconColor: '',
+					// 删除图标字体颜色
+					// delIconText: '',
+					// 上传图标替换(+),是个http,https图片地址(https://www.playsort.cn/right.png)
+					iconReplace: ''
 				}
 			}
 		},
@@ -153,16 +190,6 @@
 			event(e){
 			console.log(e)
 			},
-			// 上传图片
-			deleteImage: function(e){
-				// console.log
-				
-			    // console.log(e)
-			},
-			addImage: function(e){
-				e.allImages = e.currentImages
-			    // console.log(e)
-			},
 			addShop(e){
 				if(this.shop_name==""||this.shop_describe==""||this.shop_price==""||this.imageData[0]==""||this.shop_original_cost==""||this.shop_unit==""||this.shop_num_new==""){
 					return this.show = true
@@ -171,10 +198,11 @@
 					shop_name:this.shop_name,
 					shop_describe:this.shop_describe,
 					shop_price:this.shop_price,
-					shop_img:this.imageData[0],
+					shop_img:this.basicArr[0],
 					shop_original_cost:this.shop_original_cost,
 					shop_unit:this.shop_unit,
-					shop_num_new:this.shop_num_new
+					shop_num_new:this.shop_num_new,
+					shop_imgList:this.basicsArr
 				}
 				// console.log(shopData)
 				uni.request({
@@ -183,7 +211,7 @@
 					data: {shopData},
 					success: res => {
 						// console.log(res.data.data[0].maxId)
-						this.shopId = res.data.data[0].maxId
+						this.shopId = res.data.data
 						uni.request({
 							url: `http://127.0.0.1:9999/api/v1/esclassify_shop`,
 							method: 'post',
@@ -212,11 +240,17 @@
 			uImageTap() {
 				this.$refs.uImage.uploadimage(this.upImgBasic);
 			},
+			uImagesTap (){
+				this.$refs.uImages.uploadimage(this.upImgBasics);
+			},
 			// 删除图片 -2019/05/12(本地图片进行删除)
 			async delImgInfo(e) {
 				console.log('你删除的图片地址为:', e, this.basicArr.splice(e.index, 1));
 			},
-			// 基础版
+			async delImgsInfo(e) {
+				console.log('你删除的图片地址为:', e, this.basicsArr.splice(e.index, 1));
+			},
+			// 存储商品缩略图 方法
 			async upBasicData(e) {
 				console.log('===>',e);
 				// 上传图片数组
@@ -224,13 +258,14 @@
 				for (let i = 0, len = e.length; i < len; i++) {
 					try {
 						if (e[i].path_server != "") {
-							await arrImg.push(e[i].path_server.split(','));
+							await arrImg.push(e[i].path_server);
 						}
 					} catch (err) {
 						console.log('上传失败...');
 					}
 				}
 				// 图片信息保存到data数组
+				console.log(arrImg)
 				this.basicArr = arrImg;
 			
 				// 可以根据长度来判断图片是否上传成功. 2019/4/11新增
@@ -241,10 +276,32 @@
 					});
 				}
 			},
-			// 获取上传图片basic
-			getUpImgInfoBasic() {
-				console.log('后端转成一维数组:', this.basicArr.join().split(','));
+			// 存储商品详情图方法
+			async upBasicsData(e) {
+				console.log('===>',e);
+				// 上传图片数组
+				let arrImg = [];
+				for (let i = 0, len = e.length; i < len; i++) {
+					try {
+						if (e[i].path_server != "") {
+							await arrImg.push(e[i].path_server);
+						}
+					} catch (err) {
+						console.log('上传失败...');
+					}
+				}
+				// 图片信息保存到data数组
+				this.basicsArr = arrImg;
+			
+				// 可以根据长度来判断图片是否上传成功. 2019/4/11新增
+				if (arrImg.length == this.upImgBasic.count) {
+					uni.showToast({
+						title: `上传成功`,
+						icon: 'none'
+					});
+				}
 			},
+		
 		},
 		components: {
 			cuCustom,
