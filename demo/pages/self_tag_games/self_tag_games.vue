@@ -82,7 +82,6 @@
 					tag_name: this.inputvalue,
 					checked: false
 				})
-				console.log(this.tagList)
 				uni.request({
 					url: this.baseUrl + `/add_games_tag/${this.id}`,
 					method: "POST",

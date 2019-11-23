@@ -105,6 +105,7 @@
 				],
 				// 用户id
 				id: '',
+				baseUrl: 'http://127.0.0.1:9999/api/v1'
 			}
 		},
 		methods: {
@@ -120,7 +121,7 @@
 			const userId = uni.getStorageSync('user_id');
 			this.id = userId
 			uni.request({
-				url: `http://127.0.0.1:9999/api/v1/self_info/${userId}`,
+				url: this.baseUrl + `/selfInfo/${this.id }`,
 				method: 'GET',
 				data: {
 					id: userId
@@ -128,7 +129,8 @@
 				success: (res) => {
 					if (res.data.ok !== 1) {
 						uni.showToast({
-							title: "请求失败"
+							title: "请求失败",
+							image: '../../static/toast/error.png'
 						})
 					} else {
 						this.userlist = res.data.data

@@ -82,9 +82,8 @@
 					tag_name: this.inputvalue,
 					checked: false
 				})
-				console.log(this.tagList)
 				uni.request({
-					url: this.baseUrl + `/add_our_tags${this.id}`,
+					url: this.baseUrl + `/add_our_tags/${this.id}`,
 					method: "POST",
 					header: {
 						"content-type": "application/x-www-form-urlencoded"

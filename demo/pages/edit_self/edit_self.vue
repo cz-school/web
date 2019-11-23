@@ -9,31 +9,17 @@
 		<!-- 上传图片 -->
 		<view class="photo">
 			<view class="photo_top">
-				<!-- <view class="cu-form-group">
-				<view class="grid col-4 grid-square flex-sub">
-					<view class="bg-img" v-for="(item,index) in imgList" :key="index" :data-url="imgList[index]">
-						<image :src="imgList[0]" mode="aspectFill"></image>
-						<view class="cu-tag bg-red" :data-index="index">
-							<text class='cuIcon-close'></text>
-						</view>
-					</view>
-					<view class="solids"  v-if="imgList.length<4">
-						<text class='cuIcon-cameraadd'></text>
-					</view>
-				</view>
-			</view> -->
 				<view class="imageItem">
-					<image :src=" imgList[0]" mode="aspectFill" @tap="ChooseImage"></image>
+					<image :src="imgList[imgList.length-1]" mode="aspectFill" @tap="ChooseImage"></image>
 				</view>
-				<view class=" photo_uplod">
-					<view class="imageUpload" @tap="selectImage">+</view>
-					<view class="imageUpload" @tap="selectImage">+</view>
+				<view class="photo_uplod">
+					<view class="imageUpload">
+						<image :src="imgList1[imgList1.length-1]" mode="widthFix" @tap="ChooseImage1"></image>
+					</view>
+					<view class="imageUpload">
+						<image :src="imgList2[imgList2.length-1]" mode="widthFix" @tap="ChooseImage2"></image>
+					</view>
 				</view>
-			</view>
-			<view class="photo_bottom">
-				<view class="imageUpload" @tap="selectImage">+</view>
-				<view class="imageUpload" @tap="selectImage">+</view>
-				<view class="imageUpload" @tap="selectImage">+</view>
 			</view>
 		</view>
 		<!-- card组件 -->
@@ -92,7 +78,7 @@
 			<form @submit="" @reset="">
 				<view class="cu-form-group">
 					<view class="title">昵称</view>
-					<input placeholder="浅,陌" name="input"></input>
+					<input v-model="formlist.username" name="input"></input>
 				</view>
 				<view class="cu-form-group">
 					<view class="title">性别</view>
@@ -114,11 +100,11 @@
 				</view>
 				<view class="cu-form-group">
 					<view class="title">学校</view>
-					<input placeholder="北京交通大学" name="input" :disabled="true"></input>
+					<input v-model="formlist.school" name="input" :disabled="true"></input>
 				</view>
 				<view class="cu-form-group align-start">
 					<view class="title">签名</view>
-					<textarea maxlength="-1" :disabled="modalName!=null" @input="textareaAInput" placeholder="请填写你的个性签名"></textarea>
+					<textarea v-model="formlist.sign" placeholder="请填写你的个性签名"></textarea>
 				</view>
 				<view class="padding flex flex-direction">
 					<button class="cu-btn bg-green lg" @tap="savefix">保存修改</button>
@@ -135,6 +121,7 @@
 <script>
 	export default {
 		onLoad() {
+			// 获取编辑个人数据
 			this.getselfInfo()
 			// 获取game tag
 			uni.getStorage({
@@ -171,6 +158,7 @@
 					this.ourFoods = JSON.parse(res.data)
 				}
 			})
+
 		},
 		data() {
 			return {
@@ -188,38 +176,76 @@
 				sexindex: -1,
 				sexbox: ['男', '女'],
 				// 出生日期
-				birthday: '0000-00-00',
+				birthday: '1970-01-01',
 				modalName: null,
 				basicArr: [],
-				forlist: [],
-				baseUrl: 'http:/127.0.0.1:9999/api/v1',
+				formlist: [],
+				baseUrl: 'http://127.0.0.1:9999/api/v1',
 				id: '',
 				imgList: [],
+				imgList1: ["http://zhangchaotang.oss-cn-beijing.aliyuncs.com/banana/3hgruxRBPWwOm92o.gif"],
+				imgList2: ["http://zhangchaotang.oss-cn-beijing.aliyuncs.com/banana/mVZ9Us1wshsfZWyC.gif"]
 			}
 		},
 		methods: {
+			// 点击保存修改
+			savefix() {
+				let date = parseFloat(new Date(this.formlist.birthday).getTime() / 1000)
+				this.formlist.birthday = date
+				uni.request({
+					url: this.baseUrl + `/update_info/${this.id}`,
+					method: 'PUT',
+					data: {
+						info: JSON.stringify(this.formlist)
+					},
+					success: (res) => {
+						if (res.data.ok == 1) {
+							uni.showToast({
+								title: "修改成功",
+							})
+						} else {
+							uni.hideToast({
+								title: "修改失败",
+							})
+						}
+					}
+				})
+			},
 			// 获取个人用户信息
 			getselfInfo() {
 				let userId = uni.getStorageSync('user_id')
 				this.id = userId
-				console.log(this.id)
 				uni.request({
-					url: this.baseUrl + `/selfInfo/${this.id}`,
-					data:{
-						id:this.id
+					url: this.baseUrl + `/selfInfo/${userId}`,
+					data: {
+						id: this.id
 					},
 					method: 'GET',
 					success: (res) => {
-						console.log(res)
+						this.formlist = res.data.data
+						this.imgList.push(res.data.data.head_img)
+						const dt = new Date(this.formlist.birthday * 1000);
+						const y = dt.getFullYear();
+						const m = (dt.getMonth() + 1 + "").padStart(2, "0");
+						const d = (dt.getDate() + "").padStart(2, "0");
+						let data = `${y}-${m}-${d}`
+						this.formlist.birthday = data
+						this.birthday = this.formlist.birthday
+						this.sexindex = this.formlist.sex
+						// 当页面加载的时候把生日传递给form表单
+						if (this.formlist.birthday == null) {
+							this.formlist.birthday = '1970-01-01'
+						}
 					}
 				})
 			},
 			PickerChange(e) {
-				console.log(e)
 				this.sexindex = e.detail.value
+				this.formlist.sex = this.sexindex
 			},
 			DateChange(e) {
 				this.birthday = e.detail.value
+				this.formlist.birthday = this.birthday
 			},
 			ChooseImage() {
 				let _self = this;
@@ -239,8 +265,7 @@
 							success: (uploadFileRes) => {
 								let aa = JSON.parse(uploadFileRes.data)
 								this.imgList.push(aa.info)
-								console.log(this.imgList);
-								// this.imgList.push(aa.info)
+								this.formlist.head_img = this.imgList[this.imgList.length - 1]
 							}
 						});
 					},
@@ -249,7 +274,58 @@
 					}
 				});
 			},
-
+			ChooseImage1() {
+				let _self = this;
+				uni.chooseImage({
+					count: 1,
+					sizeType: ['original'], //可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album'], //从相册选择
+					success: (res) => {
+						const tempFilePaths = res.tempFilePaths;
+						const uploadTask = uni.uploadFile({
+							url: 'http://127.0.0.1:9999/api/v1/upload_phone',
+							filePath: tempFilePaths[0],
+							name: 'file',
+							formData: {
+								'user': 'test'
+							},
+							success: (uploadFileRes) => {
+								let aa = JSON.parse(uploadFileRes.data)
+								this.imgList1.push(aa.info)
+							}
+						});
+					},
+					error: function(e) {
+						console.log(e);
+					}
+				});
+			},
+			ChooseImage2() {
+				let _self = this;
+				uni.chooseImage({
+					count: 1,
+					sizeType: ['original'], //可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album'], //从相册选择
+					success: (res) => {
+						const tempFilePaths = res.tempFilePaths;
+						const uploadTask = uni.uploadFile({
+							url: 'http://127.0.0.1:9999/api/v1/upload_phone',
+							filePath: tempFilePaths[0],
+							name: 'file',
+							formData: {
+								'user': 'test'
+							},
+							success: (uploadFileRes) => {
+								let aa = JSON.parse(uploadFileRes.data)
+								this.imgList2.push(aa.info)
+							}
+						});
+					},
+					error: function(e) {
+						console.log(e);
+					}
+				});
+			},
 			// 退出登录
 			layout() {
 				uni.clearStorage()
@@ -314,26 +390,7 @@
 	}
 
 	.photo_uplod .imageUpload {
-		margin-bottom: 1rpx;
-		height: 500rpx;
-		line-height: 240rpx;
-		text-align: center;
-		font-size: 150rpx;
-		color: #D9D9D9;
-		background-color: #8799A3;
-	}
-
-	.photo_bottom {
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-	}
-
-	.photo_bottom .imageUpload {
-		margin-right: 1rpx;
-		width: 260rpx;
-		height: 240rpx;
-		line-height: 240rpx;
+		height: 260rpx;
 		text-align: center;
 		font-size: 150rpx;
 		color: #D9D9D9;
@@ -342,9 +399,5 @@
 
 	.content_tag {
 		width: 600rpx;
-	}
-
-	.photo_bottom>.imageUpload:nth-child(3) {
-		margin-right: 0rpx;
 	}
 </style>
