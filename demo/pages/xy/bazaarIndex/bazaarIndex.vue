@@ -3,7 +3,7 @@
 		<!-- 头部start -->
 		<view class="bazaarIndex-header">
 			<!-- 导航栏 -->
-			<cu-custom bgColor="bg-gradual-white" :isBold="isBold" :isBack="false">
+			<cu-custom bgColor="bg-gradual-white" :isBold="isBold" :isBack="true" :url="'/pages/index/index'">
 				<block slot="content">市场中心</block>
 			</cu-custom>
 

@@ -1,6 +1,6 @@
 <template>
 	<view class="purchase">
-		<cu-custom bgColor="bg-gradual-white" :isBold="isBold" :isBack="true" ><block slot="content">购买宝贝</block></cu-custom>
+		<cu-custom bgColor="bg-gradual-white" :isBold="isBold" :isBack="true" :url="'/pages/xy/shopDetail/shopDetail?shopid=' + userid"><block slot="content">购买宝贝</block></cu-custom>
 		<view class="purchase-bg">
 			<!-- 商品的图片名字价格 -->
 			<view class="uni-padding-wrap uni-common-mt purchase-box">
