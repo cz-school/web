@@ -62,6 +62,12 @@
 				num: 0
 			}
 		},
+		// 离开页面的时候触发
+		onUnload() {
+			this.our_tag = []
+			this.tagList.forEach((v, i) => v.checked == true ? this.our_tag.push(v) : [])
+			uni.setStorageSync('ourTags', JSON.stringify(this.our_tag))
+		},
 		methods: {
 			showModal(e) {
 				this.modalName = e.currentTarget.dataset.target
@@ -76,8 +82,9 @@
 					tag_name: this.inputvalue,
 					checked: false
 				})
+				console.log(this.tagList)
 				uni.request({
-					url: this.baseUrl + `/add_our_tag/${this.id}`,
+					url: this.baseUrl + `/add_our_tags${this.id}`,
 					method: "POST",
 					header: {
 						"content-type": "application/x-www-form-urlencoded"
@@ -102,32 +109,34 @@
 			},
 			getdata() {
 				uni.request({
-					url: this.baseUrl + `/our_tag/${this.id}`,
+					url: this.baseUrl + `/ourTag/${this.id}`,
 					method: 'GET',
 					success: (res) => {
 						if (res.data.ok !== 1) {
 							uni.showToast({
-								title: "请求失败"
+								title: "请求失败",
+								image: '../../static/toast/error.png'
 							})
 						}
-						let data = res.data.data.tag_our_name.split(',')
-						let our_tag = JSON.parse(uni.getStorageSync('our_tag'))
-                           console.log(our_tag)
-						this.our_tag = our_tag
-						data.forEach((v, i) => {
+						const data = res.data.data.tag_our_name.split(',')
+						const taglist = data
+						taglist.forEach((v, i) => {
 							this.tagList.push({
 								id: i,
 								tag_name: v,
 								checked: false
 							})
 						})
-						our_tag.forEach((v, i) => {
-							let check = this.tagList.findIndex(item => {
-								return item.tag_name == v.tag_name
-							})
-							this.tagList[check].checked = true
+						uni.getStorage({
+							key: 'ourTags',
+							success: (res) => {
+								this.our_tag = JSON.parse(res.data)
+								this.our_tag.forEach(v => {
+									let check = this.tagList.findIndex(i => v.id == i.id)
+									this.tagList[check].checked = true
+								})
+							}
 						})
-
 					},
 					fail(error) {
 						console.log(error)
@@ -136,30 +145,7 @@
 			},
 			// 选中框
 			CheckboxChange(index) {
-				if (this.num < 5) {
-					this.tagList[index].checked = !this.tagList[index].checked
-				} else {
-					uni.showToast({
-						title: "亲，只能添加五个奥"
-					})
-					return 
-				}
-				if (this.tagList[index].checked == true) {
-					this.num++
-					this.our_tag.push({
-						id: index,
-						tag_name: this.tagList[index].tag_name,
-						checked: this.tagList[index].checked
-					})
-				} else {
-					this.num--
-					let a = this.our_tag.findIndex(v => v.id == index)
-					this.our_tag.splice(a, 1)
-				}
-				uni.setStorage({
-					key: 'our_tag',
-					data: JSON.stringify(this.our_tag)
-				})
+				this.tagList[index].checked = !this.tagList[index].checked
 			},
 		}
 	}

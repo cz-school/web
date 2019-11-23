@@ -3,7 +3,7 @@
 		<view class="cu-bar bg-white fixed">
 			<cu-custom bgColor="bg-gradual-white" :isBack="true" :url="'/pages/edit_self/edit_self'">
 				<block slot="backText"></block>
-				<block slot="content">我钟意的美食</block>
+				<block slot="content">我的个人标签</block>
 			</cu-custom>
 		</view>
 		<view class="cu-bar bg-white  create_tag">
@@ -62,6 +62,12 @@
 				num: 0
 			}
 		},
+		// 离开页面的时候触发
+		onUnload() {
+			this.our_tag = []
+			this.tagList.forEach((v, i) => v.checked == true ? this.our_tag.push(v) : [])
+			uni.setStorageSync('ourFoods', JSON.stringify(this.our_tag))
+		},
 		methods: {
 			showModal(e) {
 				this.modalName = e.currentTarget.dataset.target
@@ -76,6 +82,7 @@
 					tag_name: this.inputvalue,
 					checked: false
 				})
+				console.log(this.tagList)
 				uni.request({
 					url: this.baseUrl + `/add_foods_tag/${this.id}`,
 					method: "POST",
@@ -107,27 +114,28 @@
 					success: (res) => {
 						if (res.data.ok !== 1) {
 							uni.showToast({
-								title: "请求失败"
+								title: "请求失败",
+								image: '../../static/toast/error.png'
 							})
 						}
-						let data = res.data.data.tag_foods_name.split(',')
-						let our_tag = JSON.parse(uni.getStorageSync('our_foods'))
-						if (our_tag) {
-							this.our_tag = our_tag
-						}
-						// console.log(data)
-						data.forEach((v, i) => {
+						const data = res.data.data.tag_foods_name.split(',')
+						const taglist = data
+						taglist.forEach((v, i) => {
 							this.tagList.push({
 								id: i,
 								tag_name: v,
 								checked: false
 							})
 						})
-						our_tag.forEach((v, i) => {
-							let check = this.tagList.findIndex(item => {
-								return item.tag_name == v.tag_name
-							})
-							this.tagList[check].checked = true
+						uni.getStorage({
+							key: 'ourFoods',
+							success: (res) => {
+								this.our_tag = JSON.parse(res.data)
+								this.our_tag.forEach(v => {
+									let check = this.tagList.findIndex(i => v.id == i.id)
+									this.tagList[check].checked = true
+								})
+							}
 						})
 					},
 					fail(error) {
@@ -137,30 +145,7 @@
 			},
 			// 选中框
 			CheckboxChange(index) {
-				if (this.num < 5) {
-					this.tagList[index].checked = !this.tagList[index].checked
-				} else {
-					uni.showToast({
-						title: "亲，只能添加五个奥"
-					})
-					return
-				}
-				if (this.tagList[index].checked == true) {
-					this.num++
-					this.our_tag.push({
-						id: index,
-						tag_name: this.tagList[index].tag_name,
-						checked: this.tagList[index].checked
-					})
-				} else {
-					this.num--
-					let a = this.our_tag.findIndex(v => v.id == index)
-					this.our_tag.splice(a, 1)
-				}
-				uni.setStorage({
-					key: 'our_foods',
-					data: JSON.stringify(this.our_tag)
-				})
+				this.tagList[index].checked = !this.tagList[index].checked
 			},
 		}
 	}
