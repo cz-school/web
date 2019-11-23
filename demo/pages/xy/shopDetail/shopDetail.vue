@@ -3,7 +3,7 @@
 		<!-- 头部start -->
 		<view class="bazaarIssue-header">
 			<!-- 导航栏 -->
-			<cu-custom cl bgColor="bg-gradual-white" :isBold="isBold" :isBack="true">
+			<cu-custom cl bgColor="bg-gradual-white" :isBold="isBold" :isBack="true" :url="'/pages/xy/bazaarIndex/bazaarIndex'">
 				<block slot="content">商品详情</block>
 			</cu-custom>
 		</view>
@@ -28,9 +28,15 @@
 			<view class="describe">
 				{{this.shopData.shop_describe}}
 			</view>
-
 		</view>
-		<view class="footer">
+
+		<!-- 商品详情图片 -->
+		<view class="imgList padding-lr-lg padding-bottom-xl">
+			<view class="content-image" v-for="(item,i) in imgList" :key='i'>
+				<image :src="item.shop_img" mode=""></image>
+			</view>
+		</view>
+		<view class="footer" @tap="dianji">
 			我想要
 		</view>
 	</view>
@@ -47,7 +53,8 @@
 				data: {},
 				success: res => {
 					this.shopData = res.data.data[0]
-					console.log(this.shopData)
+					this.imgList = res.data.imgList
+					console.log(res.data)
 					// uni.hideLoading()
 				},
 				fail: () => {},
@@ -62,11 +69,27 @@
 				// 发起人id
 				userId: '',
 				shopData: {},
-				user: {}
+				user: {},
+				imgList: []
 			}
 		},
 		methods: {
-
+			// 点击购买
+			dianji() {
+				uni.setStorage({
+					key: 'storage_key',
+					data: {
+						shopid: this.shopid
+					},
+					success: function() {}
+				});
+				uni.navigateTo({
+					url: '../purchase/purchase',
+					success: res => {},
+					fail: () => {},
+					complete: () => {}
+				});
+			}
 		},
 		components: {
 			cuCustom,
@@ -75,16 +98,15 @@
 </script>
 
 <style>
-	.title{
+	.title {
 		font-size: 50upx;
 	}
+
 	uni-view.bazaarIssue-header {
 		background-color: #fff;
 	}
 
 	.footer {
-		position: fixed;
-		bottom: 0;
 		width: 100%;
 		height: 100upx;
 		background-color: #f1334f;
