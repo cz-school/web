@@ -37,20 +37,28 @@
 		</view>
 		<!-- 头部end -->
 		<!-- content -->
+
 		<view class="shop-ul">
-			<view class="uni-product-list">
-				<view class="uni-product" v-for="(item,index) in shop" :key="index" @tap="dianji(item.shop_id)">
-					<view class="image-view">
-						<image v-if="renderImage" class="uni-product-image" :src="item.shop_img"></image>
+			<!-- 向下滑动  改变高度  王海龙改-->
+			<scroll-view scroll-y="true" class="scroll-Y" @scrolltolower="lower1" style="height: 900px; ">
+				<view class="uni-product-list">
+					<view class="uni-product" v-for="(item,index) in shop" :key="index" @tap="dianji(item.shop_id)">
+						<view class="image-view">
+							<image v-if="renderImage" class="uni-product-image" :src="item.shop_img"></image>
+						</view>
+						<view class="uni-product-title">{{item.shop_name}}</view>
+						<view class="uni-product-price">
+							<text class="uni-product-price-favour">{{item.shop_describe}}</text><br>
+							<text class="uni-product-price-original">￥{{item.shop_price}}</text>
+							<text class="uni-product-tip">{{item.shop_num_new}}成新</text>
+						</view>
 					</view>
-					<view class="uni-product-title">{{item.shop_name}}</view>
-					<view class="uni-product-price">
-						<text class="uni-product-price-favour">{{item.shop_describe}}</text><br>
-						<text class="uni-product-price-original">￥{{item.shop_price}}</text>
-						<text class="uni-product-tip">{{item.shop_num_new}}成新</text>
+					<view v-if="queryInfo.ishave==true" style="width: 100%; height: 30upx; text-align: center;">
+						{{queryInfo.have}}
 					</view>
 				</view>
-			</view>
+			</scroll-view>
+
 		</view>
 		<view class="skip">
 			<navigator url="/pages/xy/bazaarClass/bazaarClass">
@@ -87,6 +95,13 @@
 		},
 		data() {
 			return {
+				// 分页和收缩
+				queryInfo:{
+					pagenum:1,
+					pagesize:10,
+					ishave:false,
+					have:"抱歉没有商品了"
+				},
 				// 控制自定义导航栏是否字体加粗
 				isBold: true,
 
@@ -113,16 +128,30 @@
 			}
 		},
 		methods: {
+			// 向下滑动到 底部 王海龙改
+			lower1(e) {
+				this.queryInfo.pagenum = this.queryInfo.pagenum +1;
+				this.getShop();
+			},
 			getShop(e) {
+				console.log(e);
 				uni.request({
 					url: `http://127.0.0.1:9999/api/v1/shop/${this.active}`,
 					method: 'GET',
 					data: {
-						inputVal: e
+						inputVal: e,
+						pagesize: this.queryInfo.pagesize,
+						pagenum:this.queryInfo.pagenum
 					},
 					success: res => {
-						console.log(res)
-						this.shop = res.data.data[1]
+						if( res.data.data[1].length!==10 && res.data.data[1].length !== 0){
+							this.shop.push(...res.data.data[1])
+						}
+						else if(res.data.data[1].length == 0){
+							return this.queryInfo.ishave = true;
+						}
+						// console.log(res)
+						this.shop.push(...res.data.data[1])
 						console.log(this.shop)
 					},
 					fail: () => {},
@@ -130,8 +159,10 @@
 				});
 			},
 			activeClick(index) {
+				this.shop=[];
+				this.queryInfo.pagenum=1;
 				this.active = index
-				this.val3 = ""
+				this.val3 = "";
 				// console.log(this.active)
 				// console.log(this.inputVal)
 				this.getShop()
