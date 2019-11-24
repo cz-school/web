@@ -106,7 +106,7 @@ export default {
 		// 跳换地址
 		changeSite() {
 			uni.navigateTo({
-				url: '../xy-site/site',
+				url: '../xy-site/XYsite',
 				success: res => {},
 				fail: () => {},
 				complete: () => {}

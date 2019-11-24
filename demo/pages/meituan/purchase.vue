@@ -141,7 +141,7 @@
 				goodsList: [],
 				totalPrice: 0,
 				site: {},
-				myCart:[]
+				myCart: []
 			}
 		},
 		onLoad() {
@@ -151,6 +151,7 @@
 			uni.request({
 				url: `http://47.104.29.236:9999/api/v1/siteDefault`, //仅为示例，并非真实接口地址。
 				success: (res) => {
+
 					if (res.data.ok == 1) {
 						this.site = res.data.data[0]
 					}
@@ -192,10 +193,10 @@
 				let goodsdata = []
 				this.goodsList.forEach(item => {
 					goodsdata.push({
-						id:item.id,
-						menu_price:item.menu_price,
-						menu_num:item.num,
-						menu_name:item.menu_name
+						id: item.id,
+						menu_price: item.menu_price,
+						menu_num: item.num,
+						menu_name: item.menu_name
 					})
 				})
 				// createorder_st
@@ -203,26 +204,27 @@
 					...this.site,
 					totalPrice: this.totalPrice,
 					goodsdata: goodsdata,
-					cartid:this.myCart
+					cartid: this.myCart
 				}
-				// console.log(data)
 				uni.request({
-					method:'POST',
-					url: `http://47.104.29.236:9999/api/v1/createorder_st`, //仅为示例，并非真实接口地址。
-					data:{
-						data:data
+					method: 'POST',
+					url: `http://127.0.0.1:9999/api/v1/createorder_st`, //仅为示例，并非真实接口地址。
+					data: {
+						data: data
 					},
 					success: (res) => {
-						if(res.data.ok == 1) {
+						
+						if (res.data.ok == 1) {
+							let CurrentPages = getCurrentPages()
 							uni.redirectTo({
-								url: `/pages/meituan/payment?id=${res.data.id}`
+								url: `/pages/meituan/payment?id=${res.data.id}&path=pages/meituan/order`
 							});
 						}
 					}
 				});
 			},
 			// 去地址页
-			toseit(){
+			toseit() {
 				let CurrentPages = getCurrentPages()
 				uni.reLaunch({
 					url: `/pages/xy/xy-site/site?path=${CurrentPages[CurrentPages.length-1].route}`

@@ -228,7 +228,7 @@
 			clickcare() {
 				let CurrentPages = getCurrentPages()
 				uni.reLaunch({
-					url: `/pages/meituan/myCart?win_id=${this.win_id}&path=${CurrentPages[0].route}`
+					url: `/pages/meituan/myCart?win_id=${this.win_id}&path=${CurrentPages[CurrentPages.length-1].route}`
 				});
 			},
 			// 获取到对应的标题

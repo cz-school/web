@@ -132,6 +132,12 @@
 			}
 		},
 		{
+			"path": "pages/xy/xy-site/XYsite",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/xy/xy-addSite/addSite/addSite",
 			"style": {
 				"navigationStyle": "custom"

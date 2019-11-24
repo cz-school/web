@@ -104,7 +104,7 @@
 	$fontSizeSm: 14px;
 	
 	.modal-container{
-		position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 999;background: rgba(0, 0, 0, .6);visibility: hidden;opacity: 0;transition: all .2s;display: flex;align-items: center;justify-content: center;
+		position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 999;background: rgba(250,250,250,0.1);visibility: hidden;opacity: 0;transition: all .2s;display: flex;align-items: center;justify-content: center;
 		.modal-content{
 			width: 80%;border-radius: 10rpx;background: #fff;overflow: hidden;animation: fadeZoom .15s linear;
 			.modal-title{
