@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<!-- 自定义页头 -->
-		<cu-custom bgColor="bg-gradual-pink" :isBack="true" :url="previousPage?'/'+previousPage.path+'?id='+previousPage.win_id:'/pages/meituan/index'">
+		<cu-custom bgColor="bg-gradual-pink" :isBack="true" :url="previousPage.path?'/'+previousPage.path+'?id='+previousPage.win_id:'/pages/meituan/index'">
 			<block slot="backText">返回</block>
 			<block slot="content">购物车</block>
 		</cu-custom>

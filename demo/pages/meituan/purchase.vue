@@ -223,8 +223,9 @@
 			},
 			// 去地址页
 			toseit(){
+				let CurrentPages = getCurrentPages()
 				uni.reLaunch({
-					url: `/pages/xy/xy-site/site`
+					url: `/pages/xy/xy-site/site?path=${CurrentPages[CurrentPages.length-1].route}`
 				});
 			}
 		}

@@ -105,7 +105,7 @@
 		    	// 点击地址的id
 		    	let id = e.currentTarget.dataset.id
 		    	uni.navigateTo({
-		    		url:'../xy-alertSite/xy-alertSite/xy-alertSite?id='+id,
+		    		url:`../xy-alertSite/xy-alertSite/xy-alertSite?id=${id}&path=${this.previousPage.path}`,
 		    		success:res =>{},
 		    		fail:()=>{},
 		    		complete:()=>{}

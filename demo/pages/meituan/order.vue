@@ -89,12 +89,12 @@
 								</view>
 								<!-- 已付款为收货 时按钮 -->
 								<view class="flex solid-bottom justify-end" v-if="item.state > 0 &&  item.state < 3 && item.return_state == 0">
-									<button class="cu-btn round sm margin-right-sm">退款</button>
-									<button class="cu-btn round bg-orange sm">确认收货</button>
+									<button class="cu-btn round sm margin-right-sm" @tap="refund(oindex,item.id)">退款</button>
+									<button class="cu-btn round bg-orange sm" @tap="Receivingtake(oindex,item.id)">确认收货</button>
 								</view>
 								<!-- 已经收货时 按钮 -->
 								<view class="flex solid-bottom justify-end" v-if="item.state == 3 && item.return_state == 0">
-									<button class="cu-btn round sm margin-right-sm">退款</button>
+									<button class="cu-btn round sm margin-right-sm" @tap="refund(oindex,item.id)">退款</button>
 									<button class="cu-btn round bg-orange sm">去评价</button>
 								</view>
 
@@ -106,7 +106,7 @@
 
 								<!-- 发起退款 -->
 								<view class="flex solid-bottom justify-end" v-if="item.return_state == 1">
-									<button class="cu-btn round sm margin-right-sm">取消退款</button>
+									<button class="cu-btn round sm margin-right-sm" @tap="unrefund(oindex,item.id)">取消退款</button>
 									<button class="cu-btn round bg-orange sm">去评价</button>
 								</view>
 								<!-- 退款成功 -->
@@ -306,6 +306,7 @@
 			},
 			// 退款
 			refund(index, id) {
+				console.log(id)
 				uni.showLoading({
 					title: '请稍后'
 				})
@@ -321,7 +322,31 @@
 					},
 					success: (res) => {
 						if (res.data.ok === 1) {
-							this.orderList.splice(index, 1);
+							this.loadData();
+							uni.hideLoading();
+						} else {}
+					}
+				});
+			},
+			// 取消退款
+			unrefund(index, id) {
+				console.log(id)
+				uni.showLoading({
+					title: '请稍后'
+				})
+			
+				uni.request({
+					method: 'PUT',
+					url: `http://47.104.29.236:9999/api/v1/order_st/unrefund/${id}`, //仅为示例，并非真实接口地址。
+					data: {
+						type: 0
+					},
+					header: {
+						// 'custom-header': 'hello' //自定义请求头信息
+					},
+					success: (res) => {
+						if (res.data.ok === 1) {
+							this.loadData();
 							uni.hideLoading();
 						} else {}
 					}
@@ -329,6 +354,7 @@
 			},
 			// 确认收货
 			Receivingtake(index, id) {
+				console.log(id)
 				uni.showLoading({
 					title: '请稍后'
 				})

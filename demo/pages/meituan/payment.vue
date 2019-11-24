@@ -120,13 +120,34 @@ export default {
 			})
 		},
 		paymentBtn() {
-			console.log(1)
+			let id = uni.getStorageSync('user_id')
 			if(this.valSelect == 1 || this.valSelect == 2) {
 				uni.navigateTo({
 					url:'./paymentWin',
 					success:res =>{},
 					fail:()=>{},
 					complete:()=>{}
+				})
+				uni.request({
+					// 接口
+					url: 'http://127.0.0.1:9999/api/v1/updateOrderMoneyAll',
+					// 请求方式
+					method: 'POST',
+					// 携带的数据
+					data: {
+						price:this.usersTotal - this.orderTotal,
+						id:id,
+						order_id:this.orderId,
+						valSelect:this.valSelect,
+						 },
+					// 请求成功
+					success: res => {
+						console.log(res)
+						// this.orderTotal = res.data.data[0].price
+					},
+					// 请求失败
+					fail: () => {},
+					complete: () => {}
 				})
 			} else if(this.valSelect == 3) {
 				if(this.usersTotal > this.orderTotal) {
@@ -144,6 +165,22 @@ export default {
 						method: 'POST',
 						// 携带的数据
 						data: {price:this.usersTotal - this.orderTotal,id:id},
+						// 请求成功
+						success: res => {
+							console.log(res)
+							// this.orderTotal = res.data.data[0].price
+						},
+						// 请求失败
+						fail: () => {},
+						complete: () => {}
+					})
+					uni.request({
+						// 接口
+						url: 'http://127.0.0.1:9999/api/v1/updateOrderMoneyAll',
+						// 请求方式
+						method: 'POST',
+						// 携带的数据
+						data: {price:this.usersTotal - this.orderTotal,id:id, valSelect:this.valSelect,	order_id:this.orderId},
 						// 请求成功
 						success: res => {
 							console.log(res)

@@ -1,6 +1,6 @@
 <template>
 	<view class="addSite">
-		<cu-custom class="site-nav" bgColor="bg-gradual-black"  :isBack="true" :url="'/pages/xy/xy-site/site'">
+		<cu-custom class="site-nav" bgColor="bg-gradual-black"  :isBack="true" :url="'/pages/xy/xy-site/site?path='+previousPage.path">
 			<block slot="content">修改收货地址</block>
 		</cu-custom>
 		 <mpopup  ref="mpopup" :isdistance="true"></mpopup>  
@@ -68,7 +68,8 @@
 				},
 				checked1:true,
 				// siteForm:{},
-				siteId : 0
+				siteId : 0,
+				previousPage:''
 			}
 		},
 		methods: {	
@@ -243,6 +244,7 @@
 		onShow(){
 		},
 		onLoad(e) {
+			this.previousPage = e
 			this.siteId = e.id 
 			this.formData()
 			// console.log(this.siteForm)
