@@ -61,7 +61,7 @@
 export default {
 	data() {
 		return {
-			orderId : 2,
+			orderId : null,
 			orderTotal:0,
 			usersTotal:0,
 			// 付款选择
@@ -74,6 +74,7 @@ export default {
 	},
 	onLoad(e) {
 		this.previousPage = e
+		this.orderId = e.id
 	},
 	methods: {
 		radio(value) {
