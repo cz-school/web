@@ -26,10 +26,12 @@
 		<!-- 交易列表 -->
 		<view class="cu-bar bg-white solid-bottom  botton_list">
 			<view class="flex-sub  padding-sm  list_title">交易</view>
-			<view class="flex solid-bottom  justify-around">
-				<view class="padding-sm margin-xs text-center" v-for="(item,index) in dealList" :key="index">
-					<view class="list_size" :class="'cuIcon-' + item.name"></view>
-					<text>{{item.service}}</text>
+			<view class="bg-white">
+				<view class="grid margin-bottom text-center col-4">
+					<view class="padding" v-for="(item,index) in dealList" @tap="toPath(item.toURL)" :key="index">
+						<view class="list_size" :class="'cuIcon-' + item.name"></view>
+						<text>{{item.service}}</text>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -37,7 +39,7 @@
 		<view class="cu-bar bg-white solid-bottom  botton_list">
 			<view class="flex-sub  list_title">工具</view>
 			<view class="flex solid-bottom  justify-around">
-				<view class="padding-sm margin-xs text-center" v-for="(item,index) in toolsList" :key="index">
+				<view class="padding-sm margin-xs text-center" v-for="(item,index) in toolsList" :key="index" @tap="toPath(item.toURL)">
 					<view class="list_size" :class="'cuIcon-' + item.name"></view>
 					<text>{{item.service}}</text>
 				</view>
@@ -59,53 +61,65 @@
 				serviceList: [{
 						name: 'favorfill',
 						service: '我的动态',
+						toURL:''
 					}, {
 						name: 'shop',
 						service: '我的店铺',
+						toURL:''
 					}, {
 						name: 'cascades',
 						service: '我的兼职',
+						toURL:''
 					},
 					{
 						name: 'form',
 						service: '我的简历',
+						toURL:''
 					}
 				],
 				// 交易列表
 				dealList: [{
 						name: 'cart',
-						service: ' 我的购物',
-					}, {
+						service: ' 食堂购物车',
+						toURL:'/pages/meituan/myCart'
+					},  {
 						name: 'form',
-						service: '我的订单',
+						service: '食堂订单',
+						toURL:'/pages/meituan/order'
 					}, {
 						name: 'refresh',
 						service: '二手交易',
+						toURL:'/pages/xy/order/order'
 					},
 					{
 						name: 'moneybag',
 						service: '我的余额',
+						toURL:''
 					}
 				],
 				// 工具列表
 				toolsList: [{
 						name: 'deliver_fill',
-						service: '收获地址',
+						service: '收货地址',
+						toURL:'/pages/xy/xy-site/site'
 					}, {
 						name: 'friendfill',
 						service: '助力同学',
+						toURL:''
 					}, {
 						name: 'servicefill',
 						service: '客服中心',
+						toURL:''
 					},
 					{
 						name: 'mail',
 						service: '意见反馈',
+						toURL:''
 					}
 				],
 				// 用户id
 				id: '',
-				baseUrl: 'http://127.0.0.1:9999/api/v1'
+				baseUrl: 'http://127.0.0.1:9999/api/v1',
 			}
 		},
 		methods: {
@@ -113,6 +127,16 @@
 			edit_info() {
 				uni.navigateTo({
 					url: '../edit_self/edit_self'
+				})
+			},
+			// 跳转到页面
+			toPath(url){
+				if(url.length == 0) {
+					return false
+				}
+				let CurrentPages = getCurrentPages()
+				uni.navigateTo({
+					url: url+`?path=${CurrentPages[0].route}`
 				})
 			}
 		},

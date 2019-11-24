@@ -1,6 +1,6 @@
 <template>
 	<view class="addSite">
-		<cu-custom class="site-nav" bgColor="bg-gradual-black"  :isBack="true" >
+		<cu-custom class="site-nav" bgColor="bg-gradual-black"  :isBack="true" :url="'/pages/xy/xy-site/site'">
 			<block slot="content">新建收货地址</block>
 		</cu-custom>
 		 <mpopup  ref="mpopup" :isdistance="true"></mpopup>  

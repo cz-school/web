@@ -1,7 +1,7 @@
 <template>
 	<view class="content order">
 		<!-- 自定义页头 -->
-		<cu-custom bgColor="bg-gradual-pink" :isBack="true">
+		<cu-custom bgColor="bg-gradual-pink" :isBack="true" :url="'/pages/self/self'">
 			<block slot="backText">返回</block>
 			<block slot="content">订单</block>
 		</cu-custom>
@@ -352,9 +352,9 @@
 			},
 			// 去支付
 			payment(index,id) {
-				console.log(this.orderList[index])
+				let CurrentPages = getCurrentPages()
 				uni.redirectTo({
-					url: `/pages/meituan/payment?id=${id}`
+					url: `/pages/meituan/payment?id=${id}&path=${CurrentPages[CurrentPages.length-1].route}`
 				});
 			},
 			//订单状态文字和颜色

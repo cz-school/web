@@ -1,6 +1,7 @@
 <template>
 	<view class="site">
-		<cu-custom class="site-nav" bgColor="bg-gradual-black" :isBack="true">
+		<cu-custom bgColor="bg-gradual-pink" :isBack="true" :url="previousPage.path?'/'+previousPage.path+'?id='+previousPage.win_id:'/pages/self/self'">
+			<block slot="backText">返回</block>
 			<block slot="content">收货地址</block>
 		</cu-custom>
 		<view class="box">
@@ -100,7 +101,7 @@
 		    	// 点击地址的id
 		    	let id = e.currentTarget.dataset.id
 		    	uni.navigateTo({
-		    		url:'../purchase/purchase?id='+id,
+		    		url:'../xy-alertSite/xy-alertSite/xy-alertSite?id='+id,
 		    		success:res =>{},
 		    		fail:()=>{},
 		    		complete:()=>{}
@@ -113,8 +114,9 @@
 		created() {
 			this.siteAllShow()
 		},
-		onLoad() {
+		onLoad(e) {
 			this.siteAllShow()
+			this.previousPage = e
 		}
 	}
 </script>

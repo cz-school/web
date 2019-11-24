@@ -1,6 +1,6 @@
 <template>
 	<view class="order">
-		<cu-custom bgColor="bg-gradual-white" :isBold="isBold" :isBack="true"><block slot="content">我买到的</block></cu-custom>
+		<cu-custom bgColor="bg-gradual-white" :isBold="isBold" :isBack="true" :url="'/pages/self/self'"><block slot="content">我买到的</block></cu-custom>
 		<view class="order-list">
 			<!-- 第一个订单 -->
 			<view class="order-box" v-for="(item,index) in orderlist" :key='index'>
@@ -45,7 +45,7 @@ export default {
 			// 订单列表
 			orderlist:[],
 			show: false,
-			title:''
+			title:'',
 		};
 	},
 	methods: {
@@ -88,7 +88,7 @@ export default {
 		console.log(e)
 		},
 	},
-	onLoad() {
+	onLoad(e) {
 		this.gainOrder()
 		uni.getStorage({
 		    key: 'user_id',

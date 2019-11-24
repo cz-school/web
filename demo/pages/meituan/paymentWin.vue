@@ -11,10 +11,10 @@
 				</view>
 			</view>
 		</view>
-		<view class="examine butView">
+		<view class="examine butView" @tap="toOrder">
 			查看订单
 		</view>
-		<view class="return butView" >
+		<view class="return butView" @tap="toindex">
 			返回首页
 		</view>
 	</view>
@@ -29,7 +29,14 @@
 			}
 		},
 		methods: {
-			
+			toindex(){
+				uni.reLaunch({
+					url: '/pages/index/index'
+				})
+			},
+			toOrder(){
+				url: '/pages/meituan/order'
+			}
 		},
 		components: {
 			cuCustom

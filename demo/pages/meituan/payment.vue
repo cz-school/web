@@ -3,6 +3,10 @@
 		<cu-custom class="site-nav" bgColor="bg-gradual-black" :isBack="true">
 			<block slot="content">支付</block>
 		</cu-custom>
+		<cu-custom bgColor="bg-gradual-pink" :isBack="true" :url="previousPage?'/'+previousPage.path+'?id='+previousPage.win_id:'/pages/meituan/order'">
+			<block slot="backText">返回</block>
+			<block slot="content">支付</block>
+		</cu-custom>
 		<mpopup  ref="mpopup" :isdistance="true"></mpopup>
 		<view class="money">
 			<span>支付金额</span>
@@ -61,13 +65,16 @@ export default {
 			orderTotal:0,
 			usersTotal:0,
 			// 付款选择
-			valSelect:''
+			valSelect:'',
+			previousPage:''
 		}
 	},
 	onLaunch(e) {
 		this.orderId = e.id
 	},
-	
+	onLoad(e) {
+		this.previousPage = e
+	},
 	methods: {
 		radio(value) {
 			// console.log(value)
