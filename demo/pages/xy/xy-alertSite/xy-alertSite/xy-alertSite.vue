@@ -242,7 +242,8 @@
 		},
 		onShow(){
 		},
-		onLoad() {
+		onLoad(e) {
+			this.siteId = e.id 
 			this.formData()
 			// console.log(this.siteForm)
 			this.alertForm()

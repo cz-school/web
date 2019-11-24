@@ -58,6 +58,7 @@
 					success: res => {
 						// console.log(res)
 						this.siteAll = res.data.data
+						console.log(this.siteAll)
 						for(var i = 0;i<this.siteAll.length;i++) {
 							if(this.siteAll[i].sdefault == 1) {
 								let aa = this.siteAll[i]
@@ -72,8 +73,11 @@
 					fail: () => {},
 					complete: () => {}
 				})
+				console.log(this.siteAll)
 			},
 			alterSite(id) {
+				console.log(1)
+				console.log(id)
 				uni.navigateTo({
 					url:'../xy-alertSite/xy-alertSite/xy-alertSite',
 					success:res =>{},
