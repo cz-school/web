@@ -1,0 +1,114 @@
+
+.modal-col{
+	line-height: 80rpx;
+}
+uni-view{
+	line-height: 34px !important;
+}
+.uni-input,
+.uni-form-item,
+.uni-form-item .title[data-v-ade4a690]{
+	display: block;
+	padding: 0;
+	background-color: #fafafa;
+}
+.cu-custom{
+	position: fixed !important;
+	top: 0;
+}
+.submit-btn{
+	color: #fff;
+	text-align: center;
+	/* padding: 30upx; */
+	border-radius: 30px;
+	background-color: #f8e620;
+}
+.submit-box{
+	padding: 50rpx 20rpx;
+}
+.priceClassText{
+	float: left;
+	width: 90%;
+}
+.priceClassIcon svg{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, 50%);
+	    -ms-transform: translate(-50%, 50%);
+	        transform: translate(-50%, 50%);
+}
+.priceClassIcon{
+	position: relative;
+	float: left;
+	width: 10%;
+}
+.priceClass{
+	overflow: hidden;
+	font-size: 30rpx;
+	text-indent: 40rpx;
+	line-height: 80rpx;
+}
+.price .uni-input{
+	width: 65% !important;
+	text-indent: 20rpx;
+}
+.price .title{
+	width: 35% !important;
+}
+.price .uni-form-item{
+	float: left;
+	width: 50%;
+}
+.uni-form-item-ul{
+	overflow: hidden;
+}
+.priceTitle{
+	text-align: center;
+	font-size: 30rpx;
+	line-height: 100rpx;
+}
+.sunsin_width[data-v-3e62d6e2]{
+	width: auto !important;
+	height: auto !important;
+}
+uni-view.sunsin_add_image.sunsin_width{
+	width: 70px !important;
+	height: 70px !important;
+}
+.addImg-box{
+	margin: 0 0 60rpx 60rpx;
+}
+.item-uni-textarea{
+	float: left;
+	padding-right: 80rpx;
+	font-size: 30rpx;
+	width: 80%;
+	margin-top: 20rpx;
+	/* line-height: 80upx; */
+}
+.uni-form-item {
+	font-size: 30rpx;
+	overflow: hidden;
+}
+.uni-form-item .uni-input {
+	font-size: 30rpx;
+	width: 80%;
+	height: 80rpx;
+	line-height: 80rpx;
+}
+.uni-form-item .title{
+	text-align: center;
+	width: 20%;
+	float: left;
+	line-height: 80rpx;
+}
+.IssueMsg{
+	margin-top: 20rpx;
+	overflow: hidden;
+	background-color: #fafafa;
+}
+.bazaarIssue-header[data-v-ade4a690] {
+	background-color: #fff;
+}
+

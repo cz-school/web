@@ -1,18 +1,17 @@
 <template>
 	<view class="edit_self">
 		<!-- 自定义导航栏 -->
-		<view class="cu-bar bg-white fixed">
-			<cu-custom bgColor="bg-gradual-white " :url="'/pages/self/self'" isBack="true">
-				<block slot="content">编辑个人信息</block>
-			</cu-custom>
-		</view>
+		<cu-custom bgColor="bg-gradual-green" :isBack="true" :url="'/pages/self/self'">
+			<block slot="backText"></block>
+			<block slot="content">编辑个人信息</block>
+		</cu-custom>
 		<!-- 上传图片 -->
 		<view class="photo">
 			<view class="photo_top">
 				<view class="imageItem">
 					<image :src="imgList[imgList.length-1]" mode="aspectFill" @tap="ChooseImage"></image>
 				</view>
-				<view class="photo_uplod">
+				<view class="photo_uplod solid-bottom">
 					<view class="imageUpload">
 						<image :src="imgList1[imgList1.length-1]" mode="widthFix" @tap="ChooseImage1"></image>
 					</view>
@@ -31,8 +30,11 @@
 				</view>
 				<view class="flex cf padding-sm" @tap="our_tags">
 					<view class=" fl text-bold text-xl margin-right-sm text-bold">#</view>
-					<view class=' content_tag fl'>
+					<view class=' content_tag fl' v-if="ourTags.length>0">
 						<view class='cu-tag bg-black margin-left-xs radius' v-for="v in ourTags">{{v.tag_name}}</view>
+					</view>
+					<view class="content_tag fl margin-top-xs" v-else>
+						<input type="text" placeholder="添加我的标签" :disabled="true" />
 					</view>
 					<view class=" cuIcon-right fr"></view>
 				</view>
@@ -46,29 +48,41 @@
 				</view>
 				<view class="flex cf padding-sm" @tap='our_sports'>
 					<view class="cuIcon-brand icon_tag fl text-bold text-xl margin-right-sm"></view>
-					<view class=' content_tag fl'>
+					<view class=' content_tag fl' v-if="ourSports.length>0">
 						<view class='cu-tag bg-orange margin-left-xs radius' v-for="v in ourSports">{{v.tag_name}}</view>
+					</view>
+					<view class="content_tag fl " v-else>
+						<input type="text" placeholder="我热爱的运动" :disabled="true" />
 					</view>
 					<view class=" cuIcon-right fr"></view>
 				</view>
 				<view class="flex cf padding-sm" @tap='our_games'>
 					<view class="cuIcon-game icon_tag fl text-bold text-xl margin-right-sm"></view>
-					<view class=' content_tag fl'>
+					<view class=' content_tag fl' v-if="ourGames.length>0">
 						<view class='cu-tag bg-purple margin-left-xs radius' v-for="v in ourGames">{{v.tag_name}}</view>
+					</view>
+					<view class="content_tag fl " v-else>
+						<input type="text" placeholder="我喜欢的游戏" :disabled="true" />
 					</view>
 					<view class=" cuIcon-right fr"></view>
 				</view>
 				<view class="flex cf padding-sm" @tap='our_music'>
 					<view class="cuIcon-musicfill icon_tag fl text-bold text-xl margin-right-sm"></view>
-					<view class=' content_tag fl'>
+					<view class=' content_tag fl' v-if="ourMusic.length>0">
 						<view class='cu-tag bg-cyan margin-left-xs radius' v-for="v in ourMusic">{{v.tag_name}}</view>
+					</view>
+					<view class="content_tag fl  " v-else>
+						<input type="text" placeholder="我常听的音乐" :disabled="true" />
 					</view>
 					<view class=" cuIcon-right fr"></view>
 				</view>
 				<view class="flex cf padding-sm" @tap="our_foods">
 					<view class="cuIcon-presentfill icon_tag fl text-bold text-xl margin-right-sm"></view>
-					<view class=' content_tag fl'>
+					<view class=' content_tag fl' v-if="ourFoods.length>0">
 						<view class='cu-tag bg-pink margin-left-xs radius' v-for="v in ourFoods">{{v.tag_name}}</view>
+					</view>
+					<view class="content_tag fl " v-else>
+						<input type="text" placeholder="请先选择您的个性标签" :disabled="true" />
 					</view>
 					<view class=" cuIcon-right fr"></view>
 				</view>
@@ -106,10 +120,27 @@
 					<view class="title">签名</view>
 					<textarea v-model="formlist.sign" placeholder="请填写你的个性签名"></textarea>
 				</view>
-				<view class="padding flex flex-direction">
-					<button class="cu-btn bg-green lg" @tap="savefix">保存修改</button>
+				<view class="padding-bottom-xl flex flex-direction">
+					<button class="cu-btn bg-green lg" @tap="showModal" data-target="DialogModal1">保存修改</button>
 				</view>
-				<view class="padding flex flex-direction">
+				<!-- 保存修改模态框 -->
+				<view class="cu-modal" :class="modalName=='DialogModal1'?'show':''">
+					<view class="cu-dialog">
+						<view class="cu-bar bg-white justify-end">
+							<view class="content">亲，您确认要修改吗？</view>
+							<view class="action" @tap="hideModal">
+								<text class="cuIcon-close text-red"></text>
+							</view>
+						</view>
+						<view class="cu-bar bg-white justify-end">
+							<view class="action">
+								<button class="cu-btn line-green text-green" @tap="hideModal">取消</button>
+								<button class="cu-btn bg-green margin-left" @tap="saveselfInfo">确定</button>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="padding-bottom-xl flex flex-direction">
 					<button class="cu-btn bg-grey lg" @tap="layout">退出登录</button>
 				</view>
 			</form>
@@ -120,6 +151,7 @@
 
 <script>
 	export default {
+		// 当页面加载时触发
 		onLoad() {
 			// 获取编辑个人数据
 			this.getselfInfo()
@@ -158,7 +190,22 @@
 					this.ourFoods = JSON.parse(res.data)
 				}
 			})
-
+			// 获取图片1
+			uni.getStorage({
+				key: 'photo_one',
+				success: (res) => {
+					// console.log(res)
+					this.imgList1.push(res.data)
+				}
+			})
+			// 获取图片2
+			uni.getStorage({
+				key: 'photo_two',
+				success: (res) => {
+					// console.log(res)
+					this.imgList2.push(res.data)
+				}
+			})
 		},
 		data() {
 			return {
@@ -180,16 +227,23 @@
 				modalName: null,
 				basicArr: [],
 				formlist: [],
-				baseUrl: 'http://127.0.0.1:9999/api/v1',
+				baseUrl: 'http://47.104.29.236:9999/api/v1',
 				id: '',
 				imgList: [],
-				imgList1: ["http://zhangchaotang.oss-cn-beijing.aliyuncs.com/banana/3hgruxRBPWwOm92o.gif"],
-				imgList2: ["http://zhangchaotang.oss-cn-beijing.aliyuncs.com/banana/mVZ9Us1wshsfZWyC.gif"]
+				imgList1: ["http://hbimg.b0.upaiyun.com/9817192fbf6914a38e77e0d289253e6d2f8d88b71635-VDp6dR_fw658"],
+				imgList2: ["http://hbimg.b0.upaiyun.com/9817192fbf6914a38e77e0d289253e6d2f8d88b71635-VDp6dR_fw658"],
+				modalName: null
 			}
 		},
 		methods: {
+			showModal(e) {
+				this.modalName = e.currentTarget.dataset.target
+			},
+			hideModal(e) {
+				this.modalName = null
+			},
 			// 点击保存修改
-			savefix() {
+			saveselfInfo() {
 				let date = parseFloat(new Date(this.formlist.birthday).getTime() / 1000)
 				this.formlist.birthday = date
 				uni.request({
@@ -199,10 +253,12 @@
 						info: JSON.stringify(this.formlist)
 					},
 					success: (res) => {
+						console.log(res)
 						if (res.data.ok == 1) {
 							uni.showToast({
 								title: "修改成功",
 							})
+							this.modalName = null
 						} else {
 							uni.hideToast({
 								title: "修改失败",
@@ -256,7 +312,7 @@
 					success: (res) => {
 						const tempFilePaths = res.tempFilePaths;
 						const uploadTask = uni.uploadFile({
-							url: 'http://127.0.0.1:9999/api/v1/upload_phone',
+							url: 'http://47.104.29.236:9999/api/v1/upload_phone',
 							filePath: tempFilePaths[0],
 							name: 'file',
 							formData: {
@@ -283,7 +339,7 @@
 					success: (res) => {
 						const tempFilePaths = res.tempFilePaths;
 						const uploadTask = uni.uploadFile({
-							url: 'http://127.0.0.1:9999/api/v1/upload_phone',
+							url: 'http://47.104.29.236:9999/api/v1/upload_phone',
 							filePath: tempFilePaths[0],
 							name: 'file',
 							formData: {
@@ -292,6 +348,10 @@
 							success: (uploadFileRes) => {
 								let aa = JSON.parse(uploadFileRes.data)
 								this.imgList1.push(aa.info)
+								uni.setStorage({
+									key: 'photo_one',
+									data: aa.info
+								})
 							}
 						});
 					},
@@ -309,7 +369,7 @@
 					success: (res) => {
 						const tempFilePaths = res.tempFilePaths;
 						const uploadTask = uni.uploadFile({
-							url: 'http://127.0.0.1:9999/api/v1/upload_phone',
+							url: 'http://47.104.29.236:9999/api/v1/upload_phone',
 							filePath: tempFilePaths[0],
 							name: 'file',
 							formData: {
@@ -318,6 +378,10 @@
 							success: (uploadFileRes) => {
 								let aa = JSON.parse(uploadFileRes.data)
 								this.imgList2.push(aa.info)
+								uni.setStorage({
+									key: 'photo_two',
+									data: aa.info
+								})
 							}
 						});
 					},
@@ -328,6 +392,9 @@
 			},
 			// 退出登录
 			layout() {
+				uni.showLoading({
+					title: 'loading'
+				});
 				uni.clearStorage()
 				uni.navigateTo({
 					url: '../login/login'
@@ -363,11 +430,6 @@
 	}
 </script>
 <style>
-	.photo {
-		margin-top: 100rpx;
-		width: 100%;
-	}
-
 	.photo_top {
 		display: flex;
 		flex-direction: row;
@@ -390,11 +452,8 @@
 	}
 
 	.photo_uplod .imageUpload {
-		height: 260rpx;
-		text-align: center;
+		height: 250rpx;
 		font-size: 150rpx;
-		color: #D9D9D9;
-		background-color: #8799A3;
 	}
 
 	.content_tag {

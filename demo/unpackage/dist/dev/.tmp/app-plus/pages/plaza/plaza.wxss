@@ -1,0 +1,49 @@
+
+.cu-list.menu-avatar>.cu-item:after,
+.cu-list.menu>.cu-item:after {
+	border-bottom: 0px
+}
+.cu-card {
+	margin-bottom: 20rpx;
+}
+.cu-card.dynamic>.cu-item>.text-content {
+	font-size: 14px;
+}
+.cu-btn {
+	font-size: 12px;
+	font-weight: 800;
+}
+.text-sm {
+	display: inline-block;
+	margin-right: 20rpx;
+}
+.num {
+	margin-left: 10rpx;
+	margin-right: 10rpx;
+	font-size: 10rpx;
+}
+.floatIcon {
+	position: fixed;
+	height: 130rpx;
+	width: 130rpx;
+	right: 42rpx;
+	bottom: 300rpx;
+	background-color: yellow;
+	border-radius: 50%;
+	-webkit-box-shadow: 2rpx 4rpx 8rpx #888888;
+	        box-shadow: 2rpx 4rpx 8rpx #888888;
+}
+.floatIcon image {
+	position: relative;
+	top: 20rpx;
+	left: 16rpx;
+	width: 90rpx;
+	height: 92rpx;
+}
+.red {
+	color: red;
+}
+.likefill {
+	display: inline-block;
+}
+

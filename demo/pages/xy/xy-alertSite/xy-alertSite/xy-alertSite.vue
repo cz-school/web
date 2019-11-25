@@ -6,23 +6,23 @@
 		 <mpopup  ref="mpopup" :isdistance="true"></mpopup>  
 		<view class="xy-name xy-siteBox">
 			<span class="xy-siteBox-left">收货人</span>
-			<input type="text"  :value="siteForm.users_name" v-model="siteForm.users_name"/>
+			<input type="text" v-model="siteForm.users_name"/>
 		</view>
 		<view class="xy-phone xy-siteBox">
 			<span class="xy-siteBox-left">手机号码</span>
-			<input type="text" :value="siteForm.users_mobile" v-model="siteForm.users_mobile"/>
+			<input type="text" v-model="siteForm.users_mobile"/>
 		</view>
 		<view class="xy-area xy-siteBox">
 			<span class="xy-siteBox-left">宿舍楼</span>
-			<input type="text" :value="siteForm.dormitory" v-model="siteForm.dormitory"/>
+			<input type="text" v-model="siteForm.dormitory"/>
 		</view>
 		<view class="xy-area xy-siteBox">
 			<span class="xy-siteBox-left">宿舍号</span>
-			<input type="text" :value="siteForm.dormitory_no" v-model="siteForm.dormitory_no"/>
+			<input type="text"  v-model="siteForm.dormitory_no"/>
 		</view>
 		<view class="xy-inDetail xy-siteBox inDetail">
 			<span class="xy-siteBox-left">详细地址</span>
-			<textarea rows="3" cols="20" class="xy-inDetail-textarea" placeholder="街道,楼牌号等" :value="siteForm.address" v-model="siteForm.address"></textarea>
+			<textarea rows="3" cols="20" class="xy-inDetail-textarea" placeholder="街道,楼牌号等" v-model="siteForm.address"></textarea>
 		</view>
 		<view class="xy-setSite xy-siteBox defaultRess">
 			<view class="xy-siteBox-top">
@@ -133,7 +133,7 @@
 				let id = uni.getStorageSync('user_id')
 				uni.request({
 					// 接口
-					url: 'http://127.0.0.1:9999/api/v1/alertSite',
+					url: 'http://47.104.29.236:9999/api/v1/alertSite',
 					// 请求方式
 					method: 'GET',
 					// 携带的数据
@@ -177,7 +177,7 @@
 			
 				uni.request({
 					// 接口
-					url: 'http://127.0.0.1:9999/api/v1/deleteSite',
+					url: 'http://47.104.29.236:9999/api/v1/deleteSite',
 					// 请求方式
 					method: 'DELETE',
 					// 携带的数据
@@ -213,7 +213,7 @@
 			alertForm() {
 				uni.request({
 					// 接口
-					url: 'http://127.0.0.1:9999/api/v1/siteShow',
+					url: 'http://47.104.29.236:9999/api/v1/siteShow',
 					// 请求方式
 					method: 'GET',
 					// 携带的数据

@@ -1,0 +1,56 @@
+
+.name {
+	display: block;
+	font-weight: 900;
+	font-size: 38rpx;
+}
+.comment {
+	display: block;
+	color: #EBEEF5;
+	font-size: 25rpx;
+}
+.tag {
+	display: inline-block;
+	float: left;
+}
+.school {
+	display: block;
+}
+.padding {
+	padding: 14px;
+}
+.uni-collapse-cell--open[data-v-6ea016ac] {
+	background-color: #ffffff;
+}
+.cu-tag {
+	margin-left: 20px;
+	margin-right: 15px;
+}
+.cu-list.menu-avatar>.cu-item:after,
+.cu-list.menu>.cu-item:after {
+	border-bottom: 0px
+}
+.cu-card {
+	margin-bottom: 20rpx;
+}
+.cu-card.dynamic>.cu-item>.text-content {
+	font-size: 14px;
+}
+.cu-btn {
+	font-size: 12px;
+	font-weight: 800;
+}
+.text-sm {
+	display: inline-block;
+	margin-right: 20rpx;
+}
+.num {
+	margin-left: 10rpx;
+	margin-right: 10rpx;
+	font-size: 10rpx;
+}
+.tag_content {
+	width: 700rpx;
+	padding: 30rpx 10rpx;
+}
+

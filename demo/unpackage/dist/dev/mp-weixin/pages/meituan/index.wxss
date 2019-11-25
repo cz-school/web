@@ -1,0 +1,243 @@
+
+.index {
+	height: 100%;
+	background-color: #ffffff;
+}
+
+/* 搜索功能 */
+.search_top {
+	margin: 20rpx 20rpx 0rpx 20rpx;
+	background-color: #f1f1f1;
+	border-radius: 10rpx;
+}
+.search_icon {
+	padding: 0rpx;
+	width: 10%;
+}
+.search_icon>view {
+	width: 40rpx;
+	height: 40rpx;
+	margin: 6rpx auto;
+}
+.search_input {
+	padding: 10rpx;
+}
+
+/* 窗口展示 */
+.win_show {
+	width: 25%;
+	border-right: 1rpx solid #878787;
+	margin-top: 10rpx;
+	padding: 7rpx 0rpx;
+	text-align: center;
+}
+.win_show:last-child {
+	border-right: 0rpx;
+}
+.swiper {
+	min-height: 150rpx;
+	min-width: 320rpx;
+}
+
+/* 轮播图 */
+
+/* 食品分类 */
+.foodClassify {
+	min-width: 320rpx;
+}
+.classify_modle {
+	width: 25%;
+}
+.classify_img {
+	width: 80rpx;
+	height: 80rpx;
+	margin: 0 auto;
+}
+.classify_img>image {
+	width: 100%;
+	height: 100%;
+}
+.classify_text {
+	height: 30rpx;
+	min-width: 80rpx;
+	text-align: center;
+}
+.swiper-box {
+	height: 900rpx !important;
+}
+
+/* tab_切换 */
+.uni-tab-bar{
+	text-align: center
+}
+.tab_switcher {
+	height: 100%;
+	width: 100%;
+}
+.text {
+	height: 100%;
+	width: 100%;
+}
+
+/* 下拉列表 */
+
+/* dowm_list */
+.scroll_view {
+	width: 100%;
+}
+
+/* 下拉列表中的card */
+#scrollmenu {
+	width: 90%;
+	margin: 20rpx auto;
+	height: 500rpx;
+	border-radius: 15rpx;
+	padding: 15rpx;
+}
+#scrollmenu>view {
+	margin: 15rpx 0rpx;
+	width: 100%;
+	overflow: hidden;
+}
+.scrollmenu_title {
+	font-size: 35rpx;
+	color: #363636;
+	font-weight: 900;
+	text-align: left;
+	/* 超出一行文字自动隐藏 */
+	overflow: hidden;
+	/* 文字隐藏后添加省略号 */
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+	/* //强制不换行 */
+	white-space: nowrap;
+}
+.menu_delete {
+	float: right;
+	width: 10%;
+	text-align: center;
+	border: 1rpx solid green;
+	border-radius: 10rpx;
+}
+
+/*评分  价格  距离*/
+.scrollmenu_price {
+	font-size: 20rpx;
+}
+.scrollmenu_price>view {
+	float: left;
+	height: 25rpx;
+	line-height: 25rpx;
+}
+.scrollmenu_price>view:nth-child(1) {
+	color: blue;
+	border-right: 1px solid white;
+}
+.scrollmenu_price>view:nth-child(2) {
+	color: blue;
+}
+.scrollmenu_price>view:nth-child(3) {
+	float: right;
+	color: black;
+}
+
+/* 套餐 */
+.scrollmenu_combo {
+	font-size: 20rpx;
+	margin-top: 15rpx;
+}
+.scrollmenu_combo>view {
+	float: left;
+	height: 35rpx;
+	line-height: 30rpx;
+}
+.scrollmenu_combo>view:nth-child(1) {
+	width: 70rpx;
+	text-align: center;
+	background-color: green;
+	color: white;
+}
+.scrollmenu_combo>view:nth-child(2) {
+	margin-left: 10rpx;
+	width: 560rpx;
+	color: #424242;
+	/* 超出一行文字自动隐藏 */
+	overflow: hidden;
+	/* 文字隐藏后添加省略号 */
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+	/* //强制不换行 */
+	white-space: nowrap;
+}
+
+/* 标签 */
+.scrollmenu_label {
+	font-size: 20rpx;
+	margin-top: 15rpx;
+}
+.scrollmenu_label>view {
+	float: left;
+	height: 40rpx;
+	line-height: 30rpx;
+	border: 1px solid #e8e8e8;
+	backgorund-color: #fefefe;
+	margin-right: 10rpx;
+	border-radius: 10rpx;
+	padding: 5rpx;
+}
+
+/* 图片 */
+.scrollmenu_image {
+	height: 250rpx;
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex
+}
+.scrollmenu_image>view {
+	width: 300rpx;
+	height: 200rpx;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	margin-right: 20rpx;
+}
+.scrollmenu_image>view>image {
+	width: 100%;
+	height: 100%;
+}
+
+/*  */
+.agion_combo>view:nth-child(1) {
+	width: 70rpx;
+	text-align: center;
+	background-color: green;
+	color: white;
+}
+.agion_down_list {
+	height: 240rpx !important;
+}
+.agion_scrollmenu_image {
+	height: 180rpx;
+}
+
+/* 	.agion_scrollmenu_title{
+	margin: 20upx 0upx;
+} */
+.agion_scrollmenu_price {
+	margin: 20rpx 0rpx;
+	height: 30rpx;
+}
+.agion_scrollmenu_label>view {
+	width: 450rpx;
+	/* 超出一行文字自动隐藏 */
+	overflow: hidden;
+	/* 文字隐藏后添加省略号 */
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+	/* //强制不换行 */
+	white-space: nowrap;
+}
+

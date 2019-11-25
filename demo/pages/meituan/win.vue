@@ -34,13 +34,14 @@
 						<!-- 对应的推选模块 -->
 						<view class="cu-item" @click="lookmenu(item.menu_id)">
 							<view class="cu-avatar round lg" :style="'background-image:url('+item.menu_img+');'">
-								<view class="cu-tag badge" v-if="item.menu_recommend = '1'">推荐</view>
+								<view class="cu-tag badge" v-if="item.menu_recommend == '1'">推荐</view>
 							</view>
 							<view class="content">
 								<view class="text-grey">
 									<text class="text-cut">{{item.menu_name}}</text>
 									<view class="cu-tag round bg-orange sm">{{item.menu_unit}}</view>
-									<view class="cu-tag round bg-orange sm" style="margin: 0px 0px 0px auto;" @click.stop="addcare(item.menu_id)">+</view>
+									<view class="cu-tag round bg-orange sm" style="margin: 0px 0px 0px auto;" @tap.stop="addcare" v-bind:id="item.menu_id">+
+										</view>
 								</view>
 								<view class="text-gray text-sm flex">
 									<text class="text-cut">
@@ -92,79 +93,94 @@
 				// 购物车中的数量
 				care_num: 0,
 				// 窗口名称
-				win_name:""
+				win_name: ""
 			};
 		},
 		onLoad(option) {
 			this.win_id = option.id;
-			uni.showLoading({
-				title: '加载中...',
-				mask: true
-			});
-			let that = this;
 			// 获取到用户id
-			uni.getStorage({
-				key: 'user_id',
-				success: function(res) {
-					that.user_id = res.data;
-				}
-			});
-			// let list = [{}];
-			// for (let i = 0; i < 26; i++) {
-			// 	list[i] = {};
-			// 	list[i].name = String.fromCharCode(65 + i);
-			// 	list[i].id = i;
-			// }
-			// this.list = list;
-			// this.listCur = list[0];
+			let id = uni.getStorageSync('user_id')
+			this.user_id= id
+
 		},
 		onReady() {
 			uni.hideLoading()
 		},
 
 		methods: {
-			
-			TabSelect(e) {
-				this.tabCur = e.currentTarget.dataset.id;
-				this.mainCur = e.currentTarget.dataset.id;
-				this.verticalNavTop = (e.currentTarget.dataset.id - 1) * 50
+			// 获取到商铺用户id
+			getStusersId() {
+				// 获取到窗口id
+				let id = uni.getStorageSync('winid')
+				this.win_id = id.win_id
+				uni.request({
+					url: `${this.host}/stusers_id`,
+					data: {
+						win_id: this.win_id
+					},
+					success: (data) => {
+						this.stusersid = data.data.data[0].stuser_id
+					}
+				})
 			},
+			// 添加到购物车
+			addcare(e) {
+				// console.log(this.user_id)
+				// console.log(this.stusersid);
+				// console.log(e.target.id);
+				uni.request({
+					url: `${this.host}/add_care`,
+					method: 'post',
+					data: {
+						user_id: this.user_id,
+						menu_id: e.target.id,
+						stusersid: this.stusersid
+					},
+					success: () => {
+						this.getcare();
+					}
+				})
+			},
+			// TabSelect(e) {
+			// 	this.tabCur = e.currentTarget.dataset.id;
+			// 	this.mainCur = e.currentTarget.dataset.id;
+			// 	this.verticalNavTop = (e.currentTarget.dataset.id - 1) * 50
+			// },
 
-			VerticalMain(e) {
-				// #ifdef MP-ALIPAY
-				return false //支付宝小程序暂时不支持双向联动 
-				// #endif
-				let that = this;
-				let tabHeight = 0;
-				if (this.load) {
-					for (let i = 0; i < this.list.length; i++) {
-						let view = uni.createSelectorQuery().select("#main-" + this.list[i].id);
-						view.fields({
-							size: true
-						}, data => {
-							this.list[i].top = tabHeight;
-							tabHeight = tabHeight + data.height;
-							this.list[i].bottom = tabHeight;
-						}).exec();
-					}
-					this.load = false
-				}
-				let scrollTop = e.detail.scrollTop + 10;
-				for (let i = 0; i < this.list.length; i++) {
-					if (scrollTop > this.list[i].top && scrollTop < this.list[i].bottom) {
-						this.verticalNavTop = (this.list[i].id - 1) * 50
-						this.tabCur = this.list[i].id
-						console.log(scrollTop)
-						return false
-					}
-				}
-			},
+			// VerticalMain(e) {
+			// 	// #ifdef MP-ALIPAY
+			// 	return false //支付宝小程序暂时不支持双向联动 
+			// 	// #endif
+			// 	let that = this;
+			// 	let tabHeight = 0;
+			// 	if (this.load) {
+			// 		for (let i = 0; i < this.list.length; i++) {
+			// 			let view = uni.createSelectorQuery().select("#main-" + this.list[i].id);
+			// 			view.fields({
+			// 				size: true
+			// 			}, data => {
+			// 				this.list[i].top = tabHeight;
+			// 				tabHeight = tabHeight + data.height;
+			// 				this.list[i].bottom = tabHeight;
+			// 			}).exec();
+			// 		}
+			// 		this.load = false
+			// 	}
+			// 	let scrollTop = e.detail.scrollTop + 10;
+			// 	for (let i = 0; i < this.list.length; i++) {
+			// 		if (scrollTop > this.list[i].top && scrollTop < this.list[i].bottom) {
+			// 			this.verticalNavTop = (this.list[i].id - 1) * 50
+			// 			this.tabCur = this.list[i].id
+			// 			console.log(scrollTop)
+			// 			return false
+			// 		}
+			// 	}
+			// },
 			// 获取到分类
 			getClassify() {
 				uni.request({
 					url: `${this.host}/classify_list_st/${this.win_id}`,
 					success: (data) => {
-						console.log(data)
 						this.menu = data.data.data.menu;
 						this.classify = data.data.data.classify;
 					}
@@ -182,38 +198,9 @@
 					url: `/pages/meituan/menu?id=${id}`
 				});
 			},
-			// 获取到商铺用户id
-			getStusersId() {
-				uni.request({
-					url: `${this.host}/stusers_id`,
-					data: {
-						win_id: this.win_id
-					},
-					success: (data) => {
-						this.stusersid = data.data.data[0].stuser_id
-					}
-				})
-			},
-			// 添加到购物车
-			addcare(menu_id) {
-				// console.log(menu_id);
-				// console.log(this.stusersid);
-				// console.log(this.user_id);
-				uni.request({
-					url: `${this.host}/add_care`,
-					method: 'post',
-					data: {
-						user_id: this.user_id,
-						menu_id: menu_id,
-						stusersid: this.stusersid
-					},
-					success: () => {
-						this.getcare();
-					}
-				})
-			},
 			// 获取到购物车中的数据数量
 			getcare() {
+				console.log(this.user_id);
 				uni.request({
 					url: `${this.host}/care_st`,
 					data: {
@@ -228,21 +215,24 @@
 			clickcare() {
 				let CurrentPages = getCurrentPages()
 				uni.reLaunch({
-					url: `/pages/meituan/myCart?win_id=${this.win_id}&path=${CurrentPages[CurrentPages.length-1].route}`
+					url: `/pages/meituan/myCart?win_id=${this.win_id}&path=${CurrentPages[0].route}`
 				});
 			},
 			// 获取到对应的标题
-			getwin(){
+			getwin() {
 				uni.request({
-					url:`${this.host}/stusers_id`,
-					data:{win_id : this.win_id},
-					success:(res)=>{
-						this.win_name= res.data.data[0].win_name
+					url: `${this.host}/stusers_id`,
+					data: {
+						win_id: this.win_id
+					},
+					success: (res) => {
+						this.win_name = res.data.data[0].win_name
 					}
 				})
 			}
 		},
 		onShow() {
+			this.getStusersId();
 			this.getClassify();
 			this.getcare();
 			this.getwin();

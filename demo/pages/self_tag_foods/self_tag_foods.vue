@@ -1,11 +1,9 @@
 <template>
 	<view class="self_tag_our">
-		<view class="cu-bar bg-white fixed">
-			<cu-custom bgColor="bg-gradual-white" :isBack="true" :url="'/pages/edit_self/edit_self'">
-				<block slot="backText"></block>
-				<block slot="content">我的个人标签</block>
-			</cu-custom>
-		</view>
+		<cu-custom bgColor="bg-gradual-green" :isBack="true" :url="'/pages/edit_self/edit_self'">
+			<block slot="backText"></block>
+			<block slot="content">我的个人标签</block>
+		</cu-custom>
 		<view class="cu-bar bg-white  create_tag">
 			<view class="tag_icon" @tap="showModal" data-target="DialogModal1">+</view>
 			<view class="tag_text" @tap="showModal" data-target="DialogModal1">创建标签</view>
@@ -54,7 +52,7 @@
 				modalName: null,
 				inputvalue: '',
 				tagList: [],
-				baseUrl: "http://127.0.0.1:9999/api/v1",
+				baseUrl: "http://47.104.29.236:9999/api/v1",
 				// 用户id
 				id: '',
 				// 选中tag标签数组
@@ -153,16 +151,13 @@
 <style>
 	.self_tag_our {
 		width: 100%;
-		margin-top: 100rpx;
 	}
-
 	.create_tag {
 		z-index: 10;
-		margin-bottom: 100rpx;
 		width: 100%;
 		position: fixed;
 		left: 0rpx;
-		top: 100rpx;
+		top: 90rpx;
 		padding: 0rpx 20rpx;
 		font-size: 30rpx;
 		color: red;
@@ -180,10 +175,6 @@
 		line-height: 50rpx;
 		font-weight: 700;
 		border-radius: 100%;
-	}
-
-	.tag_list {
-		margin-top: 200rpx;
 	}
 
 	.check_title {

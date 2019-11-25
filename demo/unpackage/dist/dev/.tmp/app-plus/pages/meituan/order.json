@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "订单",
-  "usingComponents": {}
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom",
+    "uni-load-more": "/components/uni-load-more/uni-load-more",
+    "empty": "/components/empty"
+  }
 }

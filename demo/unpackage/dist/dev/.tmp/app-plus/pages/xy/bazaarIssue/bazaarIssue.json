@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom",
+    "sunui-upbasic": "/components/sunui-upimg-basic",
+    "robby-image-upload": "/components/robby-image-upload/robby-image-upload",
+    "modal": "/components/x-modal/x-modal"
+  }
+}

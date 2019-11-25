@@ -1,0 +1,76 @@
+
+.site {
+	/* background-color: white; */
+	overflow: hidden;
+	position: relative;
+}
+.site-nav {
+	background-color: #f8e622;
+}
+.site-shopSite {
+	width: 740ups;
+	/* height: 90upx; */
+	margin-top: 20rpx;
+	background-color: white;
+	padding: 10rpx;
+	/* border: 1rpx solid #2C405A; */
+}
+.site-shopSite-top {
+	font-weight: 700;
+	margin-bottom: 10rpx;
+}
+.site-shopSite-top .site-name {
+	font-size: 14px;
+	margin-right: 100rpx;
+}
+.site-phone {
+	margin-right: 30rpx;
+}
+.site-default {
+	font-size: 12px;
+	font-weight: 400;
+	color: white;
+	background-color: red;
+}
+.site-alertImage {
+
+	width: 20px;
+	height: 20px;
+}
+.site-alertImage image {
+	width: 100%;
+	height: 100%;
+}
+.site-shopSite-bottom {
+	position: relative;
+}
+.site-shopSite-bottom view {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+.site-bootom {
+	height: 100rpx;
+	width: 100%;
+}
+.site-box {
+	width: 100%;
+	height: 100rpx;
+	background-color: white;
+	position: fixed;
+	bottom: 0rpx;
+	/* left: 100upx; */
+}
+.site-addSite {
+	position: absolute;
+	left: 100rpx;
+	top: 20rpx;
+	width: 550rpx;
+	height: 60rpx;
+	background-color: #f01809;
+	color: white;
+	text-align: center;
+	line-height: 60rpx;
+	border-radius: 30rpx;
+}
+

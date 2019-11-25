@@ -1,0 +1,12 @@
+
+.view-li{
+	margin:  0 50rpx;
+	line-height: 80rpx;
+	border-bottom:  1px solid #fafafa;
+}
+.bazaarClass,
+uni-page-body{
+	height: 100%;
+	background-color: #fff;
+}
+

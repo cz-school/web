@@ -1,0 +1,47 @@
+
+.bold {
+	
+	font-size: 46rpx !important;
+	
+	
+	font-weight: bold;
+}
+
+
+.cu-list.menu-avatar>.cu-item:after,
+.cu-list.menu>.cu-item:after {
+	border-bottom: 0px
+}
+.pinglun {
+	padding-bottom: 50px;
+}
+.cu-card {
+	margin-bottom: 20rpx;
+}
+.cu-card.dynamic>.cu-item>.text-content {
+	font-size: 14px;
+}
+.cu-btn {
+	font-size: 12px;
+	font-weight: 800;
+	color: black;
+}
+.text-sm {
+	display: inline-block;
+	margin-right: 20rpx;
+}
+.num {
+	margin-left: 10rpx;
+	margin-right: 10rpx;
+	font-size: 10rpx;
+}
+.pinglun {
+	background-color: #ffffff;
+	height: 100%;
+}
+.cu-bar {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+

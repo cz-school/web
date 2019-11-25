@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom",
+    "async-switch": "/components/helang-asyncSwitch/helang-asyncSwitch",
+    "mpopup": "/components/xuan-popup/xuan-popup"
+  }
+}

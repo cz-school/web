@@ -11,18 +11,33 @@
     "pages/meituan/payment",
     "pages/meituan/order",
     "pages/meituan/myCart",
+    "pages/meituan/purchase",
+    "pages/meituan/paymentWin",
     "pages/meituan/index",
     "pages/meituan/menu",
     "pages/meituan/win",
     "pages/xy/purchase/purchase",
     "pages/xy/order/order",
+    "pages/xy/payment/failure",
+    "pages/xy/payment/success",
     "pages/xy/evaluate/evaluate",
+    "pages/xy/xy-site/site",
+    "pages/xy/xy-site/XYsite",
+    "pages/xy/xy-addSite/addSite/addSite",
+    "pages/xy/xy-alertSite/xy-alertSite/xy-alertSite",
+    "pages/xy/bazaarClass/bazaarClass",
+    "pages/xy/bazaarIndex/bazaarIndex",
+    "pages/xy/bazaarIssue/bazaarIssue",
     "pages/edit_self/edit_self",
     "pages/self_tag_our/self_tag_our",
     "pages/self_tag_sports/self_tag_sports",
     "pages/self_tag_foods/self_tag_foods",
     "pages/self_tag_music/self_tag_music",
-    "pages/self_tag_games/self_tag_games"
+    "pages/self_tag_games/self_tag_games",
+    "pages/plaza_personal/plaza_personal",
+    "pages/plaza_publish/plaza_publish",
+    "pages/plaza_details/plaza_details",
+    "pages/xy/shopDetail/shopDetail"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -76,8 +91,9 @@
     "autoclose": false
   },
   "appname": "传智校园",
-  "compilerVersion": "2.3.6",
+  "compilerVersion": "2.4.2",
   "usingComponents": {
+    "sunui-upbasic": "/components/sunui-upimg-basic",
     "cu-custom": "/colorui/components/cu-custom"
   }
 }

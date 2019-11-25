@@ -70,28 +70,45 @@ export default {
 		}
 	},
 	onLaunch(e) {
-		this.orderId = e.id
+		// this.orderId = e.id
+		// this.previousPage = e
 	},
 	onLoad(e) {
-		this.previousPage = e
-		this.orderId = e.id
+		// let data = e
+		this.getdataa()
+	},
+	onShow(e){
+		// let data = e
+		this.getdataa()
+		this.orderMoney()
 	},
 	methods: {
 		radio(value) {
 			// console.log(value)
 			this.valSelect = value.detail.value
 		},
+		async getdataa(){
+			let data = uni.getStorageSync('pay')
+			data = JSON.parse(data)
+			this.orderId = data.id
+			this.previousPage = data
+		},
 		orderMoney() {
+			let data = uni.getStorageSync('pay')
+			data = JSON.parse(data)
+			this.orderId = data.id
+			this.previousPage = data
+			// console.log(this.orderId)
 			uni.request({
 				// 接口
-				url: 'http://127.0.0.1:9999/api/v1/getOrderMoney',
+				url: 'http://47.104.29.236:9999/api/v1/getOrderMoney',
 				// 请求方式
 				method: 'GET',
 				// 携带的数据
 				data: {id:this.orderId},
 				// 请求成功
 				success: res => {
-					// console.log(res)
+					console.log(res)
 					this.orderTotal = res.data.data[0].price
 				},
 				// 请求失败
@@ -103,7 +120,7 @@ export default {
 			let id = uni.getStorageSync('user_id')
 			uni.request({
 				// 接口
-				url: 'http://127.0.0.1:9999/api/v1/getUsersMoney',
+				url: 'http://47.104.29.236:9999/api/v1/getUsersMoney',
 				// 请求方式
 				method: 'GET',
 				// 携带的数据
@@ -130,7 +147,7 @@ export default {
 				})
 				uni.request({
 					// 接口
-					url: 'http://127.0.0.1:9999/api/v1/updateOrderMoneyAll',
+					url: 'http://47.104.29.236:9999/api/v1/updateOrderMoneyAll',
 					// 请求方式
 					method: 'POST',
 					// 携带的数据
@@ -160,7 +177,7 @@ export default {
 					let id = uni.getStorageSync('user_id')
 					uni.request({
 						// 接口
-						url: 'http://127.0.0.1:9999/api/v1/updateOrderMoney',
+						url: 'http://47.104.29.236:9999/api/v1/updateOrderMoney',
 						// 请求方式
 						method: 'POST',
 						// 携带的数据
@@ -168,7 +185,7 @@ export default {
 						// 请求成功
 						success: res => {
 							console.log(res)
-							// this.orderTotal = res.data.data[0].price
+							this.orderTotal = res.data.data[0].price
 						},
 						// 请求失败
 						fail: () => {},
@@ -176,7 +193,7 @@ export default {
 					})
 					uni.request({
 						// 接口
-						url: 'http://127.0.0.1:9999/api/v1/updateOrderMoneyAll',
+						url: 'http://47.104.29.236:9999/api/v1/updateOrderMoneyAll',
 						// 请求方式
 						method: 'POST',
 						// 携带的数据
@@ -184,7 +201,7 @@ export default {
 						// 请求成功
 						success: res => {
 							console.log(res)
-							// this.orderTotal = res.data.data[0].price
+							this.orderTotal = res.data.data[0].price
 						},
 						// 请求失败
 						fail: () => {},

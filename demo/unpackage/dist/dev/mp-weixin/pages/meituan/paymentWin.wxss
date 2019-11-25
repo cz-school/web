@@ -1,0 +1,36 @@
+
+.image {
+	position: relative;
+	width: 750rpx;
+	height: 400rpx;
+	/* border: 1px solid red; */
+}
+.image view {
+	position: absolute;
+	top: 100rpx;
+	left: 325rpx;
+}
+.image image {
+
+	display: block;
+	width: 100rpx;
+	height: 100rpx;
+}
+.butView {
+	width: 690rpx;
+	height: 80rpx;
+	margin-top: 30rpx;
+	margin-left: 30rpx;
+	text-align: center;
+	line-height: 80rpx;
+	border-radius: 10rpx;
+	font-size: 16px;
+}
+.examine {
+	background-color: #007aff;
+	color: white;
+}
+.return {
+	background-color: white;
+}
+

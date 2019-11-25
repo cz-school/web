@@ -119,12 +119,12 @@
 				let id = uni.getStorageSync('user_id')
 				this.uid = id
 				uni.request({
-					url: `http://127.0.0.1:9999/api/v1/myCart_st/${id}`, //仅为示例，并非真实接口地址。
+					url: `http://47.104.29.236:9999/api/v1/myCart_st/${id}`, //仅为示例，并非真实接口地址。
 					header: {
 						"content-type": "application/x-www-form-urlencoded"
 					},
 					success: (res) => {
-						console.log(res.data)
+						console.log(res.data.data)
 						this.cartList = res.data.data;
 						if (res.data.data.length != 0) {
 							this.calcTotal();

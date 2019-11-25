@@ -46,7 +46,7 @@
 				let id = uni.getStorageSync('user_id')
 				uni.request({
 					// 接口
-					url: 'http://127.0.0.1:9999/api/v1/siteAll',
+					url: 'http://47.104.29.236:9999/api/v1/siteAll',
 					// 请求方式
 					method: 'GET',
 					// 携带的数据

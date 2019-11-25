@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"view-li{ margin: 0 ",[0,50],"; line-height: ",[0,80],"; border-bottom: 1px solid #fafafa; }\n.",[1],"bazaarClass, wx-uni-page-body{ height: 100%; background-color: #fff; }\n",],undefined,{path:"./pages/xy/bazaarClass/bazaarClass.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/xy/bazaarClass/bazaarClass.wxml') } }));

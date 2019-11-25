@@ -164,7 +164,7 @@
 				lovename: 'cuIcon-likefill',
 				infoName: 'cuIcon-messagefill',
 				isBottom: false,
-				baseUrl: 'http://127.0.0.1:9999/api/v1/',
+				baseUrl: 'http://47.104.29.236:9999/api/v1/',
 				userid: '',
 				users: [],
 				pages: []

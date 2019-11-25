@@ -817,6 +817,7 @@
 						pagenum: 1,
 					},
 					success: (res) => {
+						console.log(res.data)
 						this.winList = res.data.data;
 					}
 				})
@@ -1035,7 +1036,7 @@
 	}
 
 	.swiper-box {
-		height: 900upx;
+		height: 900upx !important;
 	}
 
 	/* tab_切换 */

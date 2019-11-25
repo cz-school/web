@@ -1,0 +1,22 @@
+
+.success-box{
+	margin: 0 auto;
+	padding-top: 100rpx;
+	text-align: center;
+}
+.hint{
+	font-size: 32rpx;
+	font-weight: bold;
+	margin-top: 20rpx;
+}
+.btn{
+	position: absolute;
+	bottom: 70rpx;
+	left: 50%;
+	-webkit-transform: translate(-50%);
+	    -ms-transform: translate(-50%);
+	        transform: translate(-50%);
+	border: 1px solid red;
+	color: #EC008C;
+}
+

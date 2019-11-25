@@ -59,7 +59,7 @@
 </script>
 
 <style>
-	@charset "UTF-8";
+	@charset "UTF-8"
 
 	.uni-load-more {
 		display: flex;

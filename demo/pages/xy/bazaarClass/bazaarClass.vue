@@ -29,7 +29,7 @@
 		},
 		onLoad() {
 			uni.request({
-				url: 'http://127.0.0.1:9999/api/v1/esclassify',
+				url: 'http://47.104.29.236:9999/api/v1/esclassify',
 				method: 'GET',
 				data: {},
 				success: res => {

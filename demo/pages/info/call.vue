@@ -60,7 +60,7 @@
 				isCard: true,
 				// swiperItem高度
 				swiperHeight: '',
-				baseUrl: 'http://127.0.0.1:9999/api/v1',
+				baseUrl: 'http://47.104.29.236:9999/api/v1',
 				// 联系人列表
 				callList: [],
 				// 关注列表

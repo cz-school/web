@@ -82,7 +82,7 @@
 				this.renderImage = true;
 			}, 300);
 			uni.request({
-				url: 'http://127.0.0.1:9999/api/v1/esclassify',
+				url: 'http://47.104.29.236:9999/api/v1/esclassify',
 				method: 'GET',
 				data: {},
 				success: res => {
@@ -96,11 +96,11 @@
 		data() {
 			return {
 				// 分页和收缩
-				queryInfo:{
-					pagenum:1,
-					pagesize:10,
-					ishave:false,
-					have:"抱歉没有商品了"
+				queryInfo: {
+					pagenum: 1,
+					pagesize: 10,
+					ishave: false,
+					have: "抱歉没有商品了"
 				},
 				// 控制自定义导航栏是否字体加粗
 				isBold: true,
@@ -130,24 +130,23 @@
 		methods: {
 			// 向下滑动到 底部 王海龙改
 			lower1(e) {
-				this.queryInfo.pagenum = this.queryInfo.pagenum +1;
+				this.queryInfo.pagenum = this.queryInfo.pagenum + 1;
 				this.getShop();
 			},
 			getShop(e) {
 				console.log(e);
 				uni.request({
-					url: `http://127.0.0.1:9999/api/v1/shop/${this.active}`,
+					url: `http://47.104.29.236:9999/api/v1/shop/${this.active}`,
 					method: 'GET',
 					data: {
 						inputVal: e,
 						pagesize: this.queryInfo.pagesize,
-						pagenum:this.queryInfo.pagenum
+						pagenum: this.queryInfo.pagenum
 					},
 					success: res => {
-						if( res.data.data[1].length!==10 && res.data.data[1].length !== 0){
+						if (res.data.data[1].length !== 10 && res.data.data[1].length !== 0) {
 							this.shop.push(...res.data.data[1])
-						}
-						else if(res.data.data[1].length == 0){
+						} else if (res.data.data[1].length == 0) {
 							return this.queryInfo.ishave = true;
 						}
 						// console.log(res)
@@ -159,8 +158,8 @@
 				});
 			},
 			activeClick(index) {
-				this.shop=[];
-				this.queryInfo.pagenum=1;
+				this.shop = [];
+				this.queryInfo.pagenum = 1;
 				this.active = index
 				this.val3 = "";
 				// console.log(this.active)
@@ -293,6 +292,9 @@
 
 	.uni-product-price-favour {
 		color: #888888;
+		display: inline-block;
+		width: 100%;
+		white-space: normal;
 		/* text-decoration: line-through; */
 		margin-left: 10upx;
 	}

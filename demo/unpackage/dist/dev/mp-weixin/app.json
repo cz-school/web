@@ -1,0 +1,93 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/regist/regist",
+    "pages/index/index",
+    "pages/mate/mate",
+    "pages/plaza/plaza",
+    "pages/info/info",
+    "pages/info/chat",
+    "pages/self/self",
+    "pages/meituan/payment",
+    "pages/meituan/order",
+    "pages/meituan/myCart",
+    "pages/meituan/purchase",
+    "pages/meituan/paymentWin",
+    "pages/meituan/index",
+    "pages/meituan/menu",
+    "pages/meituan/win",
+    "pages/xy/purchase/purchase",
+    "pages/xy/order/order",
+    "pages/xy/payment/failure",
+    "pages/xy/payment/success",
+    "pages/xy/evaluate/evaluate",
+    "pages/xy/xy-site/site",
+    "pages/xy/xy-site/XYsite",
+    "pages/xy/xy-addSite/addSite/addSite",
+    "pages/xy/xy-alertSite/xy-alertSite/xy-alertSite",
+    "pages/xy/bazaarClass/bazaarClass",
+    "pages/xy/bazaarIndex/bazaarIndex",
+    "pages/xy/bazaarIssue/bazaarIssue",
+    "pages/edit_self/edit_self",
+    "pages/self_tag_our/self_tag_our",
+    "pages/self_tag_sports/self_tag_sports",
+    "pages/self_tag_foods/self_tag_foods",
+    "pages/self_tag_music/self_tag_music",
+    "pages/self_tag_games/self_tag_games",
+    "pages/plaza_personal/plaza_personal",
+    "pages/plaza_publish/plaza_publish",
+    "pages/plaza_details/plaza_details",
+    "pages/xy/shopDetail/shopDetail"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#2F85FC",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tarbar/index.png",
+        "selectedIconPath": "static/tarbar/index.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/mate/mate",
+        "iconPath": "static/tarbar/mate.png",
+        "selectedIconPath": "static/tarbar/mate.png",
+        "text": "匹配"
+      },
+      {
+        "pagePath": "pages/plaza/plaza",
+        "iconPath": "static/tarbar/plaza.png",
+        "selectedIconPath": "static/tarbar/plaza.png",
+        "text": "广场"
+      },
+      {
+        "pagePath": "pages/info/info",
+        "iconPath": "static/tarbar/info.png",
+        "selectedIconPath": "static/tarbar/info.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/self/self",
+        "iconPath": "static/tarbar/self.png",
+        "selectedIconPath": "static/tarbar/self.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "sunui-upbasic": "/components/sunui-upimg-basic",
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap58.json"
+}

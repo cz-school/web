@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"success-box{ margin: 0 auto; padding-top: ",[0,100],"; text-align: center; }\n.",[1],"hint{ font-size: ",[0,32],"; font-weight: bold; margin-top: ",[0,20],"; }\n.",[1],"btn{ position: absolute; bottom: ",[0,70],"; left: 50%; -webkit-transform: translate(-50%); -ms-transform: translate(-50%); transform: translate(-50%); border: 1px solid red; color: #EC008C; }\n",],undefined,{path:"./pages/xy/payment/success.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/xy/payment/success.wxml') } }));

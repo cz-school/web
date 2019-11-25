@@ -41,7 +41,7 @@
 				url: '/pages/plaza/plaza',
 				modalName: null,
 				imgList: [],
-				baseUrl: 'http://127.0.0.1:9999/api/v1/',
+				baseUrl: 'http://47.104.29.236:9999/api/v1/',
 				// 输入框
 				textareaAValue: '',
 				radio: 0,
@@ -52,7 +52,7 @@
 				upImgBasic: {
 					// 后端图片接口地址
 					basicConfig: {
-						url: 'http://127.0.0.1:9999/api/v1/upload_phone'
+						url: 'http://47.104.29.236:9999/api/v1/upload_phone'
 					},
 					// 是否开启notli(开启的话就是选择完直接上传，关闭的话当count满足数量时才上传)
 					notli: true,

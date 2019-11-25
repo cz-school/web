@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "购物车",
-  "usingComponents": {}
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom",
+    "uni-number-box": "/components/uni-number-box"
+  }
 }

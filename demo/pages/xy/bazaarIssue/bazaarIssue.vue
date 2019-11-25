@@ -113,7 +113,7 @@
 				upImgBasic: {
 					// 后端图片接口地址
 					basicConfig: {
-						url: 'http://127.0.0.1:9999/api/v1/upload_phone'
+						url: 'http://47.104.29.236:9999/api/v1/upload_phone'
 					},
 					// 是否开启notli(开启的话就是选择完直接上传，关闭的话当count满足数量时才上传)
 					notli: false,
@@ -147,7 +147,7 @@
 				upImgBasics: {
 					// 后端图片接口地址
 					basicConfig: {
-						url: 'http://127.0.0.1:9999/api/v1/upload_phone'
+						url: 'http://47.104.29.236:9999/api/v1/upload_phone'
 					},
 					// 是否开启notli(开启的话就是选择完直接上传，关闭的话当count满足数量时才上传)
 					notli: false,
@@ -206,14 +206,14 @@
 				}
 				// console.log(shopData)
 				uni.request({
-					url: 'http://127.0.0.1:9999/api/v1/shop',
+					url: 'http://47.104.29.236:9999/api/v1/shop',
 					method: 'post',
 					data: {shopData},
 					success: res => {
 						// console.log(res.data.data[0].maxId)
 						this.shopId = res.data.data
 						uni.request({
-							url: `http://127.0.0.1:9999/api/v1/esclassify_shop`,
+							url: `http://47.104.29.236:9999/api/v1/esclassify_shop`,
 							method: 'post',
 							data: {
 								esclassifyId:this.esclassifyId,

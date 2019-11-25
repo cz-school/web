@@ -43,7 +43,7 @@
 				// 用户id
 				let id = 1;
 				uni.request({
-					url:'http://127.0.0.1:9999/api/v1/changesite/'+id,
+					url:'http://47.104.29.236:9999/api/v1/changesite/'+id,
 					method:'POST',
 					success:res =>{
 						this.site = res.data.data

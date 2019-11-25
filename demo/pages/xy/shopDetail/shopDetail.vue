@@ -47,14 +47,15 @@
 	export default {
 		onLoad(e) {
 			this.shopid = e.shopid
+			console.log(e)
 			uni.request({
-				url: `http://127.0.0.1:9999/api/v1/shopId/${this.shopid}`,
+				url: `http://47.104.29.236:9999/api/v1/shopId/` + this.shopid,
 				method: 'GET',
 				data: {},
 				success: res => {
 					this.shopData = res.data.data[0]
 					this.imgList = res.data.imgList
-					console.log(res.data)
+					console.log(res)
 					// uni.hideLoading()
 				},
 				fail: () => {},

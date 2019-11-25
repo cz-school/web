@@ -379,6 +379,12 @@
 			// 去支付
 			payment(index,id) {
 				let CurrentPages = getCurrentPages()
+				let pay = {
+					id:id,
+					path:CurrentPages[CurrentPages.length-1].route
+				}
+				pay = JSON.stringify(pay)
+				uni.setStorageSync('pay', pay);
 				uni.redirectTo({
 					url: `/pages/meituan/payment?id=${id}&path=${CurrentPages[CurrentPages.length-1].route}`
 				});

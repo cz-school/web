@@ -67,13 +67,6 @@
 		onLoad(option) {
 			this.menu_id = option.id;
 			let that = this;
-			// 获取到窗口id
-			uni.getStorage({
-				key: 'winid',
-				success: function(res) {
-					that.win_id = res.data.win_id;
-				}
-			});
 			// 获取到用户id
 			uni.getStorage({
 				key: 'user_id',
@@ -90,7 +83,6 @@
 		onReady() {
 			uni.hideLoading()
 		},
-
 		methods: {
 			// 获取的到菜品
 			getmenu() {
@@ -103,14 +95,18 @@
 				})
 			},
 			// 获取到商铺用户id
-
 			getStusersId() {
+				// 获取到窗口id
+				let id = uni.getStorageSync('winid')
+				this.win_id = id.win_id
+				// console.log(this.win_id)
 				uni.request({
 					url: `${this.host}/stusers_id`,
 					data: {
 						win_id: this.win_id
 					},
 					success: (data) => {
+						console.log(data.data)
 						this.stusersid = data.data.data[0].stuser_id
 					}
 				})

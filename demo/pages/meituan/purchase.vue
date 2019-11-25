@@ -208,12 +208,17 @@
 				}
 				uni.request({
 					method: 'POST',
-					url: `http://127.0.0.1:9999/api/v1/createorder_st`, //仅为示例，并非真实接口地址。
+					url: `http://47.104.29.236:9999/api/v1/createorder_st`, //仅为示例，并非真实接口地址。
 					data: {
 						data: data
 					},
 					success: (res) => {
-						
+						let pay = {
+							id:res.data.id,
+							path:'pages/meituan/order'
+						}
+						pay = JSON.stringify(pay)
+						uni.setStorageSync('pay', pay);
 						if (res.data.ok == 1) {
 							let CurrentPages = getCurrentPages()
 							uni.redirectTo({

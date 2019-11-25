@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "食堂首页",
+  "usingComponents": {
+    "sl-filter": "/components/songlazy-sl-filter/sl-filter/sl-filter",
+    "cu-custom": "/colorui/components/cu-custom"
+  }
+}

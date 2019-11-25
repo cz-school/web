@@ -1,0 +1,54 @@
+
+.title {
+	font-size: 50rpx;
+}
+uni-view.bazaarIssue-header {
+	background-color: #fff;
+}
+.footer {
+	width: 100%;
+	height: 100rpx;
+	background-color: #f1334f;
+	color: #FFF;
+	line-height: 100rpx;
+	text-align: center;
+}
+.content-image {
+	height: 500rpx;
+}
+.describe {
+	font-size: 35rpx;
+	padding: 40rpx;
+	line-height: 60rpx;
+}
+.header-right {
+	float: right;
+	color: #ed423c;
+	font-size: 50rpx;
+	margin-right: 100rpx;
+}
+.header-left,
+.header-center {
+	float: left;
+	font-weight: 700;
+	font-size: 50rpx;
+}
+.header-left image {
+	width: 100rpx;
+	margin-right: 20rpx;
+}
+.header {
+	height: 180rpx;
+	padding: 40rpx 0 40rpx;
+	margin-bottom: 40rpx;
+	overflow: hidden;
+	border-bottom: 1px solid #ccc;
+}
+view,
+image {
+	height: 100%;
+}
+.content {
+	padding: 0 40rpx;
+}
+
