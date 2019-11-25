@@ -91,7 +91,7 @@
     "autoclose": false
   },
   "appname": "传智校园",
-  "compilerVersion": "2.4.2",
+  "compilerVersion": "2.3.6",
   "usingComponents": {
     "sunui-upbasic": "/components/sunui-upimg-basic",
     "cu-custom": "/colorui/components/cu-custom"

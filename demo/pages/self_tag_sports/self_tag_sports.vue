@@ -4,9 +4,9 @@
 			<block slot="backText"></block>
 			<block slot="content">我热爱的运动</block>
 		</cu-custom>
-		<view class="cu-bar bg-white  create_tag">
-			<view class="tag_icon" @tap="showModal" data-target="DialogModal1">+</view>
-			<view class="tag_text" @tap="showModal" data-target="DialogModal1">创建标签</view>
+		<view class="bg-white fixed  padding cf">
+			<view class="tag_icon fl" @tap="showModal" data-target="DialogModal1">+</view>
+			<view class="tag_text fl text-red text-lg" @tap="showModal" data-target="DialogModal1">创建标签</view>
 			<view class="cu-modal" :class="modalName=='DialogModal1'?'show':''">
 				<view class="cu-dialog">
 					<view class="cu-bar bg-white justify-end">
@@ -28,8 +28,8 @@
 			</view>
 		</view>
 		<view class="tag_list">
-			<view class="cu-bar bg-white" v-for="(item,index) in tagList" :key='index'>
-				<checkbox-group class="block" @change="CheckboxChange(index)">
+			<view class="cu-bar bg-white" v-for="(item,index) in tagList" :key='index' @tap="CheckboxChange(index)">
+				<checkbox-group class="block">
 					<view class="cu-form-group">
 						<view class="title check_title">{{item.tag_name}}</view>
 						<checkbox class='round ' :class="item.checked?'checked':''" :checked="item.checked?true:false"></checkbox>
@@ -149,31 +149,14 @@
 </script>
 
 <style>
-	.self_tag_our {
-		width: 100%;
-	}
-
-	.create_tag {
-		z-index: 10;
-		width: 100%;
-		position: fixed;
-		left: 0rpx;
-		top: 90rpx;
-		padding: 0rpx 20rpx;
-		font-size: 30rpx;
-		color: red;
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-	}
-
-	.create_tag .tag_icon {
+	.tag_icon {
+		margin-top: 10rpx;
 		border: 1rpx solid red;
 		margin-right: 30rpx;
-		width: 50rpx;
-		height: 50rpx;
+		width: 40rpx;
+		height: 40rpx;
 		text-align: center;
-		line-height: 50rpx;
+		line-height: 40rpx;
 		font-weight: 700;
 		border-radius: 100%;
 	}

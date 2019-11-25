@@ -82,63 +82,62 @@
 						<view class='cu-tag bg-pink margin-left-xs radius' v-for="v in ourFoods">{{v.tag_name}}</view>
 					</view>
 					<view class="content_tag fl " v-else>
-						<input type="text" placeholder="请先选择您的个性标签" :disabled="true" />
+						<input type="text" placeholder="我爱吃的美食" :disabled="true" />
 					</view>
 					<view class=" cuIcon-right fr"></view>
 				</view>
 			</view>
 		</view>
 		<view class="form_self">
-			<form @submit="" @reset="">
-				<view class="cu-form-group">
-					<view class="title">昵称</view>
-					<input v-model="formlist.username" name="input"></input>
+			<form>
+				<view class="cu-form-group flex flex-wrap padding">
+					<view class='basis-xl padding-top-sm'>
+						<text class='title'>昵称</text>
+					</view>
+					<view class="action basis-xl ">
+						<input v-model="formlist.username" name="input"></input>
+					</view>
 				</view>
-				<view class="cu-form-group">
-					<view class="title">性别</view>
-					<!-- <input placeholder="请选择你的性别" name="input"></input> -->
-					<picker @change="PickerChange" :value="sexindex" :range="sexbox">
-						<view class="picker">
+				<view class="cu-form-group flex flex-wrap padding">
+					<view class='basis-xl padding-top-sm'>
+						<view class="title">性别</view>
+					</view>
+					<view class="action basis-xl ">
+						<picker @change="PickerChange" :value="sexindex" :range="sexbox">
 							{{sexindex>-1?sexbox[sexindex]:'请先选择性别'}}
-						</view>
-					</picker>
+						</picker>
+					</view>
 				</view>
-				<view class="cu-form-group">
-					<view class="title">生日</view>
-					<!-- <input placeholder="0000-00-00" name="input"></input> -->
-					<picker mode="date" :value="birthday" start="1900-01-01" end="2019-12-12" @change="DateChange">
-						<view class="picker">
-							{{birthday}}
-						</view>
-					</picker>
+				<view class="cu-form-group flex flex-wrap padding">
+					<view class='basis-xl padding-top-sm'>
+						<view class="title">生日</view>
+					</view>
+					<view class="action basis-xl ">
+						<picker mode="date" :value="birthday" start="1990-00-00" end="2019-12-12" @change="DateChange">
+							<view class="picker">
+								{{birthday}}
+							</view>
+						</picker>
+					</view>
 				</view>
-				<view class="cu-form-group">
-					<view class="title">学校</view>
-					<input v-model="formlist.school" name="input" :disabled="true"></input>
+				<view class="cu-form-group flex flex-wrap padding">
+					<view class='basis-xl padding-top-sm'>
+						<text class='title'>学校</text>
+					</view>
+					<view class="action basis-xl ">
+						<input v-model="formlist.school" name="input" :disabled="true"></input>
+					</view>
 				</view>
-				<view class="cu-form-group align-start">
-					<view class="title">签名</view>
-					<textarea v-model="formlist.sign" placeholder="请填写你的个性签名"></textarea>
+				<view class="cu-form-group flex flex-wrap padding">
+					<view class='basis-xl padding-top-sm'>
+						<text class='title'>签名</text>
+					</view>
+					<view class="action basis-xl ">
+						<textarea v-model="formlist.sign" placeholder="请填写你的个性签名"></textarea>
+					</view>
 				</view>
 				<view class="padding-bottom-xl flex flex-direction">
-					<button class="cu-btn bg-green lg" @tap="showModal" data-target="DialogModal1">保存修改</button>
-				</view>
-				<!-- 保存修改模态框 -->
-				<view class="cu-modal" :class="modalName=='DialogModal1'?'show':''">
-					<view class="cu-dialog">
-						<view class="cu-bar bg-white justify-end">
-							<view class="content">亲，您确认要修改吗？</view>
-							<view class="action" @tap="hideModal">
-								<text class="cuIcon-close text-red"></text>
-							</view>
-						</view>
-						<view class="cu-bar bg-white justify-end">
-							<view class="action">
-								<button class="cu-btn line-green text-green" @tap="hideModal">取消</button>
-								<button class="cu-btn bg-green margin-left" @tap="saveselfInfo">确定</button>
-							</view>
-						</view>
-					</view>
+					<button class="cu-btn bg-green lg" @tap="saveselfInfo">保存修改</button>
 				</view>
 				<view class="padding-bottom-xl flex flex-direction">
 					<button class="cu-btn bg-grey lg" @tap="layout">退出登录</button>
@@ -151,8 +150,8 @@
 
 <script>
 	export default {
-		// 当页面加载时触发
-		onLoad() {
+		// 当页面显示时触发
+		onShow() {
 			// 获取编辑个人数据
 			this.getselfInfo()
 			// 获取game tag
@@ -224,7 +223,6 @@
 				sexbox: ['男', '女'],
 				// 出生日期
 				birthday: '1970-01-01',
-				modalName: null,
 				basicArr: [],
 				formlist: [],
 				baseUrl: 'http://47.104.29.236:9999/api/v1',
@@ -232,7 +230,6 @@
 				imgList: [],
 				imgList1: ["http://hbimg.b0.upaiyun.com/9817192fbf6914a38e77e0d289253e6d2f8d88b71635-VDp6dR_fw658"],
 				imgList2: ["http://hbimg.b0.upaiyun.com/9817192fbf6914a38e77e0d289253e6d2f8d88b71635-VDp6dR_fw658"],
-				modalName: null
 			}
 		},
 		methods: {
@@ -246,26 +243,37 @@
 			saveselfInfo() {
 				let date = parseFloat(new Date(this.formlist.birthday).getTime() / 1000)
 				this.formlist.birthday = date
-				uni.request({
-					url: this.baseUrl + `/update_info/${this.id}`,
-					method: 'PUT',
-					data: {
-						info: JSON.stringify(this.formlist)
-					},
+				uni.showModal({
+					title: '保存修改',
+					content: '亲。你确认要修改个人信息吗？',
+					cancelText: '取消，再看看',
+					cancelColor: '#D1372C',
+					confirmText: '确认修改',
+					confirmColor: '#09BB07',
 					success: (res) => {
-						console.log(res)
-						if (res.data.ok == 1) {
-							uni.showToast({
-								title: "修改成功",
+						if (res.cancel == true) {
+							return uni.showToast({
+								title: '已取消修改'
 							})
-							this.modalName = null
 						} else {
-							uni.hideToast({
-								title: "修改失败",
+							uni.request({
+								url: this.baseUrl + `/update_info/${this.id}`,
+								method: 'PUT',
+								data: {
+									info: JSON.stringify(this.formlist)
+								},
+								success: (res) => {
+									if (res.data.ok == 1) {
+										return uni.showToast({
+											title: "修改成功",
+										})
+									}
+								}
 							})
 						}
 					}
 				})
+
 			},
 			// 获取个人用户信息
 			getselfInfo() {
@@ -305,11 +313,15 @@
 			},
 			ChooseImage() {
 				let _self = this;
+				uni.showLoading({
+					title: 'loading'
+				})
 				uni.chooseImage({
 					count: 1,
 					sizeType: ['original'], //可以指定是原图还是压缩图，默认二者都有
 					sourceType: ['album'], //从相册选择
 					success: (res) => {
+						uni.hideLoading()
 						const tempFilePaths = res.tempFilePaths;
 						const uploadTask = uni.uploadFile({
 							url: 'http://47.104.29.236:9999/api/v1/upload_phone',
@@ -329,6 +341,7 @@
 						console.log(e);
 					}
 				});
+
 			},
 			ChooseImage1() {
 				let _self = this;
@@ -393,38 +406,72 @@
 			// 退出登录
 			layout() {
 				uni.showLoading({
-					title: 'loading'
-				});
-				uni.clearStorage()
-				uni.navigateTo({
-					url: '../login/login'
+					title: '正在加载中...'
 				})
+				setTimeout(function() {
+					uni.hideLoading();
+					uni.clearStorage()
+					uni.reLaunch({
+						url: '../login/login'
+					})
+				}, 300);
 			},
 			// 点击跳转到tag页面
 			our_sports() {
-				uni.navigateTo({
-					url: '../self_tag_sports/self_tag_sports'
+				uni.showLoading({
+					title: 'loading'
 				})
+				setTimeout(function() {
+					uni.navigateTo({
+						url: '../self_tag_sports/self_tag_sports'
+					})
+					uni.hideLoading();
+				}, 300);
 			},
 			our_tags() {
-				uni.navigateTo({
-					url: '../self_tag_our/self_tag_our'
+				uni.showLoading({
+					title: 'loading'
 				})
+				setTimeout(() => {
+					uni.navigateTo({
+						url: '../self_tag_our/self_tag_our'
+					})
+					uni.hideLoading()
+				}, 300)
 			},
 			our_games() {
-				uni.navigateTo({
-					url: '../self_tag_games/self_tag_games'
+				uni.showLoading({
+					title: 'loading'
 				})
+				setTimeout(() => {
+					uni.navigateTo({
+						url: '../self_tag_games/self_tag_games'
+					})
+					uni.hideLoading()
+				}, 300)
 			},
 			our_music() {
-				uni.navigateTo({
-					url: '../self_tag_music/self_tag_music'
+				uni.showLoading({
+					title: 'loading'
 				})
+				setTimeout(() => {
+					uni.navigateTo({
+						url: '../self_tag_music/self_tag_music'
+					})
+					uni.hideLoading()
+				}, 300);
 			},
 			our_foods() {
-				uni.navigateTo({
-					url: '../self_tag_foods/self_tag_foods'
+				uni.showLoading({
+					title: 'loading'
 				})
+				setTimeout(() => {
+					uni.navigateTo({
+						url: '../self_tag_foods/self_tag_foods'
+					})
+					uni.hideLoading()
+				}, 300)
+
 			},
 		}
 	}
@@ -458,5 +505,13 @@
 
 	.content_tag {
 		width: 600rpx;
+	}
+
+	.cu-form-group picker::after {
+		content: "";
+	}
+
+	.cu-form-group picker .picker {
+		text-align: left
 	}
 </style>
