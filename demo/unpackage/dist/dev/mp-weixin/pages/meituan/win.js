@@ -222,6 +222,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   onLoad: function onLoad(option) {
     this.win_id = option.id;
+    console.log(this.win_id);
     // 获取到用户id
     var id = uni.getStorageSync('user_id');
     this.user_id = id;
@@ -235,8 +236,8 @@ __webpack_require__.r(__webpack_exports__);
     // 获取到商铺用户id
     getStusersId: function getStusersId() {var _this = this;
       // 获取到窗口id
-      var id = uni.getStorageSync('winid');
-      this.win_id = id.win_id;
+      // let id = uni.getStorageSync('winid')
+      // this.win_id = id.win_id
       uni.request({
         url: "".concat(this.host, "/stusers_id"),
         data: {
@@ -265,48 +266,48 @@ __webpack_require__.r(__webpack_exports__);
         } });
 
     },
-    // TabSelect(e) {
-    // 	this.tabCur = e.currentTarget.dataset.id;
-    // 	this.mainCur = e.currentTarget.dataset.id;
-    // 	this.verticalNavTop = (e.currentTarget.dataset.id - 1) * 50
-    // },
+    TabSelect: function TabSelect(e) {
+      this.tabCur = e.currentTarget.dataset.id;
+      this.mainCur = e.currentTarget.dataset.id;
+      this.verticalNavTop = (e.currentTarget.dataset.id - 1) * 50;
+    },
 
-    // VerticalMain(e) {
-    //
+    VerticalMain: function VerticalMain(e) {var _this3 = this;
 
 
-    // 	let that = this;
-    // 	let tabHeight = 0;
-    // 	if (this.load) {
-    // 		for (let i = 0; i < this.list.length; i++) {
-    // 			let view = uni.createSelectorQuery().select("#main-" + this.list[i].id);
-    // 			view.fields({
-    // 				size: true
-    // 			}, data => {
-    // 				this.list[i].top = tabHeight;
-    // 				tabHeight = tabHeight + data.height;
-    // 				this.list[i].bottom = tabHeight;
-    // 			}).exec();
-    // 		}
-    // 		this.load = false
-    // 	}
-    // 	let scrollTop = e.detail.scrollTop + 10;
-    // 	for (let i = 0; i < this.list.length; i++) {
-    // 		if (scrollTop > this.list[i].top && scrollTop < this.list[i].bottom) {
-    // 			this.verticalNavTop = (this.list[i].id - 1) * 50
-    // 			this.tabCur = this.list[i].id
-    // 			console.log(scrollTop)
-    // 			return false
-    // 		}
-    // 	}
-    // },
+
+      var that = this;
+      var tabHeight = 0;
+      if (this.load) {var _loop = function _loop(
+        i) {
+          var view = uni.createSelectorQuery().select("#main-" + _this3.list[i].id);
+          view.fields({
+            size: true },
+          function (data) {
+            _this3.list[i].top = tabHeight;
+            tabHeight = tabHeight + data.height;
+            _this3.list[i].bottom = tabHeight;
+          }).exec();};for (var i = 0; i < this.list.length; i++) {_loop(i);
+        }
+        this.load = false;
+      }
+      var scrollTop = e.detail.scrollTop + 10;
+      for (var i = 0; i < this.list.length; i++) {
+        if (scrollTop > this.list[i].top && scrollTop < this.list[i].bottom) {
+          this.verticalNavTop = (this.list[i].id - 1) * 50;
+          this.tabCur = this.list[i].id;
+          console.log(scrollTop);
+          return false;
+        }
+      }
+    },
     // 获取到分类
-    getClassify: function getClassify() {var _this3 = this;
+    getClassify: function getClassify() {var _this4 = this;
       uni.request({
         url: "".concat(this.host, "/classify_list_st/").concat(this.win_id),
         success: function success(data) {
-          _this3.menu = data.data.data.menu;
-          _this3.classify = data.data.data.classify;
+          _this4.menu = data.data.data.menu;
+          _this4.classify = data.data.data.classify;
         } });
 
     },
@@ -323,7 +324,7 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     // 获取到购物车中的数据数量
-    getcare: function getcare() {var _this4 = this;
+    getcare: function getcare() {var _this5 = this;
       console.log(this.user_id);
       uni.request({
         url: "".concat(this.host, "/care_st"),
@@ -331,7 +332,7 @@ __webpack_require__.r(__webpack_exports__);
           user_id: this.user_id },
 
         success: function success(res) {
-          _this4.care_num = res.data.data[0].care_num;
+          _this5.care_num = res.data.data[0].care_num;
         } });
 
     },
@@ -343,14 +344,16 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     // 获取到对应的标题
-    getwin: function getwin() {var _this5 = this;
+    getwin: function getwin() {var _this6 = this;
+      console.log(this.win_id);
       uni.request({
         url: "".concat(this.host, "/stusers_id"),
         data: {
           win_id: this.win_id },
 
         success: function success(res) {
-          _this5.win_name = res.data.data[0].win_name;
+          console.log(res);
+          _this6.win_name = res.data.data[0].win_name;
         } });
 
     } },
@@ -359,7 +362,7 @@ __webpack_require__.r(__webpack_exports__);
     this.getStusersId();
     this.getClassify();
     this.getcare();
-    this.getwin();
+    // this.getwin();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

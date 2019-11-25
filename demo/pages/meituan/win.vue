@@ -41,7 +41,7 @@
 									<text class="text-cut">{{item.menu_name}}</text>
 									<view class="cu-tag round bg-orange sm">{{item.menu_unit}}</view>
 									<view class="cu-tag round bg-orange sm" style="margin: 0px 0px 0px auto;" @tap.stop="addcare" v-bind:id="item.menu_id">+
-										</view>
+									</view>
 								</view>
 								<view class="text-gray text-sm flex">
 									<text class="text-cut">
@@ -98,9 +98,10 @@
 		},
 		onLoad(option) {
 			this.win_id = option.id;
+			console.log(this.win_id);
 			// 获取到用户id
 			let id = uni.getStorageSync('user_id')
-			this.user_id= id
+			this.user_id = id
 
 		},
 		onReady() {
@@ -111,8 +112,8 @@
 			// 获取到商铺用户id
 			getStusersId() {
 				// 获取到窗口id
-				let id = uni.getStorageSync('winid')
-				this.win_id = id.win_id
+				// let id = uni.getStorageSync('winid')
+				// this.win_id = id.win_id
 				uni.request({
 					url: `${this.host}/stusers_id`,
 					data: {
@@ -141,41 +142,41 @@
 					}
 				})
 			},
-			// TabSelect(e) {
-			// 	this.tabCur = e.currentTarget.dataset.id;
-			// 	this.mainCur = e.currentTarget.dataset.id;
-			// 	this.verticalNavTop = (e.currentTarget.dataset.id - 1) * 50
-			// },
+			TabSelect(e) {
+				this.tabCur = e.currentTarget.dataset.id;
+				this.mainCur = e.currentTarget.dataset.id;
+				this.verticalNavTop = (e.currentTarget.dataset.id - 1) * 50
+			},
 
-			// VerticalMain(e) {
-			// 	// #ifdef MP-ALIPAY
-			// 	return false //支付宝小程序暂时不支持双向联动 
-			// 	// #endif
-			// 	let that = this;
-			// 	let tabHeight = 0;
-			// 	if (this.load) {
-			// 		for (let i = 0; i < this.list.length; i++) {
-			// 			let view = uni.createSelectorQuery().select("#main-" + this.list[i].id);
-			// 			view.fields({
-			// 				size: true
-			// 			}, data => {
-			// 				this.list[i].top = tabHeight;
-			// 				tabHeight = tabHeight + data.height;
-			// 				this.list[i].bottom = tabHeight;
-			// 			}).exec();
-			// 		}
-			// 		this.load = false
-			// 	}
-			// 	let scrollTop = e.detail.scrollTop + 10;
-			// 	for (let i = 0; i < this.list.length; i++) {
-			// 		if (scrollTop > this.list[i].top && scrollTop < this.list[i].bottom) {
-			// 			this.verticalNavTop = (this.list[i].id - 1) * 50
-			// 			this.tabCur = this.list[i].id
-			// 			console.log(scrollTop)
-			// 			return false
-			// 		}
-			// 	}
-			// },
+			VerticalMain(e) {
+				// #ifdef MP-ALIPAY
+				return false //支付宝小程序暂时不支持双向联动 
+				// #endif
+				let that = this;
+				let tabHeight = 0;
+				if (this.load) {
+					for (let i = 0; i < this.list.length; i++) {
+						let view = uni.createSelectorQuery().select("#main-" + this.list[i].id);
+						view.fields({
+							size: true
+						}, data => {
+							this.list[i].top = tabHeight;
+							tabHeight = tabHeight + data.height;
+							this.list[i].bottom = tabHeight;
+						}).exec();
+					}
+					this.load = false
+				}
+				let scrollTop = e.detail.scrollTop + 10;
+				for (let i = 0; i < this.list.length; i++) {
+					if (scrollTop > this.list[i].top && scrollTop < this.list[i].bottom) {
+						this.verticalNavTop = (this.list[i].id - 1) * 50
+						this.tabCur = this.list[i].id
+						console.log(scrollTop)
+						return false
+					}
+				}
+			},
 			// 获取到分类
 			getClassify() {
 				uni.request({
@@ -220,12 +221,14 @@
 			},
 			// 获取到对应的标题
 			getwin() {
+				console.log(this.win_id);
 				uni.request({
 					url: `${this.host}/stusers_id`,
 					data: {
 						win_id: this.win_id
 					},
 					success: (res) => {
+						console.log(res);
 						this.win_name = res.data.data[0].win_name
 					}
 				})
@@ -235,7 +238,7 @@
 			this.getStusersId();
 			this.getClassify();
 			this.getcare();
-			this.getwin();
+			// this.getwin();
 		}
 	}
 </script>
