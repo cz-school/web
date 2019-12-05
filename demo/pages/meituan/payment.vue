@@ -101,7 +101,7 @@ export default {
 			// console.log(this.orderId)
 			uni.request({
 				// 接口
-				url: 'http://47.104.29.236:9999/api/v1/getOrderMoney',
+				url: 'http://gs.itsse.cn:9999/api/v1/getOrderMoney',
 				// 请求方式
 				method: 'GET',
 				// 携带的数据
@@ -120,7 +120,7 @@ export default {
 			let id = uni.getStorageSync('user_id')
 			uni.request({
 				// 接口
-				url: 'http://47.104.29.236:9999/api/v1/getUsersMoney',
+				url: 'http://gs.itsse.cn:9999/api/v1/getUsersMoney',
 				// 请求方式
 				method: 'GET',
 				// 携带的数据
@@ -147,7 +147,7 @@ export default {
 				})
 				uni.request({
 					// 接口
-					url: 'http://47.104.29.236:9999/api/v1/updateOrderMoneyAll',
+					url: 'http://gs.itsse.cn:9999/api/v1/updateOrderMoneyAll',
 					// 请求方式
 					method: 'POST',
 					// 携带的数据
@@ -177,7 +177,7 @@ export default {
 					let id = uni.getStorageSync('user_id')
 					uni.request({
 						// 接口
-						url: 'http://47.104.29.236:9999/api/v1/updateOrderMoney',
+						url: 'http://gs.itsse.cn:9999/api/v1/updateOrderMoney',
 						// 请求方式
 						method: 'POST',
 						// 携带的数据
@@ -193,7 +193,7 @@ export default {
 					})
 					uni.request({
 						// 接口
-						url: 'http://47.104.29.236:9999/api/v1/updateOrderMoneyAll',
+						url: 'http://gs.itsse.cn:9999/api/v1/updateOrderMoneyAll',
 						// 请求方式
 						method: 'POST',
 						// 携带的数据

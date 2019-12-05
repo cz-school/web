@@ -37,4 +37,10 @@
 .content_tag {
 	width: 600rpx;
 }
+.cu-form-group picker::after {
+	content: "";
+}
+.cu-form-group picker .picker {
+	text-align: left
+}
 

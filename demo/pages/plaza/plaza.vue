@@ -146,7 +146,7 @@
 		},
 		onLoad() {
 			uni.request({
-				url: 'http://47.104.29.236:9999/api/v1/plaza',
+				url: 'http://gs.itsse.cn:9999/api/v1/plaza',
 				method: 'GET',
 				data: {},
 				success: res => {

@@ -58,7 +58,7 @@
 				],
 				isCard: true,
 				swiperHeight: '',
-				baseUrl: 'http://47.104.29.236:9999/api/v1',
+				baseUrl: 'http://gs.itsse.cn:9999/api/v1',
 				// 收到点赞
 				getList: [],
 				// 发出的点赞

@@ -229,7 +229,7 @@
 
 				uni.request({
 					method: 'GET',
-					url: `http://47.104.29.236:9999/api/v1/order_st/${state}?id=${this.uid}`, //仅为示例，并非真实接口地址。
+					url: `http://gs.itsse.cn:9999/api/v1/order_st/${state}?id=${this.uid}`, //仅为示例，并非真实接口地址。
 					data: {},
 					header: {
 						// 'custom-header': 'hello' //自定义请求头信息
@@ -267,7 +267,7 @@
 				})
 				uni.request({
 					method: 'DELETE',
-					url: `http://47.104.29.236:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
+					url: `http://gs.itsse.cn:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
 					data: {},
 					header: {
 						// 'custom-header': 'hello' //自定义请求头信息
@@ -289,7 +289,7 @@
 
 				uni.request({
 					method: 'PUT',
-					url: `http://47.104.29.236:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
+					url: `http://gs.itsse.cn:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
 					data: {
 						type: 5
 					},
@@ -313,7 +313,7 @@
 
 				uni.request({
 					method: 'PUT',
-					url: `http://47.104.29.236:9999/api/v1/order_st/refund/${id}`, //仅为示例，并非真实接口地址。
+					url: `http://gs.itsse.cn:9999/api/v1/order_st/refund/${id}`, //仅为示例，并非真实接口地址。
 					data: {
 						type: 1
 					},
@@ -337,7 +337,7 @@
 			
 				uni.request({
 					method: 'PUT',
-					url: `http://47.104.29.236:9999/api/v1/order_st/unrefund/${id}`, //仅为示例，并非真实接口地址。
+					url: `http://gs.itsse.cn:9999/api/v1/order_st/unrefund/${id}`, //仅为示例，并非真实接口地址。
 					data: {
 						type: 0
 					},
@@ -361,7 +361,7 @@
 
 				uni.request({
 					method: 'PUT',
-					url: `http://47.104.29.236:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
+					url: `http://gs.itsse.cn:9999/api/v1/order_st/${id}`, //仅为示例，并非真实接口地址。
 					data: {
 						type: 3
 					},

@@ -29,7 +29,7 @@
 		},
 		onLoad() {
 			uni.request({
-				url: 'http://47.104.29.236:9999/api/v1/esclassify',
+				url: 'http://gs.itsse.cn:9999/api/v1/esclassify',
 				method: 'GET',
 				data: {},
 				success: res => {

@@ -225,7 +225,7 @@
 				birthday: '1970-01-01',
 				basicArr: [],
 				formlist: [],
-				baseUrl: 'http://47.104.29.236:9999/api/v1',
+				baseUrl: 'http://gs.itsse.cn:9999/api/v1',
 				id: '',
 				imgList: [],
 				imgList1: ["http://hbimg.b0.upaiyun.com/9817192fbf6914a38e77e0d289253e6d2f8d88b71635-VDp6dR_fw658"],
@@ -324,7 +324,7 @@
 						uni.hideLoading()
 						const tempFilePaths = res.tempFilePaths;
 						const uploadTask = uni.uploadFile({
-							url: 'http://47.104.29.236:9999/api/v1/upload_phone',
+							url: 'http://gs.itsse.cn:9999/api/v1/upload_phone',
 							filePath: tempFilePaths[0],
 							name: 'file',
 							formData: {
@@ -352,7 +352,7 @@
 					success: (res) => {
 						const tempFilePaths = res.tempFilePaths;
 						const uploadTask = uni.uploadFile({
-							url: 'http://47.104.29.236:9999/api/v1/upload_phone',
+							url: 'http://gs.itsse.cn:9999/api/v1/upload_phone',
 							filePath: tempFilePaths[0],
 							name: 'file',
 							formData: {
@@ -382,7 +382,7 @@
 					success: (res) => {
 						const tempFilePaths = res.tempFilePaths;
 						const uploadTask = uni.uploadFile({
-							url: 'http://47.104.29.236:9999/api/v1/upload_phone',
+							url: 'http://gs.itsse.cn:9999/api/v1/upload_phone',
 							filePath: tempFilePaths[0],
 							name: 'file',
 							formData: {

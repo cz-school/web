@@ -49,7 +49,7 @@
 			this.shopid = e.shopid
 			console.log(e)
 			uni.request({
-				url: `http://47.104.29.236:9999/api/v1/shopId/` + this.shopid,
+				url: `http://gs.itsse.cn:9999/api/v1/shopId/` + this.shopid,
 				method: 'GET',
 				data: {},
 				success: res => {

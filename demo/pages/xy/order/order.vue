@@ -54,7 +54,7 @@ export default {
 		},
 		gainOrder(){
 			uni.request({
-				url: 'http://47.104.29.236:9999/api/v1/gainOrder',
+				url: 'http://gs.itsse.cn:9999/api/v1/gainOrder',
 				method: 'POST',
 				data:{userid:this.userid},
 				success: res => {

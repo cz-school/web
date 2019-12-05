@@ -117,7 +117,7 @@
 				let id = uni.getStorageSync('user_id')
 				uni.request({
 					// 接口
-					url: 'http://47.104.29.236:9999/api/v1/addSite',
+					url: 'http://gs.itsse.cn:9999/api/v1/addSite',
 					// 请求方式
 					method: 'POST',
 					// 携带的数据

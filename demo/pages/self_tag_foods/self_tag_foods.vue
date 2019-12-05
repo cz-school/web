@@ -52,7 +52,7 @@
 				modalName: null,
 				inputvalue: '',
 				tagList: [],
-				baseUrl: "http://47.104.29.236:9999/api/v1",
+				baseUrl: "http://gs.itsse.cn:9999/api/v1",
 				// 用户id
 				id: '',
 				// 选中tag标签数组

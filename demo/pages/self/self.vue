@@ -115,7 +115,7 @@
 				    ],
 				// 用户id
 				id: '',
-				baseUrl: 'http://47.104.29.236:9999/api/v1'
+				baseUrl: 'http://gs.itsse.cn:9999/api/v1'
 			}
 		},
 		methods: {

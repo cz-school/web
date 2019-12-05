@@ -149,7 +149,7 @@
 
 			// siteDefault
 			uni.request({
-				url: `http://47.104.29.236:9999/api/v1/siteDefault`, //仅为示例，并非真实接口地址。
+				url: `http://gs.itsse.cn:9999/api/v1/siteDefault`, //仅为示例，并非真实接口地址。
 				success: (res) => {
 
 					if (res.data.ok == 1) {
@@ -172,7 +172,7 @@
 				})
 				this.myCart = cart
 				uni.request({
-					url: `http://47.104.29.236:9999/api/v1/purchase/${ids.join(",")}`, //仅为示例，并非真实接口地址。
+					url: `http://gs.itsse.cn:9999/api/v1/purchase/${ids.join(",")}`, //仅为示例，并非真实接口地址。
 					success: (res) => {
 						if (res.data.ok === 1) {
 							this.goodsList = res.data.data;
@@ -208,7 +208,7 @@
 				}
 				uni.request({
 					method: 'POST',
-					url: `http://47.104.29.236:9999/api/v1/createorder_st`, //仅为示例，并非真实接口地址。
+					url: `http://gs.itsse.cn:9999/api/v1/createorder_st`, //仅为示例，并非真实接口地址。
 					data: {
 						data: data
 					},

@@ -78,7 +78,7 @@ export default {
 		// 获取商品数据
 		commodity() {
 			uni.request({
-				url: 'http://47.104.29.236:9999/api/v1/purchase/' + this.commodityId,
+				url: 'http://gs.itsse.cn:9999/api/v1/purchase/' + this.commodityId,
 				method: 'POST',
 				data: {},
 				success: res => {
@@ -92,7 +92,7 @@ export default {
 		site() {
 			// 获取数据
 			uni.request({
-				url: 'http://47.104.29.236:9999/api/v1/purchaseSite',
+				url: 'http://gs.itsse.cn:9999/api/v1/purchaseSite',
 				method: 'POST',
 				data: { id: this.id, userid: this.userid },
 				success: res => {
@@ -119,7 +119,7 @@ export default {
 		},
 		confirm(e){
 		  uni.request({
-		  	url: 'http://47.104.29.236:9999/api/v1/payment',
+		  	url: 'http://gs.itsse.cn:9999/api/v1/payment',
 		  	method: 'POST',
 		  	data: { commodityId: this.commodityId, userid: this.userid },
 		  	success: res => {
@@ -133,7 +133,7 @@ export default {
 		  			// 生成订单
 		  			console.log(1)
 		  			uni.request({
-		  				url: 'http://47.104.29.236:9999/api/v1/createorder',
+		  				url: 'http://gs.itsse.cn:9999/api/v1/createorder',
 		  				method: 'POST',
 		  				data: { price: price, userid: this.userid, sites: this.sites , commodityId: this.commodityId},
 		  				success: res => {

@@ -453,7 +453,7 @@
 		},
 		data() {
 			return {
-			host: "http://47.104.29.236:9999/api/v1",
+			host: "http://gs.itsse.cn:9999/api/v1",
 			// host: "http://127.0.0.1:9999/api/v1",
 				win_menu: [],
 				menu: [],

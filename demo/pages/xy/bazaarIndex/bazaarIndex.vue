@@ -82,7 +82,7 @@
 				this.renderImage = true;
 			}, 300);
 			uni.request({
-				url: 'http://47.104.29.236:9999/api/v1/esclassify',
+				url: 'http://gs.itsse.cn:9999/api/v1/esclassify',
 				method: 'GET',
 				data: {},
 				success: res => {
@@ -136,7 +136,7 @@
 			getShop(e) {
 				console.log(e);
 				uni.request({
-					url: `http://47.104.29.236:9999/api/v1/shop/${this.active}`,
+					url: `http://gs.itsse.cn:9999/api/v1/shop/${this.active}`,
 					method: 'GET',
 					data: {
 						inputVal: e,

@@ -30,7 +30,7 @@ export default {
 	methods:{
 		publish(){
 			uni.request({
-				url: 'http://47.104.29.236:9999/api/v1/comment',
+				url: 'http://gs.itsse.cn:9999/api/v1/comment',
 				method: 'POST',
 				data: { id: this.id,value:this.value},
 				success: res => {

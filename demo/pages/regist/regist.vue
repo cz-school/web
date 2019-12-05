@@ -37,7 +37,7 @@
 				username: '18502866256',
 				password: '',
 				url: '../../pages/login/login',
-				baseUrl: 'http://47.104.29.236:9999/api/v1'
+				baseUrl: 'http://gs.itsse.cn:9999/api/v1'
 			}
 		},
 		methods: {

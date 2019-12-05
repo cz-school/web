@@ -133,7 +133,7 @@
 				let id = uni.getStorageSync('user_id')
 				uni.request({
 					// 接口
-					url: 'http://47.104.29.236:9999/api/v1/alertSite',
+					url: 'http://gs.itsse.cn:9999/api/v1/alertSite',
 					// 请求方式
 					method: 'GET',
 					// 携带的数据
@@ -177,7 +177,7 @@
 			
 				uni.request({
 					// 接口
-					url: 'http://47.104.29.236:9999/api/v1/deleteSite',
+					url: 'http://gs.itsse.cn:9999/api/v1/deleteSite',
 					// 请求方式
 					method: 'DELETE',
 					// 携带的数据
@@ -213,7 +213,7 @@
 			alertForm() {
 				uni.request({
 					// 接口
-					url: 'http://47.104.29.236:9999/api/v1/siteShow',
+					url: 'http://gs.itsse.cn:9999/api/v1/siteShow',
 					// 请求方式
 					method: 'GET',
 					// 携带的数据

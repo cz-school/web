@@ -88,6 +88,5 @@
   "usingComponents": {
     "sunui-upbasic": "/components/sunui-upimg-basic",
     "cu-custom": "/colorui/components/cu-custom"
-  },
-  "sitemapLocation": "sitemap5.json"
+  }
 }

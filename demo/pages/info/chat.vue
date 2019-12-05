@@ -52,7 +52,7 @@
 				info: '',
 				url: '/pages/info/info',
 				room_id: '',
-				baseUrl: 'http://47.104.29.236:9999/api/v1',
+				baseUrl: 'http://gs.itsse.cn:9999/api/v1',
 				// 用户名
 				username: '',
 				// 消息
@@ -90,7 +90,7 @@
 				// 创建一个this.socketTask对象【发送、接收、关闭socket都由这个对象操作】
 				this.socketTask = uni.connectSocket({
 					// 【非常重要】必须确保你的服务器是成功的,如果是手机测试千万别使用ws://127.0.0.1:9099【特别容易犯的错误】
-					url: "ws://47.104.29.236:3101",
+					url: "ws://gs.itsse.cn:3101",
 					success(data) {
 						// console.log("websocket连接成功");
 					},

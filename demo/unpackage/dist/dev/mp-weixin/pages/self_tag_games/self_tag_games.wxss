@@ -1,41 +1,16 @@
 
-.self_tag_our {
-		width: 100%;
-}
-.create_tag {
-		z-index: 10;
-		width: 100%;
-		position: fixed;
-		left: 0rpx;
-		top: 90rpx;
-		padding: 0rpx 20rpx;
-		font-size: 30rpx;
-		color: red;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-orient: horizontal;
-		-webkit-box-direction: normal;
-		-webkit-flex-direction: row;
-		    -ms-flex-direction: row;
-		        flex-direction: row;
-		-webkit-box-pack: start;
-		-webkit-justify-content: flex-start;
-		    -ms-flex-pack: start;
-		        justify-content: flex-start;
-}
-.create_tag .tag_icon {
-		border: 1rpx solid red;
-		margin-right: 30rpx;
-		width: 50rpx;
-		height: 50rpx;
-		text-align: center;
-		line-height: 50rpx;
-		font-weight: 700;
-		border-radius: 100%;
+.tag_icon {
+	margin-top: 10rpx;
+	border: 1rpx solid red;
+	margin-right: 30rpx;
+	width: 40rpx;
+	height: 40rpx;
+	text-align: center;
+	line-height: 40rpx;
+	font-weight: 700;
+	border-radius: 100%;
 }
 .check_title {
-		width: 600rpx;
+	width: 600rpx;
 }
 

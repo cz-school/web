@@ -70,7 +70,7 @@
 				isCard: true,
 				// swiperItem高度
 				swiperHeight: '',
-				baseUrl: 'http://47.104.29.236:9999/api/v1',
+				baseUrl: 'http://gs.itsse.cn:9999/api/v1',
 				// 评论 我收到的
 				getList: [],
 				// 评论 我发出的

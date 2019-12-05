@@ -95,7 +95,7 @@
 				InputBottom: 0,
 				pages: [],
 				plaza_id: 0,
-				baseUrl: 'http://47.104.29.236:9999/api/v1/',
+				baseUrl: 'http://gs.itsse.cn:9999/api/v1/',
 				// 评论
 				speakList: [],
 				text: '',
